@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
-    public GameObject zombie;
-
     //public GameObject[] spawnerList = new GameObject[5];
-    public float timeBetweenSpawns;
-    public float maxSpawns;
 
+    private List<GameObject> _enemies;
 
-    public GameObject[] obj = new GameObject[4];
+    [SerializeField]
+    private GameObject _zombie;
 
-    // Use this for initialization
-    void Start()
+    [SerializeField]
+    private float _timeBetweenSpawns = 0;
+
+    [SerializeField]
+    private int _maxSpawns;
+
+    private float _currentTimeBetweenSpawns;
+
+    private void Start()
     {
-        
+        _currentTimeBetweenSpawns = _timeBetweenSpawns;
+        _enemies = new List<GameObject>(_maxSpawns);
     }
-
     private void Update()
     {
-            if (timeBetweenSpawns <= 0)
-            {
-                Instantiate(zombie, obj[Random.Range(0,4)].transform.position,Quaternion.identity);
-            timeBetweenSpawns = 1;
-            }
+        if (_currentTimeBetweenSpawns <= 0)
+        {
+            Instantiate(_zombie, _enemies[Random.Range(0, _maxSpawns)].transform.position, Quaternion.identity);
+            _currentTimeBetweenSpawns = _timeBetweenSpawns;
+        }
 
-
-            else
-            {
-                timeBetweenSpawns -= Time.deltaTime;
-            }
+        else
+            _currentTimeBetweenSpawns -= Time.deltaTime;
     }
-
-
 }
