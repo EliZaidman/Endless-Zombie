@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Change everything to touch!
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
