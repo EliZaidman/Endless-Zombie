@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
-    //public GameObject[] spawnerList = new GameObject[5];
     [SerializeField]
     private List<GameObject> _spawners = new List<GameObject>(4);
 
@@ -23,6 +22,7 @@ public class SpawnerManager : MonoBehaviour
     {
         _currentTimeBetweenSpawns = _timeBetweenSpawns;
     }
+
     private void Update()
     {
         if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
