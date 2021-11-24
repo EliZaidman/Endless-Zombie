@@ -297,6 +297,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62191f976e1063342a51b64a0b04cad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawners:
+  - {fileID: 5218280394067692163}
+  - {fileID: 5218280394067692162}
+  - {fileID: 5218280394067692161}
+  - {fileID: 5218280394067692160}
   _zombie: {fileID: 1226499709}
   _timeBetweenSpawns: 0.4
   _maxSpawns: 4
@@ -428,3 +433,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c690208d313ef2242b5ff3bc4c9f3647, type: 3}
+--- !u!1 &5218280394067692160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218280393632602776, guid: c690208d313ef2242b5ff3bc4c9f3647, type: 3}
+  m_PrefabInstance: {fileID: 5218280394067692159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5218280394067692161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218280393908688492, guid: c690208d313ef2242b5ff3bc4c9f3647, type: 3}
+  m_PrefabInstance: {fileID: 5218280394067692159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5218280394067692162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218280393880470944, guid: c690208d313ef2242b5ff3bc4c9f3647, type: 3}
+  m_PrefabInstance: {fileID: 5218280394067692159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5218280394067692163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5218280392931897254, guid: c690208d313ef2242b5ff3bc4c9f3647, type: 3}
+  m_PrefabInstance: {fileID: 5218280394067692159}
+  m_PrefabAsset: {fileID: 0}

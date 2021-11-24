@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpawnerManager : MonoBehaviour
 {
     //public GameObject[] spawnerList = new GameObject[5];
-
-    private List<GameObject> _enemies;
+    [SerializeField]
+    private List<GameObject> _spawners = new List<GameObject>(4);
 
     [SerializeField]
     private GameObject _zombie;
@@ -22,13 +22,12 @@ public class SpawnerManager : MonoBehaviour
     private void Start()
     {
         _currentTimeBetweenSpawns = _timeBetweenSpawns;
-        _enemies = new List<GameObject>(_maxSpawns);
     }
     private void Update()
     {
         if (_currentTimeBetweenSpawns <= 0)
         {
-            Instantiate(_zombie, _enemies[Random.Range(0, _maxSpawns)].transform.position, Quaternion.identity);
+            Instantiate(_zombie, _spawners[Random.Range(0, _maxSpawns)].transform.position, Quaternion.identity);
             _currentTimeBetweenSpawns = _timeBetweenSpawns;
         }
 
