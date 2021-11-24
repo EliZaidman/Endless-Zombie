@@ -42,7 +42,6 @@ public class SpawnerManager : MonoBehaviour
 
         if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
         {
-            //Instantiate(_zombie, _spawners[Random.Range(0, 4)].transform.position, Quaternion.identity);
             Instantiate(_zombie, (Vector2)_spawners[Random.Range(0, 4)].transform.position + randomPosInsideSpawner, Quaternion.identity);
 
             _currentTimeBetweenSpawns = _timeBetweenSpawns;
