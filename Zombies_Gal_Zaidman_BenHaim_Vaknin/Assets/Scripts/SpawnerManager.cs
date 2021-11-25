@@ -7,7 +7,9 @@ public class SpawnerManager : MonoBehaviour
     public GameObject zombie;
 
     //public GameObject[] spawnerList = new GameObject[5];
+    public float tbs = 5;
     public float timeBetweenSpawns;
+    public float SpawnCounter;
     public float maxSpawns;
 
 
@@ -21,10 +23,14 @@ public class SpawnerManager : MonoBehaviour
 
     private void Update()
     {
+        if (maxSpawns >= SpawnCounter)
+        {
             if (timeBetweenSpawns <= 0)
             {
-                Instantiate(zombie, obj[Random.Range(0,4)].transform.position,Quaternion.identity);
-            timeBetweenSpawns = 1;
+                Instantiate(zombie, obj[Random.Range(0, 4)].transform.position, Quaternion.identity);
+                timeBetweenSpawns = 2;
+
+                SpawnCounter++;
             }
 
 
@@ -32,6 +38,7 @@ public class SpawnerManager : MonoBehaviour
             {
                 timeBetweenSpawns -= Time.deltaTime;
             }
+        }
     }
 
 
