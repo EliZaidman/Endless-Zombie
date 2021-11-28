@@ -10,5 +10,9 @@ public class PlayerMovementTouch : MonoBehaviour
     private void Update()
     {
         int i = 0;
+        while (true)
+        {
+
+        }
     }
 }

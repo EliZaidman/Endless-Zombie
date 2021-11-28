@@ -41,24 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Arena
+  - name: Grounds
     uniqueID: 4065773147
     locked: 0
-  - name: Walls
+  - name: Obstacles
     uniqueID: 415576747
     locked: 0
-  - name: Covers
+  - name: Characters
     uniqueID: 2789360799
-    locked: 0
-  - name: Spawners
-    uniqueID: 2212538117
-    locked: 0
-  - name: Interactables
-    uniqueID: 215399573
-    locked: 0
-  - name: Enemy
-    uniqueID: 2258291563
-    locked: 0
-  - name: Player
-    uniqueID: 1890059365
     locked: 0
