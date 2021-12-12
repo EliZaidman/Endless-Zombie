@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
-    public GameManager gameManager;
     [SerializeField]
     private List<GameObject> _spawners = new List<GameObject>(4);
 
@@ -41,7 +40,7 @@ public class SpawnerManager : MonoBehaviour
 
         Vector2 randomPosInsideSpawner = new Vector2(rectX, rectY);
 
-        if (gameManager.isLevelRunning)
+        if (GameManager.Instance.IsWaveOngoing)
         {
             if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
             {
