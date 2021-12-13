@@ -5,13 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/EndlessLevel.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/UI Scenes.unity
     guid: 15806a8d6f553f44ca06efbe0e12822f
   - enabled: 1
-    path: Assets/Scenes/MapaWithAI.unity
-    guid: 931b1fa1da4bd504299139521686d10f
+    path: Assets/Scenes/Completed 9.12.21.unity
+    guid: 16366bc01b73850468429bc5264811ae
   m_configObjects: {}
