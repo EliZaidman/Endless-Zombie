@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6942340898309905183}
   - component: {fileID: 2216518695855594478}
   - component: {fileID: 5383361004215932210}
-  - component: {fileID: 3094601552901568108}
   - component: {fileID: -5498364565144916785}
   - component: {fileID: 8375438555776433089}
+  - component: {fileID: 3144354137962465609}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -89,19 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &3094601552901568108
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1366005291388272660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &-5498364565144916785
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -136,4 +123,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a35dee7eb584c4e93c93b00cf03da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
+  hp: 10
+  bullet: {fileID: 8944805347107972867, guid: dc1a4f807f7758a46b8a95c36cbfaa7a, type: 3}
+--- !u!70 &3144354137962465609
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366005291388272660}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0

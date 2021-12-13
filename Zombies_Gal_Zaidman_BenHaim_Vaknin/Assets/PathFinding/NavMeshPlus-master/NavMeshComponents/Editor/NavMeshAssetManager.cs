@@ -41,9 +41,13 @@ namespace UnityEditor.AI
             {
                 var prefabStage = PrefabStageUtility.GetPrefabStage(surface.gameObject);
                 var isPartOfPrefab = prefabStage != null && prefabStage.IsPartOfPrefabContents(surface.gameObject);
+#pragma warning disable CS0618 // Type or member is obsolete
                 if (isPartOfPrefab && !string.IsNullOrEmpty(prefabStage.prefabAssetPath))
+#pragma warning restore CS0618 // Type or member is obsolete
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     var prefabDirectoryName = Path.GetDirectoryName(prefabStage.prefabAssetPath);
+#pragma warning restore CS0618 // Type or member is obsolete
                     if (!string.IsNullOrEmpty(prefabDirectoryName))
                         targetPath = prefabDirectoryName;
                 }

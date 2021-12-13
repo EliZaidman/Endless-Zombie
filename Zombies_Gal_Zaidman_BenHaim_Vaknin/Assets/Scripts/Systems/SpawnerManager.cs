@@ -40,19 +40,22 @@ public class SpawnerManager : MonoBehaviour
 
         Vector2 randomPosInsideSpawner = new Vector2(rectX, rectY);
 
-        if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
+        if (GameManager.Instance.IsWaveOngoing)
         {
-            Instantiate(_zombie, (Vector2)_spawners[Random.Range(0, 4)].transform.position + randomPosInsideSpawner, Quaternion.identity);
+            if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
+            {
+                Instantiate(_zombie, (Vector2)_spawners[Random.Range(0, 4)].transform.position + randomPosInsideSpawner, Quaternion.identity);
 
-            _currentTimeBetweenSpawns = _timeBetweenSpawns;
-            _maxSpawns --;
-            selectedSpawner = null;
-        }
+                _currentTimeBetweenSpawns = _timeBetweenSpawns;
+                _maxSpawns--;
+                selectedSpawner = null;
+            }
 
-        else
-        {
-            _currentTimeBetweenSpawns -= Time.deltaTime;
-            _rTr = null;
+            else
+            {
+                _currentTimeBetweenSpawns -= Time.deltaTime;
+                _rTr = null;
+            }
         }
     }
 }
