@@ -21,8 +21,6 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,7 +34,5 @@ public class EnemyAI : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-
     }
 }
