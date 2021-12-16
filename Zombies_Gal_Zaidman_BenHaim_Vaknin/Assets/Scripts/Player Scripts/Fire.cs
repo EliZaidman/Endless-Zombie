@@ -5,42 +5,39 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _deafultWeapon, _machineGun, _canonWeapon, _shot;
+
+    [SerializeField]
     private Transform _shotLocation;
-    [SerializeField] private GameObject deafultWeapon;
-    [SerializeField] private GameObject MachineGun;
-    [SerializeField] private GameObject CanonWeapon;
-    public float readyToShoot;
-    bool HoldingDefaultWeapon = true;
-    bool HoldingMachineGunWeapon = false;
-    bool HoldingCanonWeapon = false;
-   
 
     [SerializeField]
-    private GameObject _shot;
+    private float _readyToShoot = 0.3f, _shotForce = 20;
 
-    [SerializeField]
-    public float _shotForce;
+    private bool _holdingDefaultWeapon = true;
+    private bool _holdingMachineGunWeapon, _holdingCanonWeapon, _isShooting = false;
+
+    public bool IsShooting { get => _isShooting; set => _isShooting = value; }
 
     void Update()
     {
-        readyToShoot -= Time.deltaTime;
-        if (readyToShoot <= 0 && Input.GetButton("Fire1"))
+        _readyToShoot -= Time.deltaTime;
+        if (_readyToShoot <= 0 && _isShooting)
         {
             Shoot();
-            if (HoldingDefaultWeapon)
+            if (_holdingDefaultWeapon)
             {
-                readyToShoot = 0.3f;
+                _readyToShoot = 0.3f;
                 _shotForce = 20f;
                 
             }
-            if (HoldingMachineGunWeapon)
+            if (_holdingMachineGunWeapon)
             {
-                readyToShoot = 0.1f;
+                _readyToShoot = 0.1f;
                 _shotForce = 10f;
             }
-            if (HoldingCanonWeapon)
+            if (_holdingCanonWeapon)
             {
-                readyToShoot = 0.5f;
+                _readyToShoot = 0.5f;
                 _shotForce = 50f;
             }
         }
@@ -51,34 +48,34 @@ public class Fire : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            if (HoldingDefaultWeapon)
+            if (_holdingDefaultWeapon)
             {
-                deafultWeapon.SetActive(false);
-                MachineGun.SetActive(true);
-                HoldingMachineGunWeapon = true;
-                HoldingDefaultWeapon = false;     
+                _deafultWeapon.SetActive(false);
+                _machineGun.SetActive(true);
+                _holdingMachineGunWeapon = true;
+                _holdingDefaultWeapon = false;     
                 Debug.Log("default");
                 
 
             }
-             else if (HoldingMachineGunWeapon)
+             else if (_holdingMachineGunWeapon)
             {
-                MachineGun.SetActive(false);
-                CanonWeapon.SetActive(true);
-                HoldingMachineGunWeapon = false;
-                HoldingCanonWeapon = true;
+                _machineGun.SetActive(false);
+                _canonWeapon.SetActive(true);
+                _holdingMachineGunWeapon = false;
+                _holdingCanonWeapon = true;
 
                 Debug.Log("slow");
 
 
             }
-            else if (HoldingCanonWeapon)
+            else if (_holdingCanonWeapon)
             {
-                CanonWeapon.SetActive(false);
-                deafultWeapon.SetActive(true);
-                HoldingMachineGunWeapon = false;
-                HoldingCanonWeapon = false;
-                HoldingDefaultWeapon = true;
+                _canonWeapon.SetActive(false);
+                _deafultWeapon.SetActive(true);
+                _holdingMachineGunWeapon = false;
+                _holdingCanonWeapon = false;
+                _holdingDefaultWeapon = true;
 
                 Debug.Log("default");
 
