@@ -25,20 +25,26 @@ public class JoystickController : MonoBehaviour
             if (t.phase == TouchPhase.Began)
             {
                 if (t.position.x > Screen.width / 2)
-                    shootBullet();
+                {
 
+                }
                 else
                     leftTouch = t.fingerId;
                     startingPoint = touchPos;
             }
             else if (t.phase == TouchPhase.Moved && leftTouch == t.fingerId)
             {
-                Vector2 offset = touchPos - startingPoint;
-                Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+                if (t.position.x > Screen.width / 2)
+                    shootBullet();
+                else
+                {
+                    Vector2 offset = touchPos - startingPoint;
+                    Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-                moveCharacter(direction);
+                    moveCharacter(direction);
 
-                _joystick.transform.position = new Vector2(_joystickBg.transform.position.x + direction.x, _joystickBg.transform.position.y + direction.y);
+                    _joystick.transform.position = new Vector2(_joystickBg.transform.position.x + direction.x, _joystickBg.transform.position.y + direction.y);
+                }
 
             }
             else if (t.phase == TouchPhase.Ended && leftTouch == t.fingerId)
