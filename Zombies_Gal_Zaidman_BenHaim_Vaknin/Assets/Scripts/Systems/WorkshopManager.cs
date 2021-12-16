@@ -16,7 +16,7 @@ public class WorkshopManager : MonoBehaviour
     private Collider2D _wsCol, _playerCol;
 
     [SerializeField]
-    private float _mapSize = 14f;
+    private float _inOverlayMapSize = 14f, _defaultMapSize;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,12 +25,14 @@ public class WorkshopManager : MonoBehaviour
         {
             Debug.Log("Inside IF");
             _inventoryOverlay.SetActive(true);
-            _mainCam.orthographicSize = 14;
+            _defaultMapSize = _mainCam.orthographicSize;
+            _mainCam.orthographicSize = _inOverlayMapSize;
         }
     }
     
     public void CloseWS()
     {
         _inventoryOverlay.SetActive(false);
+        _mainCam.orthographicSize = _defaultMapSize;
     }
 }

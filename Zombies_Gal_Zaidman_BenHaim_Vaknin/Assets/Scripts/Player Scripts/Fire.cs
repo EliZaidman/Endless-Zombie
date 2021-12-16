@@ -11,6 +11,12 @@ public class Fire : MonoBehaviour
     private Transform _shotLocation;
 
     [SerializeField]
+    private SpriteRenderer _currentWeaponSprite;
+
+    [SerializeField]
+    private List<SpriteRenderer> _allWeaponSprites;
+
+    [SerializeField]
     private float _readyToShoot = 0.3f, _shotForce = 20;
 
     private bool _holdingDefaultWeapon = true;
@@ -53,7 +59,9 @@ public class Fire : MonoBehaviour
                 _deafultWeapon.SetActive(false);
                 _machineGun.SetActive(true);
                 _holdingMachineGunWeapon = true;
-                _holdingDefaultWeapon = false;     
+                _holdingDefaultWeapon = false;
+                _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
+                _currentWeaponSprite.color = _allWeaponSprites[0].color;
                 Debug.Log("default");
                 
 
@@ -64,7 +72,8 @@ public class Fire : MonoBehaviour
                 _canonWeapon.SetActive(true);
                 _holdingMachineGunWeapon = false;
                 _holdingCanonWeapon = true;
-
+                _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
+                _currentWeaponSprite.color = _allWeaponSprites[1].color;
                 Debug.Log("slow");
 
 
@@ -76,7 +85,8 @@ public class Fire : MonoBehaviour
                 _holdingMachineGunWeapon = false;
                 _holdingCanonWeapon = false;
                 _holdingDefaultWeapon = true;
-
+                _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
+                _currentWeaponSprite.color = _allWeaponSprites[2].color;
                 Debug.Log("default");
 
             }
