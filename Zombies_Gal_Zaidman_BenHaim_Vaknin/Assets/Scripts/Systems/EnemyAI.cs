@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     NavMeshAgent agent;
     public int hp = 10;
-
+    
     [SerializeField] private GameObject bullet;
     void Start()
     {
@@ -34,6 +34,7 @@ public class EnemyAI : MonoBehaviour
             if (hp <= 0)
             {
                 Destroy(gameObject);
+                
             }
         }
 
