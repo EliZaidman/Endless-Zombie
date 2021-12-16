@@ -7,10 +7,16 @@ using TMPro;
 public class WorkshopManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _inventoryLayout;
+    private GameObject _inventoryOverlay;
+
+    [SerializeField]
+    private Camera _mainCam;
 
     [SerializeField]
     private Collider2D _wsCol, _playerCol;
+
+    [SerializeField]
+    private float _mapSize = 14f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -18,12 +24,13 @@ public class WorkshopManager : MonoBehaviour
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
             Debug.Log("Inside IF");
-            _inventoryLayout.SetActive(true);
+            _inventoryOverlay.SetActive(true);
+            _mainCam.orthographicSize = 14;
         }
     }
     
     public void CloseWS()
     {
-        _inventoryLayout.SetActive(false);
+        _inventoryOverlay.SetActive(false);
     }
 }

@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -49,4 +50,7 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 2789360799
+    locked: 0
+  - name: InGameUI
+    uniqueID: 459622673
     locked: 0

@@ -6608,8 +6608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1859380181}
-  _joystick: {fileID: 7939275110666971472, guid: 6f673042e89537d4aabda4515a25cf07, type: 3}
-  _joystickBg: {fileID: 7100413021663735491, guid: bd64586e7f147884cbe5a4bc14b69aa4, type: 3}
+  _joystick: {fileID: 461786568396312196, guid: f853fbb9b4e4eb64480ad0062180518f, type: 3}
+  _joystickBg: {fileID: 464619241473031616, guid: e323e40c4dfdeb447ab0ca2c0703c397, type: 3}
   speed: 5
 --- !u!20 &519420031
 Camera:
@@ -6666,7 +6666,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &522901407
 PrefabInstance:
@@ -18811,7 +18811,7 @@ Transform:
   - {fileID: 419317442}
   - {fileID: 1999753723}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637396673
 GameObject:
@@ -20105,7 +20105,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 928562540288898792, guid: 11c55d718bb4d844d9ad9022a380e67d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 928562540288898792, guid: 11c55d718bb4d844d9ad9022a380e67d, type: 3}
       propertyPath: m_LocalPosition.x

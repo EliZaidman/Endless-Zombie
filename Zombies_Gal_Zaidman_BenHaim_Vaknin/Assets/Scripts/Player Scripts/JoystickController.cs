@@ -54,8 +54,8 @@ public class JoystickController : MonoBehaviour
             }
             ++i;
         }
-
     }
+
     Vector2 getTouchPosition(Vector2 touchPosition)
     {
         return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));

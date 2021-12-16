@@ -526,11 +526,6 @@ PrefabInstance:
       objectReference: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4ef2d9d0d7f7642b7edc8bf07c4373, type: 3}
---- !u!1 &318960731 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7626252510770785358, guid: 824b02b8e88209046974de8a1818036a, type: 3}
-  m_PrefabInstance: {fileID: 4746078269767863843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &320915621
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,11 +7640,6 @@ GameObject:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7468753320046008012, guid: 8a4ef2d9d0d7f7642b7edc8bf07c4373, type: 3}
   m_PrefabInstance: {fileID: 1528063266}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &814862657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4746078270238284847, guid: 824b02b8e88209046974de8a1818036a, type: 3}
-  m_PrefabInstance: {fileID: 4746078269767863843}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &844677834 stripped
 GameObject:
@@ -19545,7 +19535,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859380180}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70baf5c58ac1b524a933dfa45563a1a8, type: 3}
   m_Name: 
@@ -19669,11 +19659,6 @@ PrefabInstance:
       objectReference: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4ef2d9d0d7f7642b7edc8bf07c4373, type: 3}
---- !u!1 &1887957565 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7052014653916803959, guid: 824b02b8e88209046974de8a1818036a, type: 3}
-  m_PrefabInstance: {fileID: 4746078269767863843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1979565361
 GameObject:
   m_ObjectHideFlags: 0
@@ -20256,12 +20241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014a5fc87fd13d34d8a20665ca2a61a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotLocation: {fileID: 8992295281396803182}
-  deafultWeapon: {fileID: 814862657}
-  MachineGun: {fileID: 318960731}
-  CanonWeapon: {fileID: 1887957565}
-  readyToShoot: 0.3
+  _deafultWeapon: {fileID: 0}
+  _machineGun: {fileID: 0}
+  _canonWeapon: {fileID: 0}
   _shot: {fileID: 8944805347107972867, guid: 1ddea4f80c3bdff42951e2a79631cf94, type: 3}
+  _shotLocation: {fileID: 8992295281396803182}
+  _readyToShoot: 0.3
   _shotForce: 20
 --- !u!1001 &7468753320746276804
 PrefabInstance:
