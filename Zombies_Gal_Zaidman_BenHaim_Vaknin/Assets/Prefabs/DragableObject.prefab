@@ -91,9 +91,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
   _canvasGroup: {fileID: 7468753320046008008}
-  _currentGOPrefab: {fileID: 7468753320046008003}
-  _relatedGOPrefab: {fileID: 0}
+  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753320046008012}
+  _navmesh2D: {fileID: 0}
+  ground: {fileID: 0}
+  walls: {fileID: 0}
+  Walls: {fileID: 11400000, guid: 4c7abe31582edf6428ad27df02640e31, type: 2}
 --- !u!225 &7468753320046008008
 CanvasGroup:
   m_ObjectHideFlags: 0

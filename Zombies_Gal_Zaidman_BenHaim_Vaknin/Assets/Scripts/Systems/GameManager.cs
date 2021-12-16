@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +44,17 @@ public class GameManager : MonoBehaviour
     public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
     #endregion
 
+    [SerializeField] NavMeshSurface2d _navmesh2D;
+    [SerializeField]
+    private Tilemap ground;
+    [SerializeField]
+    private Tilemap walls;
+
+    [SerializeField]
+    private TileBase Walls;
+
+    [SerializeField]
+    private Camera cam;
     private void Awake()
     {
         if (_instance == null)
@@ -51,6 +64,12 @@ public class GameManager : MonoBehaviour
             Destroy(this);
     }
 
+    private void Start()
+    {
+
+        //_navmesh2D.BuildNavMesh();
+
+    }
     void Update()
     {
         _levelText.text = _level.ToString();
@@ -62,5 +81,27 @@ public class GameManager : MonoBehaviour
             if (_timer <= 0)
                 IsWaveOngoing = true;
         }
+
+
+
+
+
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    ground.SetTile(walls.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
+        //    Debug.Log("BUILD");
+        //    //_navmesh2D.UpdateNavMesh(_navmesh2D.navMeshData);
+        //    _navmesh2D.BuildNavMesh();
+        //}
+
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    walls.SetTile(walls.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
+        //    ground.SetTile(ground.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
+        //    Debug.Log("BUILD");
+        //    _navmesh2D.BuildNavMesh();
+        //}
     }
+
+
 }
