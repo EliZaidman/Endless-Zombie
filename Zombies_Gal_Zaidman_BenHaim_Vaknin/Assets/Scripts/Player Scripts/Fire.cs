@@ -46,45 +46,7 @@ public class Fire : MonoBehaviour
         }
 
 
-        //if (Input.GetButton("Fire1"))
-        //    Shoot();
 
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            if (HoldingDefaultWeapon)
-            {
-                deafultWeapon.SetActive(false);
-                MachineGun.SetActive(true);
-                HoldingMachineGunWeapon = true;
-                HoldingDefaultWeapon = false;     
-                Debug.Log("default");
-                
-
-            }
-             else if (HoldingMachineGunWeapon)
-            {
-                MachineGun.SetActive(false);
-                CanonWeapon.SetActive(true);
-                HoldingMachineGunWeapon = false;
-                HoldingCanonWeapon = true;
-
-                Debug.Log("slow");
-
-
-            }
-            else if (HoldingCanonWeapon)
-            {
-                CanonWeapon.SetActive(false);
-                deafultWeapon.SetActive(true);
-                HoldingMachineGunWeapon = false;
-                HoldingCanonWeapon = false;
-                HoldingDefaultWeapon = true;
-
-                Debug.Log("default");
-
-            }
-
-        }
     }
 
     private void Shoot()
@@ -94,5 +56,42 @@ public class Fire : MonoBehaviour
             Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
             rb.AddForce(_shotLocation.up * _shotForce, ForceMode2D.Impulse);
         
+    }
+
+    public void ShootCycle()
+    {
+        if (HoldingDefaultWeapon)
+        {
+            deafultWeapon.SetActive(false);
+            MachineGun.SetActive(true);
+            HoldingMachineGunWeapon = true;
+            HoldingDefaultWeapon = false;
+            Debug.Log("default");
+
+
+        }
+        else if (HoldingMachineGunWeapon)
+        {
+            MachineGun.SetActive(false);
+            CanonWeapon.SetActive(true);
+            HoldingMachineGunWeapon = false;
+            HoldingCanonWeapon = true;
+
+            Debug.Log("slow");
+
+
+        }
+        else if (HoldingCanonWeapon)
+        {
+            CanonWeapon.SetActive(false);
+            deafultWeapon.SetActive(true);
+            HoldingMachineGunWeapon = false;
+            HoldingCanonWeapon = false;
+            HoldingDefaultWeapon = true;
+
+            Debug.Log("default");
+
+        }
+
     }
 }
