@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.AI;
+using UnityEngine.Tilemaps;
 public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
@@ -19,6 +20,16 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     private Vector2 _startPos;
 
+    [SerializeField]
+    NavMeshSurface2d _navmesh2D;
+    [SerializeField]
+    private Tilemap ground;
+    [SerializeField]
+    private Tilemap walls;
+
+    [SerializeField]
+    private TileBase Walls;
+
     private void Awake()
     {
         _startPos = _tr.anchoredPosition;
@@ -33,10 +44,10 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         Debug.Log("OnBeginDrag");
         StartCoroutine(ReplaceInShop());
-        
+
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
-        
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -64,9 +75,12 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     IEnumerator PlaceGO()
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
+        //Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
+        walls.SetTile(ground.WorldToCell(targetPos), Walls);
+        ground.SetTile(ground.WorldToCell(targetPos), Walls);
         _tr.anchoredPosition = _startPos;
         //Destroy(gameObject);
+        _navmesh2D.BuildNavMesh();
 
         yield return null;
     }
