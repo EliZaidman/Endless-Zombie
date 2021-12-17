@@ -845,7 +845,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
@@ -862,22 +861,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84670d11ee948d4fb2d31ea1f31d59c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 7371209662671528150}
-  _joystick: {fileID: 0}
-  _joystickBg: {fileID: 0}
-  speed: 6
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3861,11 +3844,6 @@ MonoBehaviour:
   - {fileID: 4746078269767863850}
   _readyToShoot: 0.3
   _shotForce: 20
---- !u!224 &7371209662671528150 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4129546679567126025, guid: 824b02b8e88209046974de8a1818036a, type: 3}
-  m_PrefabInstance: {fileID: 4746078269767863843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7468753318829288915
 GameObject:
   m_ObjectHideFlags: 0
