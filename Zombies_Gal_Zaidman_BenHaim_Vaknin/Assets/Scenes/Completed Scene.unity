@@ -937,6 +937,7 @@ MonoBehaviour:
   _rightJoystickTr: {fileID: 1784338530}
   _rightJoystickBgTr: {fileID: 798979425}
   _speed: 6
+  _fire: {fileID: 7371209662671528149}
 --- !u!114 &519748380 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 11661561827193976, guid: 3ecd6b999d01abf4ba3ef9dc16d0ea6e, type: 3}
