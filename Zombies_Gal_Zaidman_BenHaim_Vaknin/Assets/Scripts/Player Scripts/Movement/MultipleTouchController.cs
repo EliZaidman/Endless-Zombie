@@ -5,17 +5,25 @@ using UnityEngine;
 public class MultipleTouchController : MonoBehaviour
 {
     [SerializeField]
-    private Transform _player, _joystick, _joystickBg;
+    private List<TouchData> _allTouches = new List<TouchData>();
 
     [SerializeField]
-    private float speed = 6f;
+    private GameObject _player;
+
+    [SerializeField]
+    private Transform _playerTr, _leftJoystickTr, _leftJoystickBgTr, _rightJoystickTr, _rightJoystickBgTr;
+
+    [SerializeField]
+    private float _speed = 6f;
 
     private Fire _fire = new Fire();
 
-    public GameObject Player;
-    public List<TouchLocation> touches = new List<TouchLocation>();
-
-    private Vector2 _startingPoint;
+    private Vector2 _leftJoystickStartPos, _rightJoystickStartPos;
+    private void Start()
+    {
+        _leftJoystickStartPos = _leftJoystickTr.transform.position;
+        _rightJoystickStartPos = _rightJoystickTr.transform.position;
+    }
 
     void Update()
     {
@@ -28,48 +36,62 @@ public class MultipleTouchController : MonoBehaviour
             if (t.phase == TouchPhase.Began)
             {
                 Debug.Log("touch began");
-                touches.Add(new TouchLocation(t.fingerId, touchPos));
+                _allTouches.Add(new TouchData(t.fingerId, touchPos));
+
             }
             else if (t.phase == TouchPhase.Moved)
             {
                 if (t.position.x < Screen.width / 2)
                 {
                     Debug.Log("touch is moving");
-                    TouchLocation thisTouch = touches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
 
                     Vector2 offset = touchPos - thisTouch.StartTouchPos;
                     Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
+                    _leftJoystickTr.transform.position = new Vector2(thisTouch.StartTouchPos.x + direction.x, thisTouch.StartTouchPos.y + direction.y);
+                    _leftJoystickBgTr.transform.position = new Vector2(thisTouch.StartTouchPos.x, thisTouch.StartTouchPos.y);
+
                     MovePlayer(direction);
-
-                    _joystick.transform.position = new Vector2(_joystickBg.transform.position.x + direction.x, _joystickBg.transform.position.y + direction.y);
-
-                    //thisTouch.Touchable.transform.position = getTouchPosition(t.position);
                 }
                 else if (t.position.x > Screen.width / 2)
                 {
                     Debug.Log("touch is moving");
-                    TouchLocation thisTouch = touches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
-                    Shoot();
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
 
+                    Vector2 offset = touchPos - thisTouch.StartTouchPos;
+                    Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+
+                    _rightJoystickTr.transform.position = new Vector2(thisTouch.StartTouchPos.x + direction.x, thisTouch.StartTouchPos.y + direction.y);
+                    _rightJoystickBgTr.transform.position = new Vector2(thisTouch.StartTouchPos.x, thisTouch.StartTouchPos.y);
+                    //Shoot(true);
                 }
             }
             else if (t.phase == TouchPhase.Ended)
             {
-                Debug.Log("touch ended");
-                TouchLocation thisTouch = touches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
-                //Destroy(thisTouch.Touchable);
-                //touches.RemoveAt(touches.IndexOf(thisTouch));
+                if (t.position.x < Screen.width / 2)
+                {
+                    Debug.Log("touch is moving");
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+
+                    _leftJoystickTr.transform.position = new Vector2(_leftJoystickStartPos.x, _leftJoystickStartPos.y);
+                    _leftJoystickBgTr.transform.position = new Vector2(_leftJoystickStartPos.x, _leftJoystickStartPos.y);
+
+                    _allTouches.RemoveAt(_allTouches.IndexOf(thisTouch));
+                }
+                else if (t.position.x > Screen.width / 2)
+                {
+                    Debug.Log("touch ended");
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+
+                    _rightJoystickTr.transform.position = new Vector2(_rightJoystickStartPos.x, _rightJoystickStartPos.y);
+                    _rightJoystickBgTr.transform.position = new Vector2(_rightJoystickStartPos.x, _rightJoystickStartPos.y);
+
+                    _allTouches.RemoveAt(_allTouches.IndexOf(thisTouch));
+                }
             }
             ++i;
         }
-    }
-    GameObject createCircle(Touch t)
-    {
-        GameObject c = Instantiate(Player) as GameObject;
-        c.name = "Touch" + t.fingerId;
-        c.transform.position = getTouchPosition(t.position);
-        return c;
     }
 
     Vector2 getTouchPosition(Vector2 touchPosition)
@@ -77,18 +99,15 @@ public class MultipleTouchController : MonoBehaviour
         return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
     }
 
-    Vector2 GetTouchPos(Touch t)
-    {
-        Vector2 touchPos = getTouchPosition(t.position);
-        return touchPos;
-    }
-
     void MovePlayer(Vector2 direction)
     {
-        _player.Translate(direction * speed * Time.deltaTime);
+        _playerTr.Translate(direction * _speed * Time.deltaTime);
     }
-    void Shoot()
+    void Shoot(bool onOff)
     {
-        _fire.IsShooting = true;
+        if (onOff)
+            _fire.IsShooting = true;
+        else
+            _fire.IsShooting = false;
     }
 }
