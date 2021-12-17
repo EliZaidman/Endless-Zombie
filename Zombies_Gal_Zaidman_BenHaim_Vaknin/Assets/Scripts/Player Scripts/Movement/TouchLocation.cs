@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class TouchLocation
 {
-    public GameObject Touchable;
+    public Vector2 StartTouchPos;
     public int TouchId;
 
-    public TouchLocation(int newTouchId, GameObject newGO)
+    public TouchLocation(int newTouchId, Vector2 newTouchPos)
     {
+        StartTouchPos = newTouchPos;
         TouchId = newTouchId;
-        Touchable = newGO;
     }
 }
