@@ -9,8 +9,11 @@ public class ShotCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject effect = Instantiate(_hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 0.1f);
-        Destroy(gameObject);
+        if (collision.gameObject.layer != 3)
+        {
+            GameObject effect = Instantiate(_hitEffect, transform.position, Quaternion.identity);
+            Destroy(effect, 0.1f);
+            Destroy(gameObject);
+        }
     }
 }

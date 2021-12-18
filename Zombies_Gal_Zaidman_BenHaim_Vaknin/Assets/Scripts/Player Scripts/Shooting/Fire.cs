@@ -34,7 +34,7 @@ public class Fire : MonoBehaviour
             {
                 _readyToShoot = 0.3f;
                 _bulletForce = 20f;
-                
+
             }
             if (_holdingMachineGunWeapon)
             {
@@ -48,58 +48,46 @@ public class Fire : MonoBehaviour
             }
         }
 
-
         //if (Input.GetButton("Fire1"))
         //    Shoot();
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            if (_holdingDefaultWeapon)
-            {
-                _deafultWeapon.SetActive(false);
-                _machineGun.SetActive(true);
-                _holdingMachineGunWeapon = true;
-                _holdingDefaultWeapon = false;
-                _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
-                _currentWeaponSprite.color = _allWeaponSprites[0].color;
-                Debug.Log("default");
-                
-
-            }
-             else if (_holdingMachineGunWeapon)
-            {
-                _machineGun.SetActive(false);
-                _canonWeapon.SetActive(true);
-                _holdingMachineGunWeapon = false;
-                _holdingCanonWeapon = true;
-                _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
-                _currentWeaponSprite.color = _allWeaponSprites[1].color;
-                Debug.Log("slow");
-
-
-            }
-            else if (_holdingCanonWeapon)
-            {
-                _canonWeapon.SetActive(false);
-                _deafultWeapon.SetActive(true);
-                _holdingMachineGunWeapon = false;
-                _holdingCanonWeapon = false;
-                _holdingDefaultWeapon = true;
-                _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
-                _currentWeaponSprite.color = _allWeaponSprites[2].color;
-                Debug.Log("default");
-
-            }
-
-        }
     }
 
     private void Shoot()
     {
+        GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
+        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+        rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
+    }
 
-            GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
-            Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
-            rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
-        
+    public void ShootCycle()
+    {
+        if (_holdingDefaultWeapon)
+        {
+            _deafultWeapon.SetActive(false);
+            _machineGun.SetActive(true);
+            _holdingMachineGunWeapon = true;
+            _holdingDefaultWeapon = false;
+            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
+            Debug.Log("machineGun");
+        }
+        else if (_holdingMachineGunWeapon)
+        {
+            _machineGun.SetActive(false);
+            _canonWeapon.SetActive(true);
+            _holdingMachineGunWeapon = false;
+            _holdingCanonWeapon = true;
+            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
+            Debug.Log("canonGun");
+        }
+        else if (_holdingCanonWeapon)
+        {
+            _canonWeapon.SetActive(false);
+            _deafultWeapon.SetActive(true);
+            _holdingMachineGunWeapon = false;
+            _holdingCanonWeapon = false;
+            _holdingDefaultWeapon = true;
+            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
+            Debug.Log("defaultGun");
+        }
     }
 }
