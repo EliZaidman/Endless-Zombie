@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class MultipleTouchController : MonoBehaviour
 {
+    #region Serialized Fields
     [SerializeField]
     private List<TouchData> _allTouches = new List<TouchData>();
 
     [SerializeField]
-    private List<RectTransform> _touchIgnore;
+    private List<RectTransform> _touchIgnore, _touchables;
 
     [SerializeField]
     private Camera _mainCam;
 
     [SerializeField]
-    private GameObject _player;
+    private Rigidbody2D _playerRb;
 
     [SerializeField]
     private Transform _playerTr, _gunPosTr;
@@ -27,8 +28,10 @@ public class MultipleTouchController : MonoBehaviour
 
     [SerializeField]
     private Fire _fire;
+    #endregion
 
     private Vector2 _leftJoystickStartPos, _rightJoystickStartPos;
+
     private void Start()
     {
         _leftJoystickStartPos = _leftJoystickTr.transform.position;
@@ -40,25 +43,24 @@ public class MultipleTouchController : MonoBehaviour
         int i = 0;
         while (i < Input.touchCount)
         {
-            Touch t = Input.GetTouch(i);
-            Vector2 touchPos = getTouchPosition(t.position);
+            Touch currentTouch = Input.GetTouch(i);
+            Vector2 touchPos = getTouchPosition(currentTouch.position);
 
-            if (t.phase == TouchPhase.Began)
+            if (currentTouch.phase == TouchPhase.Began)
             {
                 Debug.Log("touch began");
-                _allTouches.Add(new TouchData(t.fingerId, touchPos));
-
+                _allTouches.Add(new TouchData(currentTouch.fingerId, touchPos));
             }
-            else if (t.phase == TouchPhase.Moved)
+            else if (currentTouch.phase == TouchPhase.Moved)
             {
-                if (t.position.x < Screen.width / 2)
+                if (currentTouch.position.x < Screen.width / 2)
                 {
                     Debug.Log("touch is moving");
-                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
                     LeftJystickMovement(thisTouch, touchPos);
                 }
-                else if (t.position.x > Screen.width / 2)
+                else if (currentTouch.position.x > Screen.width / 2)
                 {
                     for (int ignoreIndex = 0; ignoreIndex < _touchIgnore.Count; ignoreIndex++)
                     {
@@ -67,29 +69,29 @@ public class MultipleTouchController : MonoBehaviour
                         //}
 
                         Debug.Log("touch is moving");
-                        TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+                        TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
                         RightJystickMovement(thisTouch, touchPos);
                         Shoot(true);
                     }
-                    
+
                 }
             }
-            else if (t.phase == TouchPhase.Ended)
+            else if (currentTouch.phase == TouchPhase.Ended)
             {
-                if (t.position.x < Screen.width / 2)
+                if (currentTouch.position.x < Screen.width / 2)
                 {
                     Debug.Log("touch is moving");
-                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
                     ResetLeftJoystick();
 
                     _allTouches.RemoveAt(_allTouches.IndexOf(thisTouch));
                 }
-                else if (t.position.x > Screen.width / 2)
+                else if (currentTouch.position.x > Screen.width / 2)
                 {
                     Debug.Log("touch ended");
-                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == t.fingerId);
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
                     ResetRightJoystick();
                     Shoot(false);
@@ -101,6 +103,7 @@ public class MultipleTouchController : MonoBehaviour
         }
     }
 
+    #region Methods
     Vector2 getTouchPosition(Vector2 touchPosition)
     {
         return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
@@ -113,10 +116,10 @@ public class MultipleTouchController : MonoBehaviour
 
         Vector2 uiLeftJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
         Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
-                  
+
         Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
         Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
-        
+
         _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
         _leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
 
@@ -134,7 +137,7 @@ public class MultipleTouchController : MonoBehaviour
 
         Vector2 uiRightJoystickScreenPosition = new Vector2((uiRightJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
         Vector2 uiRightJoystickBgScreenPosition = new Vector2((uiRightJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
-        
+
         _rightJoystickTr.anchoredPosition = uiRightJoystickScreenPosition;
         _rightJoystickBgTr.anchoredPosition = uiRightJoystickBgScreenPosition;
 
@@ -174,4 +177,5 @@ public class MultipleTouchController : MonoBehaviour
         else
             _fire.IsShooting = false;
     }
+    #endregion
 }
