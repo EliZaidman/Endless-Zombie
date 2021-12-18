@@ -663,8 +663,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _touchIgnore:
   - {fileID: 1651096508}
+  _touchables:
+  - {fileID: 977617160}
+  - {fileID: 7468753320345111631}
+  - {fileID: 7468753318841691938}
+  - {fileID: 7468753320605899454}
+  - {fileID: 7468753319155528686}
+  - {fileID: 7468753319367318496}
+  - {fileID: 7468753318829288924}
+  - {fileID: 7468753320399405986}
+  - {fileID: 7468753320165130579}
+  - {fileID: 7468753319971829046}
+  - {fileID: 7468753318920083518}
+  - {fileID: 7468753318874884681}
+  - {fileID: 1651096508}
   _mainCam: {fileID: 519420031}
-  _player: {fileID: 1432020962}
+  _playerRb: {fileID: 0}
   _playerTr: {fileID: 7360471164859293992}
   _gunPosTr: {fileID: 1546539599}
   _canvasTr: {fileID: 662999287}
