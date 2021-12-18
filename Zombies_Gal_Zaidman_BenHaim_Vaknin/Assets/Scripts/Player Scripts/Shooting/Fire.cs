@@ -5,10 +5,10 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _deafultWeapon, _machineGun, _canonWeapon, _shot;
+    private GameObject _deafultWeapon, _machineGun, _canonWeapon, _bullet;
 
     [SerializeField]
-    private Transform _shotLocation;
+    private Transform _bulletLocation;
 
     [SerializeField]
     private SpriteRenderer _currentWeaponSprite;
@@ -17,7 +17,7 @@ public class Fire : MonoBehaviour
     private List<SpriteRenderer> _allWeaponSprites;
 
     [SerializeField]
-    private float _readyToShoot = 0.3f, _shotForce = 20;
+    private float _readyToShoot = 0.3f, _bulletForce = 20;
 
     private bool _holdingDefaultWeapon = true;
     private bool _holdingMachineGunWeapon, _holdingCanonWeapon, _isShooting = false;
@@ -33,18 +33,18 @@ public class Fire : MonoBehaviour
             if (_holdingDefaultWeapon)
             {
                 _readyToShoot = 0.3f;
-                _shotForce = 20f;
+                _bulletForce = 20f;
                 
             }
             if (_holdingMachineGunWeapon)
             {
                 _readyToShoot = 0.1f;
-                _shotForce = 10f;
+                _bulletForce = 10f;
             }
             if (_holdingCanonWeapon)
             {
                 _readyToShoot = 0.5f;
-                _shotForce = 50f;
+                _bulletForce = 50f;
             }
         }
 
@@ -97,9 +97,9 @@ public class Fire : MonoBehaviour
     private void Shoot()
     {
 
-            GameObject _shotClone = Instantiate(_shot, _shotLocation.position, _shotLocation.rotation);
+            GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
             Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
-            rb.AddForce(_shotLocation.up * _shotForce, ForceMode2D.Impulse);
+            rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
         
     }
 }

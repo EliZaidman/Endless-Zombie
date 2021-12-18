@@ -8,10 +8,16 @@ public class MultipleTouchController : MonoBehaviour
     private List<TouchData> _allTouches = new List<TouchData>();
 
     [SerializeField]
+    private Camera _mainCam;
+
+    [SerializeField]
     private GameObject _player;
 
     [SerializeField]
-    private Transform _playerTr, _leftJoystickTr, _leftJoystickBgTr, _rightJoystickTr, _rightJoystickBgTr;
+    private Transform _playerTr, _gunPosTr;
+
+    [SerializeField]
+    private RectTransform _canvasTr, _leftJoystickTr, _leftJoystickBgTr, _rightJoystickTr, _rightJoystickBgTr;
 
     [SerializeField]
     private float _speed = 6f;
@@ -89,24 +95,42 @@ public class MultipleTouchController : MonoBehaviour
         return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
     }
 
-    private void LeftJystickMovement(TouchData touchdata, Vector2 touchPos)
+    private void LeftJystickMovement(TouchData touchData, Vector2 touchPos)
     {
-        Vector2 offset = touchPos - touchdata.StartTouchPos;
+        Vector2 offset = touchPos - touchData.StartTouchPos;
         Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-        _leftJoystickTr.transform.position = new Vector2(touchdata.StartTouchPos.x + direction.x, touchdata.StartTouchPos.y + direction.y);
-        _leftJoystickBgTr.transform.position = new Vector2(touchdata.StartTouchPos.x, touchdata.StartTouchPos.y);
+        Vector2 uiLeftJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
+        Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
+                  
+        Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        
+        _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
+        _leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
 
         MovePlayer(direction);
+        //_mainCam.transform.position = new Vector3(touchPos.x, touchPos.y, _mainCam.transform.position.z);
     }
 
-    private void RightJystickMovement(TouchData touchdata, Vector2 touchPos)
+    private void RightJystickMovement(TouchData touchData, Vector2 touchPos)
     {
-        Vector2 offset = touchPos - touchdata.StartTouchPos;
+        Vector2 offset = touchPos - touchData.StartTouchPos;
         Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-        _rightJoystickTr.transform.position = new Vector2(touchdata.StartTouchPos.x + direction.x, touchdata.StartTouchPos.y + direction.y);
-        _rightJoystickBgTr.transform.position = new Vector2(touchdata.StartTouchPos.x, touchdata.StartTouchPos.y);
+        Vector2 uiRightJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
+        Vector2 uiRightJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
+
+        Vector2 uiRightJoystickScreenPosition = new Vector2((uiRightJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        Vector2 uiRightJoystickBgScreenPosition = new Vector2((uiRightJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        
+        _rightJoystickTr.anchoredPosition = uiRightJoystickScreenPosition;
+        _rightJoystickBgTr.anchoredPosition = uiRightJoystickBgScreenPosition;
+        
+        //look
+        float zRotation = Mathf.Atan2(touchPos.y, touchPos.x) * Mathf.Rad2Deg;
+        _gunPosTr.rotation = Quaternion.Euler(0f, 0f, zRotation - 90);
+
     }
 
     private void ResetLeftJoystick()
@@ -124,6 +148,13 @@ public class MultipleTouchController : MonoBehaviour
     {
         _playerTr.Translate(direction * _speed * Time.deltaTime);
     }
+
+    //void PlayerLook(TouchData touch)
+    //{
+    //    Vector2 lookDirection = _mousePos - _playerGunRb.position;
+    //    float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
+    //    _playerGunRb.rotation = lookAngle;
+    //}
     void Shoot(bool onOff)
     {
         if (onOff)
