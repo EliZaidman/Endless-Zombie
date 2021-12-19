@@ -1,13 +1,26 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "53fa8074",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "53fa8074",
+        "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+        "processId": 11625,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [],
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 11627,
+            "exited": false
+        },
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 11625,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {

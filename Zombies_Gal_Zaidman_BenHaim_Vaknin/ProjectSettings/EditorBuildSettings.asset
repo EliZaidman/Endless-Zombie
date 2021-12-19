@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UI Scenes.unity
     guid: 15806a8d6f553f44ca06efbe0e12822f
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Completed 9.12.21.unity
-    guid: 16366bc01b73850468429bc5264811ae
+    path: Assets/Scenes/Eli_Z.unity
+    guid: de61bc23b73e4f54c9dd35ae451a8b7d
   m_configObjects: {}
