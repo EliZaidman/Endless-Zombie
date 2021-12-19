@@ -31,6 +31,7 @@ public class MultipleTouchController : MonoBehaviour
     #endregion
 
     private Vector2 _leftJoystickStartPos, _rightJoystickStartPos;
+    private bool _isMoving;
 
     private void Start()
     {
@@ -162,6 +163,7 @@ public class MultipleTouchController : MonoBehaviour
     void MovePlayer(Vector2 direction)
     {
         _playerTr.Translate(direction * _speed * Time.deltaTime);
+        //_playerRb.AddForce(direction * _speed * Time.deltaTime, ForceMode2D.Force);
     }
 
     //void PlayerLook(TouchData touch)
@@ -170,6 +172,7 @@ public class MultipleTouchController : MonoBehaviour
     //    float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
     //    _playerGunRb.rotation = lookAngle;
     //}
+
     void Shoot(bool onOff)
     {
         if (onOff)

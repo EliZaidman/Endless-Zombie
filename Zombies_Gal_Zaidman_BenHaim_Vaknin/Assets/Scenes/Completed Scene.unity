@@ -678,7 +678,7 @@ MonoBehaviour:
   - {fileID: 7468753318874884681}
   - {fileID: 1651096508}
   _mainCam: {fileID: 519420031}
-  _playerRb: {fileID: 0}
+  _playerRb: {fileID: 7110445282034941215}
   _playerTr: {fileID: 7360471164859293992}
   _gunPosTr: {fileID: 1546539599}
   _canvasTr: {fileID: 662999287}

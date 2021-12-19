@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
@@ -11,7 +12,7 @@ public class Fire : MonoBehaviour
     private Transform _bulletLocation;
 
     [SerializeField]
-    private SpriteRenderer _currentWeaponSprite;
+    private Image _currentWeaponSprite;
 
     [SerializeField]
     private List<SpriteRenderer> _allWeaponSprites;
@@ -67,7 +68,7 @@ public class Fire : MonoBehaviour
             _machineGun.SetActive(true);
             _holdingMachineGunWeapon = true;
             _holdingDefaultWeapon = false;
-            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
+            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
             Debug.Log("machineGun");
         }
         else if (_holdingMachineGunWeapon)
@@ -76,7 +77,7 @@ public class Fire : MonoBehaviour
             _canonWeapon.SetActive(true);
             _holdingMachineGunWeapon = false;
             _holdingCanonWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
+            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
             Debug.Log("canonGun");
         }
         else if (_holdingCanonWeapon)
@@ -86,7 +87,7 @@ public class Fire : MonoBehaviour
             _holdingMachineGunWeapon = false;
             _holdingCanonWeapon = false;
             _holdingDefaultWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
+            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
             Debug.Log("defaultGun");
         }
     }
