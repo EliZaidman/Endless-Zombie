@@ -1287,9 +1287,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1439290364803924849, guid: 5fa796989cd88e74e8677916814e9a67, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1439290364803924851, guid: 5fa796989cd88e74e8677916814e9a67, type: 3}
       propertyPath: m_Name
       value: Red cliff bacKground
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439290364803924854, guid: 5fa796989cd88e74e8677916814e9a67, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1439290364803924855, guid: 5fa796989cd88e74e8677916814e9a67, type: 3}
       propertyPath: m_Pivot.x
