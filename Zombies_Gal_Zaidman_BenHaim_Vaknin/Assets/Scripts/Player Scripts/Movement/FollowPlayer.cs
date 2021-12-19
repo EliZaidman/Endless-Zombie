@@ -6,25 +6,29 @@ public class FollowPlayer : MonoBehaviour
 {
 
     //Object you want to follow
-    public Transform target;
+    [SerializeField]
+    private Transform _playerTr, _joystickLeft, _joystickLeftBg, _joystickRight, _joystickRightBg;
+
+    //[SerializeField]
+    //private RectTransform _gUI;
 
     //Set to z -10
-    public Vector3 offset;
+    [SerializeField]
+    private Vector3 offset = new Vector3(0, 0, -10f);
 
     //How much delay on the follow
     [Range(1, 10)]
     public float smoothing;
 
-    private void FixedUpdate()
+    private void Update()
     {
         Follow();
     }
 
     void Follow()
     {
-        Vector3 targetPosition = target.position + offset;
+        Vector3 targetPosition = _playerTr.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothing * Time.fixedDeltaTime);
-        transform.position = smoothPosition;
+        //transform.position = smoothPosition;
     }
-
 }

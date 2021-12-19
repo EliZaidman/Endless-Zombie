@@ -118,8 +118,8 @@ public class MultipleTouchController : MonoBehaviour
         Vector2 uiLeftJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
         Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
 
-        Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
-        Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiLeftJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
+        Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickBgPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
 
         _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
         _leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
@@ -136,8 +136,8 @@ public class MultipleTouchController : MonoBehaviour
         Vector2 uiRightJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
         Vector2 uiRightJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
 
-        Vector2 uiRightJoystickScreenPosition = new Vector2((uiRightJoystickPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
-        Vector2 uiRightJoystickBgScreenPosition = new Vector2((uiRightJoystickBgPos.x * _canvasTr.sizeDelta.x) - (_canvasTr.sizeDelta.x * 0.5f), (uiRightJoystickBgPos.y * _canvasTr.sizeDelta.y) - (_canvasTr.sizeDelta.y * 0.5f));
+        Vector2 uiRightJoystickScreenPosition = new Vector2((uiRightJoystickPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiRightJoystickPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
+        Vector2 uiRightJoystickBgScreenPosition = new Vector2((uiRightJoystickBgPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiRightJoystickBgPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
 
         _rightJoystickTr.anchoredPosition = uiRightJoystickScreenPosition;
         _rightJoystickBgTr.anchoredPosition = uiRightJoystickBgScreenPosition;

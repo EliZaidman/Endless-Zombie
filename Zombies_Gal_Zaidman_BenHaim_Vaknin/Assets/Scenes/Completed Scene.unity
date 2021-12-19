@@ -605,7 +605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c857c3943f4ec74a905b0eeecfdf4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8688127410048647210}
+  _playerTr: {fileID: 7360471164859293992}
+  _joystickLeft: {fileID: 8991533122036613631}
+  _joystickLeftBg: {fileID: 2125585439973808829}
+  _joystickRight: {fileID: 7695104335570998222}
+  _joystickRightBg: {fileID: 2270014286714815460}
   offset: {x: 0, y: 0, z: -10}
   smoothing: 1
 --- !u!20 &519420031
@@ -1843,10 +1847,10 @@ MonoBehaviour:
   _timer: 2
   _isWaveOngoing: 0
   _navmesh2D: {fileID: 1999753722}
-  ground: {fileID: 849236063}
-  walls: {fileID: 419317444}
-  Walls: {fileID: 11400000, guid: 4c7abe31582edf6428ad27df02640e31, type: 2}
-  cam: {fileID: 519420031}
+  _ground: {fileID: 0}
+  _walls: {fileID: 0}
+  _wallTiles: {fileID: 0}
+  _mainCam: {fileID: 0}
 --- !u!4 &1223815200
 Transform:
   m_ObjectHideFlags: 0
