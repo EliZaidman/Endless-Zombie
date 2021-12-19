@@ -33,6 +33,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private void Awake()
     {
         _startPos = _tr.anchoredPosition;
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -75,6 +76,8 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     IEnumerator PlaceGO()
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        
         //Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
         walls.SetTile(ground.WorldToCell(targetPos), Walls);
         ground.SetTile(ground.WorldToCell(targetPos), Walls);
