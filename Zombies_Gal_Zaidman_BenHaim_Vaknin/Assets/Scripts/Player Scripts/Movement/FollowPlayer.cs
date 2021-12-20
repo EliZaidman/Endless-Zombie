@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
 
     //Object you want to follow
     [SerializeField]
-    private Transform _playerTr, _joystickLeft, _joystickLeftBg, _joystickRight, _joystickRightBg;
+    private Transform _playerTr;
 
     //[SerializeField]
     //private RectTransform _gUI;
