@@ -24,10 +24,16 @@ public class MultipleTouchController : MonoBehaviour
     private RectTransform _canvasTr, _leftJoystickTr, _leftJoystickBgTr, _rightJoystickTr, _rightJoystickBgTr;
 
     [SerializeField]
-    private float _speed = 6f, _mainCamLerp = 2f, _mainCamSpeed = 100f;
+    private Fire _fire;
 
     [SerializeField]
-    private Fire _fire;
+    private Vector3 offset = new Vector3(0, 0, -10f);
+
+    [SerializeField]
+    private float _speed = 6f, _mainCamLerp = 2f, _mainCamSpeed = 100f;
+
+    [SerializeField] [Range(1, 10)]
+    private float _mainCamSmoothing;
     #endregion
 
     private Vector2 _leftJoystickStartPos, _rightJoystickStartPos;
@@ -46,11 +52,22 @@ public class MultipleTouchController : MonoBehaviour
         {
             Touch currentTouch = Input.GetTouch(i);
             Vector2 touchPos = getTouchPosition(currentTouch.position);
+            Vector2 touchPosUI = getTouchPositionUI(currentTouch.position);
 
             if (currentTouch.phase == TouchPhase.Began)
             {
                 Debug.Log("touch began");
                 _allTouches.Add(new TouchData(currentTouch.fingerId, touchPos));
+                
+                if (currentTouch.position.x < Screen.width / 2)
+                {
+                    TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
+
+                    Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(thisTouch.StartTouchPos.x, thisTouch.StartTouchPos.y));
+                    Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickBgPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
+
+                    _leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
+                }
             }
             else if (currentTouch.phase == TouchPhase.Moved)
             {
@@ -59,7 +76,17 @@ public class MultipleTouchController : MonoBehaviour
                     Debug.Log("touch is moving");
                     TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
-                    LeftJystickMovement(thisTouch, touchPos);
+                    Vector2 offset = touchPos - thisTouch.StartTouchPos;
+                    Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+
+                    Vector2 uiLeftJoystickPos = new Vector2(touchPos.x + direction.x, touchPos.y + direction.y));
+                    Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _mainCam.pixelWidth) - (_mainCam.pixelWidth * 0.5f), (uiLeftJoystickPos.y * _mainCam.pixelHeight) - (_mainCam.pixelHeight * 0.5f));
+
+                    _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
+
+                    MovePlayer(direction);
+                    MoveCamera();
+                    //LeftJystickMovement(thisTouch, touchPos, touchPosUI);
                 }
                 else if (currentTouch.position.x > Screen.width / 2)
                 {
@@ -107,24 +134,30 @@ public class MultipleTouchController : MonoBehaviour
     #region Methods
     Vector2 getTouchPosition(Vector2 touchPosition)
     {
-        return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
+        return _mainCam.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
     }
 
-    private void LeftJystickMovement(TouchData touchData, Vector2 touchPos)
+    Vector2 getTouchPositionUI(Vector2 touchPosition)
     {
-        Vector2 offset = touchPos - touchData.StartTouchPos;
-        Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+        return _mainCam.ScreenToViewportPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
+    }
 
-        Vector2 uiLeftJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x + direction.x, touchData.StartTouchPos.y + direction.y));
-        Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
+    private void LeftJystickMovement(TouchData touchData, Vector2 touchPos, Vector2 touchPosUI)
+    {
+        //Vector2 offset = touchPos - touchData.StartTouchPos;
+        //Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
+        //
+        //Vector2 uiLeftJoystickPos = _mainCam.WorldToViewportPoint(new Vector2(touchPos.x + direction.x, touchPos.y + direction.y));
+        //Vector2 uiLeftJoystickBgPos = _mainCam.WorldToViewportPoint(new Vector2(touchData.StartTouchPos.x, touchData.StartTouchPos.y));
 
-        Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
-        Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickBgPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
+        //Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _mainCam.pixelWidth) - (_mainCam.pixelWidth * 0.5f), (uiLeftJoystickPos.y * _mainCam.pixelHeight) - (_mainCam.pixelHeight * 0.5f));
+        //Vector2 uiLeftJoystickBgScreenPosition = new Vector2((uiLeftJoystickBgPos.x * _mainCam.scaledPixelWidth) - (_mainCam.scaledPixelWidth * 0.5f), (uiLeftJoystickBgPos.y * _mainCam.scaledPixelHeight) - (_mainCam.scaledPixelHeight * 0.5f));
 
-        _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
-        _leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
+        //_leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
+        //_leftJoystickBgTr.anchoredPosition = uiLeftJoystickBgScreenPosition;
 
-        MovePlayer(direction);
+        //MovePlayer(direction);
+        //MoveCamera();
         //_mainCam.transform.position = Vector3.Lerp(_mainCam.transform.position, _mainCam.WorldToViewportPoint(touchPos * _mainCamSpeed * Time.deltaTime), _mainCamLerp);
     }
 
@@ -172,6 +205,13 @@ public class MultipleTouchController : MonoBehaviour
     //    float lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90f;
     //    _playerGunRb.rotation = lookAngle;
     //}
+
+    void MoveCamera()
+    {
+        Vector3 targetPosition = _playerTr.position + offset;
+        Vector3 smoothPosition = Vector3.Lerp(_mainCam.transform.position, targetPosition, _mainCamSmoothing * Time.fixedDeltaTime);
+        _mainCam.transform.position = smoothPosition;
+    }
 
     void Shoot(bool onOff)
     {
