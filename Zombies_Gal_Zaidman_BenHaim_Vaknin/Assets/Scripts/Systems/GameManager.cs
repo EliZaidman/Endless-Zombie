@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour
     private bool _isWaveOngoing = false;
     #endregion
 
-    #region Properties
-    public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
-    #endregion
+        #region Properties
+        public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
+        #endregion
 
     [SerializeField] 
     NavMeshSurface2d _navmesh2D;
