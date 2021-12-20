@@ -8,8 +8,10 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     NavMeshAgent agent;
     public int hp = 10;
+    //[SerializeField]
+    //CoreManager coreManager;
 
-    [SerializeField] private GameObject bullet;
+    //[SerializeField] private GameObject bullet;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,12 +29,21 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            hp -= 5;
+            hp -= 25;
             
             if (hp <= 0)
             {
                 Destroy(gameObject);
             }
+
         }
+
+        if (collision.gameObject.CompareTag("Core"))
+        {      
+            Destroy(gameObject);
+        }
+
     }
+
+    
 }
