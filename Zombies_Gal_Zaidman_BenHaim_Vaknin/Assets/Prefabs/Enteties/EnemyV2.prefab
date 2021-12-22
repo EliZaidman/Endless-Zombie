@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
   hp: 10
+  spawner: {fileID: 0}
 --- !u!61 &6206872733715293100
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +136,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

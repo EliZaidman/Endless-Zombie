@@ -31,10 +31,10 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _countDown, _levelText, _targetsLeftText;
 
     [SerializeField]
-    private int _level, _targetsRemaining;
+    public int _level, _targetsRemaining;
 
     [SerializeField]
-    private float _timer;
+    public float _timer;
 
     [SerializeField]
     private bool _isWaveOngoing = false;
@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Camera _mainCam;
 
+    [SerializeField]
+    SpawnerManager _spawnerManager;
     private void Awake()
     {
         if (_instance == null)
@@ -74,14 +76,26 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        _levelText.text = _level.ToString();
+        _levelText.text = _level.ToString("0");
 
         if (!IsWaveOngoing)
         {
             _timer -= Time.deltaTime;
             _countDown.text = _timer.ToString("0");
+
             if (_timer <= 0)
                 IsWaveOngoing = true;
         }
+
+    }
+
+    public void NextLevel()
+    {
+        _level++;
+        _timer = 5;
+        _spawnerManager._timeBetweenSpawns = 0;
+        _spawnerManager._maxSpawns += _level;
+        _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
+        IsWaveOngoing = false;
     }
 }

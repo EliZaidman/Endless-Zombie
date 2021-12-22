@@ -10,7 +10,7 @@ public class JoystickController : MonoBehaviour
     [SerializeField]
     private float speed = 15.0f;
 
-    private Fire _fire = new Fire();
+    private PlayerManager playerManager = new PlayerManager();
     private Vector2 startingPoint;
     private int leftTouch = 99;
 
@@ -67,6 +67,6 @@ public class JoystickController : MonoBehaviour
     }
     void shootBullet()
     {
-        _fire.IsShooting = true;
+        playerManager.IsShooting = true;
     }
 }
