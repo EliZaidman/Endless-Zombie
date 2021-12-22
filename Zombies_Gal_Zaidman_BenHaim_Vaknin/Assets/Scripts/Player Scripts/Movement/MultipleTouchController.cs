@@ -79,7 +79,7 @@ public class MultipleTouchController : MonoBehaviour
                     Vector2 offset = touchPos - thisTouch.StartTouchPos;
                     Vector2 direction = Vector2.ClampMagnitude(offset, 1.0f);
 
-                    Vector2 uiLeftJoystickPos = new Vector2(touchPos.x + direction.x, touchPos.y + direction.y));
+                    Vector2 uiLeftJoystickPos = new Vector2(touchPos.x + direction.x, touchPos.y + direction.y);
                     Vector2 uiLeftJoystickScreenPosition = new Vector2((uiLeftJoystickPos.x * _mainCam.pixelWidth) - (_mainCam.pixelWidth * 0.5f), (uiLeftJoystickPos.y * _mainCam.pixelHeight) - (_mainCam.pixelHeight * 0.5f));
 
                     _leftJoystickTr.anchoredPosition = uiLeftJoystickScreenPosition;
