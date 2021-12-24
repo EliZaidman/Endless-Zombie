@@ -5,28 +5,21 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    private NavMeshAgent agent;
+    
     public Transform target;
-    NavMeshAgent agent;
     public int hp = 10;
-    //[SerializeField]
-    //CoreManager coreManager;
-    [SerializeField]
-    SpawnerManager spawner;
-
-    //[SerializeField] private GameObject bullet;
+    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
         agent.SetDestination(target.position);
-       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -40,17 +33,6 @@ public class EnemyAI : MonoBehaviour
                 FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
                 Destroy(gameObject);
             }
-
-        }
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Core"))
-        {
-            FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
-            Destroy(gameObject);
         }
     }
 }
