@@ -24,29 +24,29 @@ public class TrapItem : MonoBehaviour
 
     //    Destroy(gameObject);
     //}
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //if (collision.gameObject.tag == "Player")
         //    _cM.CoreHp -= _trapDamage;
-
+        //else
+        //    Destroy(collision.gameObject);
+        //
         //Destroy(gameObject);
     }
 
-
     private void Update()
     {
-            FunctionToGetRidOfTile();
-
+        FunctionToGetRidOfTile();
     }
+
     void FunctionToGetRidOfTile()
     {
         Vector3Int getGridPos = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, (int)player.transform.position.z);
         _tilemap.SetTile(getGridPos, null);   
     }
-
-    //public Vector3Int GetGridByPosition()
-    //{
-    //    return new Vector3Int((int)player.transform.position.x,(int)player.transform.position.y, (int)player.transform.position.z);
-    //}
+    
+    public Vector3Int GetGridByPosition()
+    {
+        return new Vector3Int((int)player.transform.position.x,(int)player.transform.position.y, (int)player.transform.position.z);
+    }
 }

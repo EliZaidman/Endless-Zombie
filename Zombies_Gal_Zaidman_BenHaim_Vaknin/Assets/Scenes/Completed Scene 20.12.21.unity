@@ -519,7 +519,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -17903,7 +17903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &886840893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18167,10 +18167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 977617164}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 977617160}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 304156114}
   _itemGO: {fileID: 304156114}
   _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!114 &977617162
@@ -20797,12 +20795,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753318829288920}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753318829288924}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!114 &7468753318829288926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20912,10 +20908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753318841691942}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753318841691938}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
   _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!225 &7468753318841691942
@@ -20984,12 +20978,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753318874884685}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753318874884681}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!224 &7468753318874884681
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21162,12 +21154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753318920083514}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753318920083518}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!1 &7468753319155528673
 GameObject:
   m_ObjectHideFlags: 0
@@ -21271,12 +21261,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753319155528682}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753319155528686}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!224 &7468753319367318496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21310,12 +21298,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753319367318500}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753319367318496}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!114 &7468753319367318498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21469,12 +21455,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753319971829042}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753319971829046}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!1 &7468753319971829049
 GameObject:
   m_ObjectHideFlags: 0
@@ -21547,12 +21531,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753320165130583}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753320165130579}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!224 &7468753320165130579
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21688,10 +21670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753320345111627}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753320345111631}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
   _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!224 &7468753320345111631
@@ -21784,12 +21764,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753320399405990}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753320399405986}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: cf53f9a29af7db242905c60c5b8a4d67, type: 2}
+  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!225 &7468753320399405990
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -21925,10 +21903,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 662999286}
   _canvasGroup: {fileID: 7468753320605899450}
-  _relatedGOPrefab: {fileID: 6715181015985085830, guid: 189dbf780c4f5124eab06af5d0b62033, type: 3}
   _tr: {fileID: 7468753320605899454}
   _navmesh2D: {fileID: 1999753722}
-  _groundGO: {fileID: 849236063}
   _itemGO: {fileID: 304156114}
   _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!224 &8688127410048647210

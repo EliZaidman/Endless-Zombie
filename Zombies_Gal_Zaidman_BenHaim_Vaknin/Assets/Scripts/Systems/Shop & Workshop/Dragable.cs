@@ -13,18 +13,15 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup _canvasGroup;
 
     [SerializeField]
-    private GameObject _relatedGOPrefab;
-
-    [SerializeField]
     private RectTransform _tr;
 
     private Vector2 _startPos;
 
     [SerializeField]
-    NavMeshSurface2d _navmesh2D;
+    private NavMeshSurface2d _navmesh2D;
 
     [SerializeField]
-    private Tilemap _groundGO, _itemGO;
+    private Tilemap _itemGO;
 
     [SerializeField]
     private TileBase _itemTile;
@@ -32,7 +29,6 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private void Awake()
     {
         _startPos = _tr.anchoredPosition;
-        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -47,7 +43,6 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.alpha = 0.6f;
-
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -68,7 +63,6 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         Instantiate(gameObject, _startPos, Quaternion.identity);
         Debug.Log("Made a copy");
-        //_tr.anchoredPosition = _startPos;
         yield return null;
     }
 
@@ -76,12 +70,8 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        
-        //Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
-        //_itemGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
-        _groundGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
+        _itemGO.SetTile(_itemGO.WorldToCell(targetPos), _itemTile);
         _tr.anchoredPosition = _startPos;
-        //Destroy(gameObject);
         _navmesh2D.BuildNavMesh();
 
         yield return null;
