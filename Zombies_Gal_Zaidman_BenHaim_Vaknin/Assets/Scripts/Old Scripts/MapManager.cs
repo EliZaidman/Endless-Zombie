@@ -8,18 +8,10 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private Tilemap map;
 
-
-
     [SerializeField]
     private List<TileData> tileDatas;
 
-
-
     private Dictionary<TileBase, TileData> dataFromTiles;
-
-
-
-
 
     private void Awake()
     {
@@ -32,14 +24,9 @@ public class MapManager : MonoBehaviour
         //        dataFromTiles.Add(tile, tileData);
         //    }
         //}
-       
+
 
     }
-
-
-
-
-
 
     private void Update()
     {
@@ -50,16 +37,10 @@ public class MapManager : MonoBehaviour
 
             TileBase clickedTile = map.GetTile(gridPosition);
 
-           // map.SetTileFlags(gridPosition, TileFlags.None);
-          //  map.SetColor(gridPosition, Color.black);
+            // map.SetTileFlags(gridPosition, TileFlags.None);
+            //  map.SetColor(gridPosition, Color.black);
 
-         //   float walkingSpeed = dataFromTiles[clickedTile].walkingSpeed;
-
-
-
-
-
-
+            //   float walkingSpeed = dataFromTiles[clickedTile].walkingSpeed;
         }
     }
 
@@ -95,7 +76,7 @@ public class MapManager : MonoBehaviour
     //}
 
 
-  
+
 
 
 }

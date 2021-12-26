@@ -20655,10 +20655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78cfed047f81d94abf06909eb0d9357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allWeapons:
-  - {fileID: 477499916}
-  - {fileID: 2884715312074891885}
-  - {fileID: 2306050802084068692}
   _allWeaponSprites:
   - {fileID: 477499918}
   - {fileID: 2884715312074891887}
@@ -20671,7 +20667,7 @@ MonoBehaviour:
   _currentWeaponSprite: {fileID: 911406385}
   _fireRate: 0.3
   _bulletForce: 20
-  canShoot: 1
+  canShoot: 0
 --- !u!114 &7371209662671528151
 MonoBehaviour:
   m_ObjectHideFlags: 0
