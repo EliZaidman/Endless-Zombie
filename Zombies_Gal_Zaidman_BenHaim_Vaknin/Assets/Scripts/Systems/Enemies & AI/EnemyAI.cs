@@ -14,6 +14,13 @@ public class EnemyAI : MonoBehaviour
     public Tilemap _tilemap;
     public int hp = 10;
 
+    private Shop _shop;
+
+    private void Awake()
+    {
+        _shop = Camera.main.GetComponent<Shop>();
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -41,6 +48,7 @@ public class EnemyAI : MonoBehaviour
 
             if (hp <= 0)
             {
+                _shop.AddCoins();
                 FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
                 Destroy(gameObject);
             }
