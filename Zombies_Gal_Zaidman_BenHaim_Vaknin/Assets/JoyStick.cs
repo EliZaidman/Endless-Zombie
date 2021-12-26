@@ -34,7 +34,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 
         if (shoot)
         {
-            FindObjectOfType<PlayerWeapon>().canShoot = true;
+            FindObjectOfType<PlayerManager>().canShoot = true;
         }
     }
 
@@ -50,7 +50,7 @@ public class JoyStick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         if (!shoot)
             InputDir = Vector3.zero;
         else
-            FindObjectOfType<PlayerWeapon>().canShoot = false;     
+            FindObjectOfType<PlayerManager>().canShoot = false;     
         touch.rectTransform.anchoredPosition = Vector3.zero;
     }
 
