@@ -1,18 +1,15 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
-    //[SerializeField]
-    //private Rigidbody2D _myBody;
-
     [SerializeField]
     private GameObject _deafultWeapon, _machineGun, _canonWeapon, _bullet;
 
     [SerializeField]
-    private Transform _bulletLocation; // _gunPos;
+    private Transform _bulletLocation;
 
     [SerializeField]
     private Image _currentWeaponSprite;
@@ -21,47 +18,14 @@ public class PlayerManager : MonoBehaviour
     private List<SpriteRenderer> _allWeaponSprites;
 
     [SerializeField]
-    private float _readyToShoot = 0.3f, _bulletForce = 20; // _rotationSpeed = 100;
+    private float _readyToShoot = 0.3f, _bulletForce = 20;
 
     private bool _holdingDefaultWeapon = true;
     private bool _holdingMachineGunWeapon, _holdingCanonWeapon, _isShooting = false;
-    public bool IsShooting { get => _isShooting; set => _isShooting = value; }
+    
     public bool canShoot;
     
-    //private Vector2 moveVelocity;
-
-    //public float speed;
-    //public JoyStick moveJoystick;
-    //public JoyStick shootJoystick;
-
-    private void Update()
-    {
-        WeaponsStats();
-        //Rotation();
-        //Movement();
-    }
-
-    private void FixedUpdate()
-    {
-        //MoveRb();
-    }
-
-    /* Movement
-    void Movement()
-    {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (moveJoystick.InputDir != Vector3.zero)
-        {
-            moveInput = moveJoystick.InputDir;
-        }
-        moveVelocity = moveInput.normalized * speed;
-    }
-
-    void MoveRb()
-    {
-        _myBody.MovePosition(_myBody.position + moveVelocity * Time.fixedDeltaTime);
-    }
-    */
+    public bool IsShooting { get => _isShooting; set => _isShooting = value; }
 
     private void Shoot()
     {
@@ -132,18 +96,4 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("defaultGun");
         }
     }
-
-    /* Rotation
-    public void Rotation()
-    {
-        Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _gunPos.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-
-        if (shootJoystick.InputDir != Vector3.zero)
-            angle = Mathf.Atan2(shootJoystick.InputDir.y, shootJoystick.InputDir.x) * Mathf.Rad2Deg - 90;
-
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        _gunPos.rotation = Quaternion.Slerp(_gunPos.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
-    }
-    */
 }
