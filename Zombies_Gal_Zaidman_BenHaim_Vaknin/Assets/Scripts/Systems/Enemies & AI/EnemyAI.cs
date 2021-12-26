@@ -13,13 +13,17 @@ public class EnemyAI : MonoBehaviour
     public Grid _grid;
     public Tilemap _tilemap;
     public int hp = 10;
-
+   
+    
+    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         _tilemap = FindObjectOfType<Tilemap>();
+        
+        
     }
 
     void Update()
@@ -41,9 +45,13 @@ public class EnemyAI : MonoBehaviour
 
             if (hp <= 0)
             {
+                
                 FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
                 Destroy(gameObject);
+                
+
             }
+            Shop.Instance.AddCoins();
         }
 
         if (collision.gameObject.CompareTag("Trap"))
