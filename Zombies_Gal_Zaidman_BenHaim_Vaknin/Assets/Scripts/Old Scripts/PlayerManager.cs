@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D _myBody;
+    //[SerializeField]
+    //private Rigidbody2D _myBody;
 
     [SerializeField]
     private GameObject _deafultWeapon, _machineGun, _canonWeapon, _bullet;
 
     [SerializeField]
-    private Transform _bulletLocation, _gunPos;
+    private Transform _bulletLocation; // _gunPos;
 
     [SerializeField]
     private Image _currentWeaponSprite;
@@ -21,30 +21,62 @@ public class PlayerManager : MonoBehaviour
     private List<SpriteRenderer> _allWeaponSprites;
 
     [SerializeField]
-    private float _readyToShoot = 0.3f, _bulletForce = 20, _rotationSpeed = 100;
+    private float _readyToShoot = 0.3f, _bulletForce = 20; // _rotationSpeed = 100;
 
-    private Vector2 moveVelocity;
     private bool _holdingDefaultWeapon = true;
     private bool _holdingMachineGunWeapon, _holdingCanonWeapon, _isShooting = false;
-
-    public float speed;
-    public JoyStick moveJoystick;
-    public JoyStick shootJoystick;
-
     public bool IsShooting { get => _isShooting; set => _isShooting = value; }
-
-
-
     public bool canShoot;
+    
+    //private Vector2 moveVelocity;
+
+    //public float speed;
+    //public JoyStick moveJoystick;
+    //public JoyStick shootJoystick;
 
     private void Update()
+    {
+        WeaponsStats();
+        //Rotation();
+        //Movement();
+    }
+
+    private void FixedUpdate()
+    {
+        //MoveRb();
+    }
+
+    /* Movement
+    void Movement()
+    {
+        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (moveJoystick.InputDir != Vector3.zero)
+        {
+            moveInput = moveJoystick.InputDir;
+        }
+        moveVelocity = moveInput.normalized * speed;
+    }
+
+    void MoveRb()
+    {
+        _myBody.MovePosition(_myBody.position + moveVelocity * Time.fixedDeltaTime);
+    }
+    */
+
+    private void Shoot()
+    {
+        GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
+        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+        rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
+    }
+
+    private void WeaponsStats()
     {
         _readyToShoot -= Time.deltaTime;
         if (Input.GetMouseButton(0) && canShoot)
         {
             if (_readyToShoot <= 0)
             {
-
                 Shoot();
 
                 if (_holdingDefaultWeapon)
@@ -66,45 +98,6 @@ public class PlayerManager : MonoBehaviour
                 }
             }
         }
-
-        Rotation();
-        Movement();
-    }
-
-    private void FixedUpdate()
-    {
-        MoveRb();
-    }
-
-    void Movement()
-    {
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (moveJoystick.InputDir != Vector3.zero)
-        {
-            moveInput = moveJoystick.InputDir;
-        }
-        moveVelocity = moveInput.normalized * speed;
-    }
-
-    void MoveRb()
-    {
-        _myBody.MovePosition(_myBody.position + moveVelocity * Time.fixedDeltaTime);
-
-/*        if (moveVelocity == Vector2.zero)
-        {
-            //anim
-        }
-        else
-        {
-            //anim
-        }*/
-    }
-
-    private void Shoot()
-    {
-        GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
-        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
-        rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
     }
 
     public void ShootCycle()
@@ -139,6 +132,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    /* Rotation
     public void Rotation()
     {
         Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _gunPos.position;
@@ -150,4 +144,5 @@ public class PlayerManager : MonoBehaviour
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         _gunPos.rotation = Quaternion.Slerp(_gunPos.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
     }
+    */
 }

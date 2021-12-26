@@ -507,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cM: {fileID: 0}
-  _allEnemiesColliders: {fileID: 0}
   _trapDamage: 5
 --- !u!19719996 &304156111
 TilemapCollider2D:
@@ -18584,7 +18583,6 @@ GameObject:
   - component: {fileID: 1432020963}
   - component: {fileID: 1432020965}
   - component: {fileID: 1432020966}
-  - component: {fileID: 1432020964}
   m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
@@ -18643,37 +18641,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1432020964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432020962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa27abba28b229649a3cd2d63c818a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _myBody: {fileID: 1432020966}
-  _deafultWeapon: {fileID: 477499916}
-  _machineGun: {fileID: 2884715312074891885}
-  _canonWeapon: {fileID: 2306050802084068692}
-  _bullet: {fileID: 8944805347107972867, guid: 1ddea4f80c3bdff42951e2a79631cf94, type: 3}
-  _bulletLocation: {fileID: 8992295281396803182}
-  _gunPos: {fileID: 1546539599}
-  _currentWeaponSprite: {fileID: 911406385}
-  _allWeaponSprites:
-  - {fileID: 477499918}
-  - {fileID: 2884715312074891887}
-  - {fileID: 2306050802084068694}
-  _readyToShoot: 0.3
-  _bulletForce: 20
-  _rotationSpeed: 20
-  speed: 5
-  moveJoystick: {fileID: 1712351393}
-  shootJoystick: {fileID: 1370933442}
-  canShoot: 1
 --- !u!70 &1432020965
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -19306,8 +19273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1432020964}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+      - m_Target: {fileID: 7371209662671528150}
+        m_TargetAssemblyTypeName: PlayerWeapon, Assembly-CSharp
         m_MethodName: ShootCycle
         m_Mode: 1
         m_Arguments:
@@ -20651,6 +20618,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688127410048647210}
+  - component: {fileID: 7371209662671528151}
+  - component: {fileID: 7371209662671528150}
+  - component: {fileID: 7371209662671528149}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -20658,6 +20628,61 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7371209662671528149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371209662671528148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe2cb0e04bf69f48afad93cc5c8c039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gunStick: {fileID: 1370933442}
+  _gunPos: {fileID: 1546539599}
+  _rotationSpeed: 100
+--- !u!114 &7371209662671528150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371209662671528148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78cfed047f81d94abf06909eb0d9357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allWeaponSprites:
+  - {fileID: 477499918}
+  - {fileID: 2884715312074891887}
+  - {fileID: 2306050802084068694}
+  _defaultWeapon: {fileID: 477499916}
+  _machineGun: {fileID: 2884715312074891885}
+  _canonWeapon: {fileID: 2306050802084068692}
+  _bullet: {fileID: 8944805347107972867, guid: 1ddea4f80c3bdff42951e2a79631cf94, type: 3}
+  _bulletLocation: {fileID: 8992295281396803182}
+  _currentWeaponSprite: {fileID: 911406385}
+  _fireRate: 0.3
+  _bulletForce: 20
+  canShoot: 0
+--- !u!114 &7371209662671528151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371209662671528148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f38c78ede10452408d870eaf46417d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRb: {fileID: 1432020966}
+  _moveStick: {fileID: 1712351393}
+  _speed: 12
 --- !u!1 &7468753318829288915
 GameObject:
   m_ObjectHideFlags: 0
