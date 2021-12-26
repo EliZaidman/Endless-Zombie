@@ -6,7 +6,13 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _deafultWeapon, _machineGun, _canonWeapon, _bullet;
+    private List<GameObject> _allWeapons;
+
+    [SerializeField]
+    private List<SpriteRenderer> _allWeaponSprites;
+
+    [SerializeField]
+    private GameObject _defaultWeapon, _machineGun, _canonWeapon, _bullet;
 
     [SerializeField]
     private Transform _bulletLocation;
@@ -15,17 +21,20 @@ public class PlayerWeapon : MonoBehaviour
     private Image _currentWeaponSprite;
 
     [SerializeField]
-    private List<SpriteRenderer> _allWeaponSprites;
-
-    [SerializeField]
-    private float _readyToShoot = 0.3f, _bulletForce = 20;
+    private float _fireRate = 0.3f, _bulletForce = 20;
 
     private bool _holdingDefaultWeapon = true;
-    private bool _holdingMachineGunWeapon, _holdingCanonWeapon, _isShooting = false;
+    private bool _holdingMachineGun, _holdingCanon, _isShooting = false;
     
     public bool canShoot;
     
     public bool IsShooting { get => _isShooting; set => _isShooting = value; }
+
+    private void Update()
+    {
+        WeaponsStats();
+        ShootCycle();
+    }
 
     private void Shoot()
     {
@@ -36,29 +45,29 @@ public class PlayerWeapon : MonoBehaviour
 
     private void WeaponsStats()
     {
-        _readyToShoot -= Time.deltaTime;
+        _fireRate -= Time.deltaTime;
         if (Input.GetMouseButton(0) && canShoot)
         {
-            if (_readyToShoot <= 0)
+            if (_fireRate <= 0)
             {
 
                 Shoot();
 
                 if (_holdingDefaultWeapon)
                 {
-                    _readyToShoot = 0.3f;
+                    _fireRate = 0.3f;
                     _bulletForce = 20f;
                 }
 
-                if (_holdingMachineGunWeapon)
+                if (_holdingMachineGun)
                 {
-                    _readyToShoot = 0.1f;
+                    _fireRate = 0.1f;
                     _bulletForce = 10f;
                 }
 
-                if (_holdingCanonWeapon)
+                if (_holdingCanon)
                 {
-                    _readyToShoot = 0.5f;
+                    _fireRate = 0.5f;
                     _bulletForce = 50f;
                 }
             }
@@ -68,32 +77,48 @@ public class PlayerWeapon : MonoBehaviour
     public void ShootCycle()
     {
         if (_holdingDefaultWeapon)
-        {
-            _deafultWeapon.SetActive(false);
-            _machineGun.SetActive(true);
-            _holdingMachineGunWeapon = true;
-            _holdingDefaultWeapon = false;
-            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
-            Debug.Log("machineGun");
-        }
-        else if (_holdingMachineGunWeapon)
-        {
-            _machineGun.SetActive(false);
-            _canonWeapon.SetActive(true);
-            _holdingMachineGunWeapon = false;
-            _holdingCanonWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
-            Debug.Log("canonGun");
-        }
-        else if (_holdingCanonWeapon)
-        {
-            _canonWeapon.SetActive(false);
-            _deafultWeapon.SetActive(true);
-            _holdingMachineGunWeapon = false;
-            _holdingCanonWeapon = false;
-            _holdingDefaultWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
-            Debug.Log("defaultGun");
-        }
+            EquipMachineGun();
+
+        else if (_holdingMachineGun)
+            EquipCannon();
+
+        else if (_holdingCanon)
+            EquipDefaultGun();
+    }
+
+    private void EquipDefaultGun()
+    {
+        _canonWeapon.SetActive(false);
+        _defaultWeapon.SetActive(true);
+        _holdingMachineGun = false;
+        _holdingCanon = false;
+        _holdingDefaultWeapon = true;
+        _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
+        Debug.Log("defaultGun");
+    }
+
+    private void EquipMachineGun()
+    {
+        _defaultWeapon.SetActive(false);
+        _machineGun.SetActive(true);
+        _holdingMachineGun = true;
+        _holdingDefaultWeapon = false;
+        _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
+        Debug.Log("machineGun");
+    }
+
+    private void EquipCannon()
+    {
+        _machineGun.SetActive(false);
+        _canonWeapon.SetActive(true);
+        _holdingMachineGun = false;
+        _holdingCanon = true;
+        _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
+        Debug.Log("canonGun");
+    }
+
+    private void WeaponStats()
+    {
+
     }
 }

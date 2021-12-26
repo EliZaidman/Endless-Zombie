@@ -17,16 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Movement();
-    }
-
-    private void FixedUpdate()
-    {
-        MoveRb();
-    }
-
-    void Movement()
-    {
         Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (_moveStick.InputDir != Vector3.zero)
@@ -35,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         _moveVelocity = moveInput.normalized * _speed * Time.deltaTime;
     }
 
-    void MoveRb()
+    private void FixedUpdate()
     {
         _playerRb.MovePosition(_playerRb.position + _moveVelocity);
     }

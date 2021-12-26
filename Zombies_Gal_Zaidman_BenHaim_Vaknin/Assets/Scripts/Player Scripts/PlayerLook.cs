@@ -15,11 +15,6 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        Rotation();
-    }
-
-    public void Rotation()
-    {
         Vector2 dir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - _gunPos.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
 
@@ -27,6 +22,6 @@ public class PlayerLook : MonoBehaviour
             angle = Mathf.Atan2(_gunStick.InputDir.y, _gunStick.InputDir.x) * Mathf.Rad2Deg - 90;
 
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        _gunPos.rotation = Quaternion.Slerp(_gunPos.rotation, rotation, _rotationSpeed * Time.fixedDeltaTime);
+        _gunPos.rotation = Quaternion.Slerp(_gunPos.rotation, rotation, _rotationSpeed * Time.deltaTime); //fixedDeltaTime - Original
     }
 }
