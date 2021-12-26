@@ -78,7 +78,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
         
         //Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
-        _itemGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
+        //_itemGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
         _groundGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
         _tr.anchoredPosition = _startPos;
         //Destroy(gameObject);
