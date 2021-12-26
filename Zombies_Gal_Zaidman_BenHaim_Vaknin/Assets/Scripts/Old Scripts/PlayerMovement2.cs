@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Change everything to touch!
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour
 {
 
     [SerializeField]
