@@ -56,8 +56,8 @@ public class SpawnerManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_ZombiesInScene.Count);
-       
+         
+
         GameObject selectedSpawner = _spawners[Random.Range(0, 4)];
 
         if (_rTr == null)
