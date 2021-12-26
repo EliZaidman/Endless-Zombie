@@ -20,7 +20,6 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private Image _currentWeaponSprite;
 
-    [SerializeField]
     private float _fireRate = 0.3f, _bulletForce = 20;
 
     private bool _holdingDefaultWeapon = true;
@@ -75,17 +74,17 @@ public class PlayerWeapon : MonoBehaviour
         if (_holdingDefaultWeapon)
         {
             _defaultWeapon.SetActive(false);
+            _holdingDefaultWeapon = false;
             _machineGun.SetActive(true);
             _holdingMachineGun = true;
-            _holdingDefaultWeapon = false;
             _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
             Debug.Log("machineGun");
         }
         else if (_holdingMachineGun)
         {
             _machineGun.SetActive(false);
-            _canonWeapon.SetActive(true);
             _holdingMachineGun = false;
+            _canonWeapon.SetActive(true);
             _holdingCanon = true;
             _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
             Debug.Log("canonGun");
@@ -93,9 +92,8 @@ public class PlayerWeapon : MonoBehaviour
         else if (_holdingCanon)
         {
             _canonWeapon.SetActive(false);
-            _defaultWeapon.SetActive(true);
-            _holdingMachineGun = false;
             _holdingCanon = false;
+            _defaultWeapon.SetActive(true);
             _holdingDefaultWeapon = true;
             _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
             Debug.Log("defaultGun");

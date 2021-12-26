@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
 
     public void AddCoins()
     {
-        _coinsToPlayer = Random.Range(1, 10);
+        _coinsToPlayer = Random.Range(2, 8);
         _coins += _coinsToPlayer;
         _coinsText.text = $"{_coins}";
     }
