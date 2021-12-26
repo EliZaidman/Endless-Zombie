@@ -19,11 +19,6 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
-    private GameManager()
-    {
-
-    }
     #endregion
 
     #region Serialized Fields
@@ -31,30 +26,35 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _countDown, _levelText, _targetsLeftText;
 
     [SerializeField]
-    private int _level, _targetsRemaining;
+    public int _level, _targetsRemaining;
 
     [SerializeField]
-    private float _timer;
+    public float _timer;
 
     [SerializeField]
     private bool _isWaveOngoing = false;
     #endregion
 
     #region Properties
-    public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
-    #endregion
+        public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
+        #endregion
 
-    [SerializeField] NavMeshSurface2d _navmesh2D;
-    [SerializeField]
-    private Tilemap ground;
-    [SerializeField]
-    private Tilemap walls;
+    [SerializeField] 
+    NavMeshSurface2d _navmesh2D;
 
     [SerializeField]
-    private TileBase Walls;
+    private Tilemap _ground;
+    [SerializeField]
+    private Tilemap _walls;
 
     [SerializeField]
-    private Camera cam;
+    private TileBase _wallTiles;
+
+    [SerializeField]
+    private Camera _mainCam;
+
+    [SerializeField]
+    SpawnerManager _spawnerManager;
     private void Awake()
     {
         if (_instance == null)
@@ -64,44 +64,32 @@ public class GameManager : MonoBehaviour
             Destroy(this);
     }
 
-    private void Start()
-    {
+    //private void Start()
+    //{
+    //    //_navmesh2D.BuildNavMesh();
+    //}
 
-        //_navmesh2D.BuildNavMesh();
-
-    }
     void Update()
     {
-        _levelText.text = _level.ToString();
+        _levelText.text = _level.ToString("0");
 
         if (!IsWaveOngoing)
         {
             _timer -= Time.deltaTime;
             _countDown.text = _timer.ToString("0");
+
             if (_timer <= 0)
                 IsWaveOngoing = true;
         }
-
-
-
-
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    ground.SetTile(walls.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
-        //    Debug.Log("BUILD");
-        //    //_navmesh2D.UpdateNavMesh(_navmesh2D.navMeshData);
-        //    _navmesh2D.BuildNavMesh();
-        //}
-
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    walls.SetTile(walls.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
-        //    ground.SetTile(ground.WorldToCell(cam.ScreenToWorldPoint(Input.mousePosition)), Walls);
-        //    Debug.Log("BUILD");
-        //    _navmesh2D.BuildNavMesh();
-        //}
     }
 
-
+    public void NextLevel()
+    {
+        _level++;
+        _timer = 5;
+        _spawnerManager._timeBetweenSpawns = 0;
+        _spawnerManager._maxSpawns += _level;
+        _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
+        IsWaveOngoing = false;
+    }
 }

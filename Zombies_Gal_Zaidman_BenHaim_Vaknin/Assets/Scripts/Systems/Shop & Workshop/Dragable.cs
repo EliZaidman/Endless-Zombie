@@ -24,7 +24,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     NavMeshSurface2d _navmesh2D;
 
     [SerializeField]
-    private Tilemap _groundGO, _wallsGO;
+    private Tilemap _groundGO, _itemGO;
 
     [SerializeField]
     private TileBase _itemTile;
@@ -32,6 +32,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private void Awake()
     {
         _startPos = _tr.anchoredPosition;
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -74,8 +75,10 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     IEnumerator PlaceGO()
     {
         Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        
         //Instantiate(_relatedGOPrefab, targetPos, Quaternion.identity);
-        _wallsGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
+        _itemGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
         _groundGO.SetTile(_groundGO.WorldToCell(targetPos), _itemTile);
         _tr.anchoredPosition = _startPos;
         //Destroy(gameObject);

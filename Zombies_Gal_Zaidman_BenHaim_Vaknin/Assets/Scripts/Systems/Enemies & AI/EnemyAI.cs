@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    private NavMeshAgent agent;
+    
     public Transform target;
-    NavMeshAgent agent;
     public int hp = 10;
     
-    [SerializeField] private GameObject bullet;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour
         agent.updateUpAxis = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         agent.SetDestination(target.position);
@@ -27,12 +26,12 @@ public class EnemyAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            hp -= 5;
+            hp -= 25;
             
             if (hp <= 0)
             {
+                FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
                 Destroy(gameObject);
-                
             }
         }
     }
