@@ -77,7 +77,6 @@ public class PlayerManager : MonoBehaviour
         {
             if (_readyToShoot <= 0)
             {
-
                 Shoot();
 
                 if (_holdingDefaultWeapon)
