@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TrapItem : MonoBehaviour
 {
@@ -10,13 +12,41 @@ public class TrapItem : MonoBehaviour
     [SerializeField]
     private int _trapDamage = 5;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-            Destroy(collision.gameObject);
-        else if (collision.gameObject.tag == "Player")
-            _cM.CoreHp -= _trapDamage;
+    public GameObject player;
+    //public Grid _grid;
+    public Tilemap _tilemap;
+    //private void OnTriggerEnter(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Enemy")
+    //        Destroy(collision.gameObject);
+    //    else if (collision.gameObject.tag == "Player")
+    //        _cM.CoreHp -= _trapDamage;
 
-        Destroy(gameObject);
+    //    Destroy(gameObject);
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.tag == "Player")
+        //    _cM.CoreHp -= _trapDamage;
+
+        //Destroy(gameObject);
     }
+
+
+    private void Update()
+    {
+            FunctionToGetRidOfTile();
+
+    }
+    void FunctionToGetRidOfTile()
+    {
+        Vector3Int getGridPos = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, (int)player.transform.position.z);
+        _tilemap.SetTile(getGridPos, null);   
+    }
+
+    //public Vector3Int GetGridByPosition()
+    //{
+    //    return new Vector3Int((int)player.transform.position.x,(int)player.transform.position.y, (int)player.transform.position.z);
+    //}
 }
