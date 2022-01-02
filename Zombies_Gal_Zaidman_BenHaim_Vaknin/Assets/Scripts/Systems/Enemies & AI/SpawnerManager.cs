@@ -38,6 +38,9 @@ public class SpawnerManager : MonoBehaviour
     private RectTransform _rTr;
 
     [SerializeField]
+    private Button NextLevelButton;
+    
+    [SerializeField]
     public float _timeBetweenSpawns = 0;
 
     [SerializeField]
@@ -45,9 +48,6 @@ public class SpawnerManager : MonoBehaviour
 
     public float _currentTimeBetweenSpawns;
 
-    [SerializeField]
-    Button NextLevelButton;
-    
 
     private void Start()
     {
@@ -56,8 +56,8 @@ public class SpawnerManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_ZombiesInScene.Count);
-       
+         
+
         GameObject selectedSpawner = _spawners[Random.Range(0, 4)];
 
         if (_rTr == null)

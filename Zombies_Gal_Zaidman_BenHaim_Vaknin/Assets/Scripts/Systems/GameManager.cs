@@ -19,11 +19,6 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
-    private GameManager()
-    {
-
-    }
     #endregion
 
     #region Serialized Fields
@@ -40,7 +35,7 @@ public class GameManager : MonoBehaviour
     private bool _isWaveOngoing = false;
     #endregion
 
-        #region Properties
+    #region Properties
         public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
         #endregion
 
@@ -86,7 +81,6 @@ public class GameManager : MonoBehaviour
             if (_timer <= 0)
                 IsWaveOngoing = true;
         }
-
     }
 
     public void NextLevel()
