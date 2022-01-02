@@ -9,7 +9,7 @@ public class Shop : MonoBehaviour
     private TextMeshProUGUI _coinsText;
     [SerializeField]
     private GameObject _inventoryOverlay;
-
+    
     [SerializeField]
     private Camera _mainCam;
 
@@ -18,7 +18,7 @@ public class Shop : MonoBehaviour
 
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
-
+    public int PotPrice = 5;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Touching");
@@ -36,12 +36,21 @@ public class Shop : MonoBehaviour
         _inventoryOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
-    private int _coins = 0, _coinsToPlayer;
+    public int _coins = 0, _coinsToPlayer;
 
     public void AddCoins()
     {
         _coinsToPlayer = Random.Range(2, 8);
         _coins += _coinsToPlayer;
         _coinsText.text = $"{_coins}";
+    }
+    public void ChkCoins()
+    {
+       
+        if (_coins >= PotPrice)
+        {
+           
+            CoreManager.Instance.CoreHp += 5;
+        }
     }
 }

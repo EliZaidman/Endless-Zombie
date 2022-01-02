@@ -463,13 +463,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a367d2833f7af6f44981336916b6a8ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsText: {fileID: 0}
+  _coinsText: {fileID: 527067004}
   _inventoryOverlay: {fileID: 1272497557115447730}
   _mainCam: {fileID: 519420031}
   _wsCol: {fileID: 320480839}
   _playerCol: {fileID: 1432020965}
   _inOverlayMapSize: 14
   _defaultMapSize: 0
+  PotPrice: 5
+  _coins: 0
+  _coinsToPlayer: 0
 --- !u!19719996 &320480839
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -6854,6 +6857,9 @@ MonoBehaviour:
   _playerCol: {fileID: 0}
   _inOverlayMapSize: 14
   _defaultMapSize: 0
+  PotPrice: 5
+  _coins: 0
+  _coinsToPlayer: 0
 --- !u!1 &519748378
 GameObject:
   m_ObjectHideFlags: 0
@@ -19238,8 +19244,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519748380}
-        m_TargetAssemblyTypeName: WorkshopManager, Assembly-CSharp
+      - m_Target: {fileID: 320480838}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: CloseWS
         m_Mode: 1
         m_Arguments:
@@ -19623,24 +19629,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1272497557224978055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272497557224978057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff560d917b4cfc449b199774943208f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canvas: {fileID: 662999286}
-  _canvasGroup: {fileID: 1272497557224978050}
-  _tr: {fileID: 1272497557224978054}
-  _navmesh2D: {fileID: 1999753722}
-  _itemGO: {fileID: 304156114}
-  _itemTile: {fileID: 11400000, guid: 36a4e5403f6d912499fb9b5e4ff874bb, type: 2}
 --- !u!1 &1272497557224978057
 GameObject:
   m_ObjectHideFlags: 0
@@ -19652,8 +19640,8 @@ GameObject:
   - component: {fileID: 1272497557224978054}
   - component: {fileID: 1272497557224978053}
   - component: {fileID: 1272497557224978052}
-  - component: {fileID: 1272497557224978055}
   - component: {fileID: 1272497557224978050}
+  - component: {fileID: 1272497557224978058}
   m_Layer: 5
   m_Name: DragableObject
   m_TagString: Untagged
@@ -19661,6 +19649,62 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1272497557224978058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272497557224978057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1272497557224978052}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 320480838}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: ChkCoins
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1272497557383872036
 MonoBehaviour:
   m_ObjectHideFlags: 0
