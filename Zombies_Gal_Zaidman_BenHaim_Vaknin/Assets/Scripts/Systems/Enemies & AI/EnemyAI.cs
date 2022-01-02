@@ -32,12 +32,11 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
-
     }
+
     private void FixedUpdate()
     {
         FunctionToGetRidOfTile();
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -48,7 +47,7 @@ public class EnemyAI : MonoBehaviour
 
             if (hp <= 0)
             {
-                _shop.AddCoins();
+                Shop.Instance.AddCoins();
                 FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
                 Destroy(gameObject);
             }
@@ -63,11 +62,7 @@ public class EnemyAI : MonoBehaviour
 
     void FunctionToGetRidOfTile()
     {
-
         Vector3Int getGridPos = new Vector3Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.y, (int)gameObject.transform.position.z);
         _tilemap.SetTile(getGridPos, null);
-        
     }
-
-
 }

@@ -5,6 +5,18 @@ using TMPro;
 
 public class Shop : MonoBehaviour
 {
+    private static Shop _instance;
+    public static Shop Instance
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.Log("Shop Manager not loaded properly");
+
+            return _instance;
+        }
+    }
+
     [SerializeField]
     private TextMeshProUGUI _coinsText;
 
@@ -21,6 +33,15 @@ public class Shop : MonoBehaviour
     private float _inOverlayMapSize = 14f, _defaultMapSize;
 
     public int PotPrice = 5;
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+
+        else
+            Destroy(this);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -55,6 +76,7 @@ public class Shop : MonoBehaviour
         {
             Debug.Log("Butts");
             CoreManager.Instance.CoreHp += 5;
+            _coins -= PotPrice;
         }
     }
 }

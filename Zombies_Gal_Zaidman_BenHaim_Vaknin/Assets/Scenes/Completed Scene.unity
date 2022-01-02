@@ -19695,7 +19695,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 320480838}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: ChkCoins
+        m_MethodName: CheckCoins
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

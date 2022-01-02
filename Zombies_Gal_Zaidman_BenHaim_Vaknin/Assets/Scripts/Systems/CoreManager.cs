@@ -4,17 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public  class CoreManager : MonoBehaviour
-
 {
-    public int CoreHp = 20;
-    public int CoreMaxHp = 20;
-    EnemyAI enemyAI;
-
-    [SerializeField]
-    private SpawnerManager _sM;
-
-    [SerializeField]
-    TextMeshProUGUI tmpCoreHp;
     private static CoreManager _instance;
     public static CoreManager Instance
     {
@@ -27,6 +17,17 @@ public  class CoreManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private SpawnerManager _sM;
+
+    [SerializeField]
+    TextMeshProUGUI tmpCoreHp;
+    
+    EnemyAI enemyAI;
+    
+    public int CoreHp = 20;
+    public int CoreMaxHp = 20;
+
     private void Awake()
     {
         if (_instance == null)
@@ -35,6 +36,7 @@ public  class CoreManager : MonoBehaviour
         else
             Destroy(this);
     }
+
     void Update()
     {
         tmpCoreHp.text = CoreHp.ToString();
