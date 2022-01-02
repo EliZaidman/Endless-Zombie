@@ -12,10 +12,12 @@ public class MultipleTouchController : MonoBehaviour
     private List<RectTransform> _touchIgnore, _touchables;
 
     [SerializeField]
+    
     private Camera _mainCam;
-
     [SerializeField]
     private Rigidbody2D _playerRb;
+    [SerializeField]
+    private CharacterController _playerCc;
 
     [SerializeField]
     private Transform _playerTr, _gunPosTr;
@@ -33,6 +35,7 @@ public class MultipleTouchController : MonoBehaviour
     private Vector2 _leftJoystickStartPos, _rightJoystickStartPos;
     private bool _isMoving;
 
+    private Vector2 moveVelocity;
     private void Start()
     {
         _leftJoystickStartPos = _leftJoystickTr.transform.position;
@@ -59,7 +62,7 @@ public class MultipleTouchController : MonoBehaviour
                     Debug.Log("touch is moving");
                     TouchData thisTouch = _allTouches.Find(touchLocation => touchLocation.TouchId == currentTouch.fingerId);
 
-                    LeftJystickMovement(thisTouch, touchPos);
+                    //LeftJystickMovement(thisTouch, touchPos);
                 }
                 else if (currentTouch.position.x > Screen.width / 2)
                 {
@@ -162,8 +165,15 @@ public class MultipleTouchController : MonoBehaviour
     }
     void MovePlayer(Vector2 direction)
     {
-        _playerTr.Translate(direction * _speed * Time.deltaTime);
-        //_playerRb.AddForce(direction * _speed * Time.deltaTime, ForceMode2D.Force);
+        //_playerTr.transform.position = (direction * _speed * Time.deltaTime);
+        //_playerRb.AddRelativeForce(direction * _speed * Time.deltaTime, ForceMode2D.Force);
+        //_playerRb.MovePosition(direction);
+        //_playerCc.Move(direction * _speed * Time.deltaTime);
+        //_playerRb.MovePosition((Vector2)transform.position + (direction * _speed * Time.fixedDeltaTime));
+        //_playerTr.Translate(direction * _speed * Time.deltaTime);
+        //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        //direction.x = moveInput.x;
+        //direction.y = moveInput.y;
     }
 
     //void PlayerLook(TouchData touch)
@@ -175,10 +185,10 @@ public class MultipleTouchController : MonoBehaviour
 
     void Shoot(bool onOff)
     {
-        if (onOff)
-            _fire.IsShooting = true;
-        else
-            _fire.IsShooting = false;
+        //if (onOff)
+        //    _fire.IsShooting = true;
+        //else
+        //    _fire.IsShooting = false;
     }
     #endregion
 }
