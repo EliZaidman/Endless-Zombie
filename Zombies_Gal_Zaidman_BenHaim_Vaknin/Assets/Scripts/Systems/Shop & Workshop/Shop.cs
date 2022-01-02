@@ -77,6 +77,7 @@ public class Shop : MonoBehaviour
             Debug.Log("Butts");
             CoreManager.Instance.CoreHp += 5;
             _coins -= PotPrice;
+            _coinsText.text = $"{_coins}";
         }
     }
 }
