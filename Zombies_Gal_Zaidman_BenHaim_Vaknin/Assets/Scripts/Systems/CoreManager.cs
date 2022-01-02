@@ -3,20 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CoreManager : MonoBehaviour
-
+public  class CoreManager : MonoBehaviour
 {
-    public int CoreHp = 20;
-    public int CoreMaxHp = 20;
-    EnemyAI enemyAI;
+    private static CoreManager _instance;
+    public static CoreManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.Log("Core Manager not loaded properly");
+
+            return _instance;
+        }
+    }
 
     [SerializeField]
     private SpawnerManager _sM;
 
     [SerializeField]
     TextMeshProUGUI tmpCoreHp;
+    
+    EnemyAI enemyAI;
+    
+    public int CoreHp = 20;
+    public int CoreMaxHp = 20;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+
+        else
+            Destroy(this);
+    }
+
     void Update()
     {
         tmpCoreHp.text = CoreHp.ToString();
