@@ -464,9 +464,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinsText: {fileID: 527067004}
-  _inventoryOverlay: {fileID: 1272497557115447730}
+  _shopOverlay: {fileID: 1272497557115447730}
   _mainCam: {fileID: 519420031}
-  _wsCol: {fileID: 320480839}
+  _shopCol: {fileID: 320480839}
   _playerCol: {fileID: 1432020965}
   _inOverlayMapSize: 14
   _defaultMapSize: 0
@@ -6851,9 +6851,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinsText: {fileID: 527067004}
-  _inventoryOverlay: {fileID: 0}
+  _shopOverlay: {fileID: 0}
   _mainCam: {fileID: 0}
-  _wsCol: {fileID: 0}
+  _shopCol: {fileID: 0}
   _playerCol: {fileID: 0}
   _inOverlayMapSize: 14
   _defaultMapSize: 0
@@ -7541,8 +7541,8 @@ RectTransform:
   - {fileID: 1370933441}
   - {fileID: 354913974}
   - {fileID: 886840893}
-  - {fileID: 554571586}
   - {fileID: 1272497557115447731}
+  - {fileID: 554571586}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19477,7 +19477,7 @@ RectTransform:
   m_Children:
   - {fileID: 1272497557502436825}
   m_Father: {fileID: 662999287}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -21174,7 +21174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8076248782093381525, guid: 37982fe4b642df94096df2d04dd9f060, type: 3}
       propertyPath: m_Name
-      value: InventoryOverlay
+      value: WorkshopOverlay
       objectReference: {fileID: 0}
     - target: {fileID: 8076248782093381525, guid: 37982fe4b642df94096df2d04dd9f060, type: 3}
       propertyPath: m_IsActive
@@ -22524,7 +22524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9170048432199937266, guid: 27d8589086eb1f94fbb1ce2b4797908b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9170048432199937266, guid: 27d8589086eb1f94fbb1ce2b4797908b, type: 3}
       propertyPath: m_AnchorMax.x

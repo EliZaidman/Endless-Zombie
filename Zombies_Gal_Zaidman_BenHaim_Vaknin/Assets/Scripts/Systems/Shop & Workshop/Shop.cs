@@ -7,33 +7,36 @@ public class Shop : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _coinsText;
+
     [SerializeField]
-    private GameObject _inventoryOverlay;
+    private GameObject _shopOverlay;
     
     [SerializeField]
     private Camera _mainCam;
 
     [SerializeField]
-    private Collider2D _wsCol, _playerCol;
+    private Collider2D _shopCol, _playerCol;
 
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
+
     public int PotPrice = 5;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Touching");
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
             Debug.Log("Inside IF");
-            _inventoryOverlay.SetActive(true);
+            _shopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
         }
     }
 
-    public void CloseWS()
+    public void CloseShop()
     {
-        _inventoryOverlay.SetActive(false);
+        _shopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
     public int _coins = 0, _coinsToPlayer;
@@ -44,12 +47,13 @@ public class Shop : MonoBehaviour
         _coins += _coinsToPlayer;
         _coinsText.text = $"{_coins}";
     }
-    public void ChkCoins()
+
+    public void CheckCoins()
     {
-       
+        Debug.Log("C more");
         if (_coins >= PotPrice)
         {
-           
+            Debug.Log("Butts");
             CoreManager.Instance.CoreHp += 5;
         }
     }
