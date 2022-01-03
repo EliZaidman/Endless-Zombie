@@ -25,7 +25,7 @@ public class PlayerWeapon : MonoBehaviour
     private bool _holdingDefaultWeapon = true;
     private bool _holdingMachineGun, _holdingCanon, _isShooting = false;
     
-    public bool canShoot;
+    public bool canShoot, IsCannonAquired, IsMachineGunAquired;
     
     public bool IsShooting { get => _isShooting; set => _isShooting = value; }
 
@@ -55,41 +55,54 @@ public class PlayerWeapon : MonoBehaviour
                 _bulletForce = 20f;
             }
 
-            if (_holdingMachineGun)
-            {
-                _fireRate = 0.1f;
-                _bulletForce = 10f;
-            }
-
             if (_holdingCanon)
             {
                 _fireRate = 0.5f;
                 _bulletForce = 50f;
             }
+
+            if (_holdingMachineGun)
+            {
+                _fireRate = 0.1f;
+                _bulletForce = 10f;
+            }            
         }
     }
 
     public void ShootCycle()
     {
-        if (_holdingDefaultWeapon)
+        // switch to cannon from gun
+        if (_holdingDefaultWeapon && IsCannonAquired)
+        {
+            _defaultWeapon.SetActive(false);
+            _holdingDefaultWeapon = false;
+            _canonWeapon.SetActive(true);
+            _holdingCanon = true;
+            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
+            Debug.Log("canonGun");
+        }
+        // switch to machinegun from gun
+        if (_holdingDefaultWeapon && !IsCannonAquired && IsMachineGunAquired)
         {
             _defaultWeapon.SetActive(false);
             _holdingDefaultWeapon = false;
             _machineGun.SetActive(true);
             _holdingMachineGun = true;
             _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
-            Debug.Log("machineGun");
-        }
-        else if (_holdingMachineGun)
-        {
-            _machineGun.SetActive(false);
-            _holdingMachineGun = false;
-            _canonWeapon.SetActive(true);
-            _holdingCanon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
             Debug.Log("canonGun");
         }
-        else if (_holdingCanon)
+        // switch to machinegun from cannon
+        else if (_holdingCanon && IsMachineGunAquired)
+        {
+            _canonWeapon.SetActive(false);
+            _holdingCanon = false;
+            _machineGun.SetActive(true);
+            _holdingMachineGun = true;
+            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
+            Debug.Log("machineGun");
+        }
+        // switch to gun from cannon
+        else if (_holdingCanon && !IsMachineGunAquired)
         {
             _canonWeapon.SetActive(false);
             _holdingCanon = false;
@@ -97,6 +110,36 @@ public class PlayerWeapon : MonoBehaviour
             _holdingDefaultWeapon = true;
             _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
             Debug.Log("defaultGun");
+        }
+        // switch to gun from machinegun
+        else if (_holdingMachineGun)
+        {
+            _machineGun.SetActive(false);
+            _holdingMachineGun = false;
+            _defaultWeapon.SetActive(true);
+            _holdingDefaultWeapon = true;
+            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
+            Debug.Log("defaultGun");
+        }
+    }
+
+    public void AquireCannon()
+    {
+        if (Shop.Instance.Coins >= Shop.Instance.CannonPrice)
+        {
+            IsCannonAquired = true;
+            Shop.Instance.Coins -= Shop.Instance.CannonPrice;
+            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
+        }
+    }
+
+    public void AquireMachineGun()
+    {
+        if (Shop.Instance.Coins >= Shop.Instance.MachineGunPrice)
+        {
+            IsMachineGunAquired = true;
+            Shop.Instance.Coins -= Shop.Instance.MachineGunPrice;
+            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
         }
     }
 }

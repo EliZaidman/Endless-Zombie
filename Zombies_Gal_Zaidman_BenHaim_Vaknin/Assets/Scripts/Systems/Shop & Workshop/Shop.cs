@@ -17,8 +17,7 @@ public class Shop : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private TextMeshProUGUI _coinsText;
+    //[SerializeField]
 
     [SerializeField]
     private GameObject _shopOverlay;
@@ -32,7 +31,10 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
 
-    public int PotPrice = 5;
+    private int _coinsToPlayer;
+
+    public TextMeshProUGUI CoinsText;
+    public int MachineGunPrice = 200, CannonPrice = 50, PotionPrice = 5, Coins = 0;
 
     private void Awake()
     {
@@ -60,24 +62,23 @@ public class Shop : MonoBehaviour
         _shopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
-    public int _coins = 0, _coinsToPlayer;
 
     public void AddCoins()
     {
         _coinsToPlayer = Random.Range(2, 8);
-        _coins += _coinsToPlayer;
-        _coinsText.text = $"{_coins}";
+        Coins += _coinsToPlayer;
+        CoinsText.text = $"{Coins}";
     }
 
     public void CheckCoins()
     {
         Debug.Log("C more");
-        if (_coins >= PotPrice)
+        if (Coins >= PotionPrice)
         {
             Debug.Log("Butts");
             CoreManager.Instance.CoreHp += 5;
-            _coins -= PotPrice;
-            _coinsText.text = $"{_coins}";
+            Coins -= PotionPrice;
+            CoinsText.text = $"{Coins}";
         }
     }
 }
