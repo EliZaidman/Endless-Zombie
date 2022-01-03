@@ -9,25 +9,27 @@ public class TrapItem : MonoBehaviour
     [SerializeField]
     private CoreManager _cM;
 
-    [SerializeField]
-    private int _trapDamage = 5;
-
     public GameObject player;
     //public Grid _grid;
     public Tilemap _tilemap;
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Enemy")
-    //    {
-    //        collision.gameObject.GetComponent<EnemyAI>().hp -= 30;
-    //        Destroy(gameObject);
-    //    }
-    //    else if (collision.gameObject.tag == "Player")
-    //        _cM.CoreHp -= _trapDamage;
-    //    
-    //    Destroy(gameObject);
-    //}
 
+    public int trapHP;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.gameObject.tag == "Enemy")
+        //{
+        //    Debug.Log("INSIDEeeeeeeeeeeeeeeeeeeee");
+        //    collision.gameObject.GetComponent<EnemyAI>().hp -= 30;
+        //    Destroy(collision.gameObject);
+        //}
+
+    }
+
+    private void Start()
+    {
+        
+    }
     private void Update()
     {
         FunctionToGetRidOfTile();
@@ -41,6 +43,8 @@ public class TrapItem : MonoBehaviour
     
     public Vector3Int GetGridByPosition()
     {
-        return new Vector3Int((int)player.transform.position.x,(int)player.transform.position.y, (int)player.transform.position.z);
+        return new Vector3Int((int)gameObject.transform.position.x,(int)gameObject.transform.position.y, (int)gameObject.transform.position.z);
     }
+
+
 }

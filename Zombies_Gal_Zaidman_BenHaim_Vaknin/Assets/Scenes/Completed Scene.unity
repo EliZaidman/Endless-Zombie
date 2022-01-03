@@ -431,9 +431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cM: {fileID: 570528824}
-  _trapDamage: 5
   player: {fileID: 1432020962}
   _tilemap: {fileID: 304156114}
+  trapHP: 30
 --- !u!19719996 &304156111
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -521,34 +521,34 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: 1.084227e-19
-      e01: 7.3902575e+17
-      e02: -1.1467081e-19
-      e03: -3.8485203
-      e10: 9.37e-43
-      e11: 4.5905e-41
-      e12: 9.39e-43
-      e13: 9.36e-43
+      e00: 2.5244127e-29
+      e01: 1.9825541e+9
+      e02: -6.88833e-40
+      e03: -0.0000000016085275
+      e10: 7.7e-43
+      e11: 4.5904e-41
+      e12: 7.71e-43
+      e13: 7.68e-43
       e20: 6e-45
-      e21: -7.257173e-33
-      e22: -7.2565265e-33
-      e23: -7.2565265e-33
+      e21: -4.9972584e+26
+      e22: -4.996919e+26
+      e23: -4.996919e+26
       e30: 0
-      e31: 3.28e-43
-      e32: 3.28e-43
-      e33: 3.28e-43
+      e31: 1.88e-43
+      e32: 1.88e-43
+      e33: 1.88e-43
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 2.4422e-41, g: 2.4422e-41, b: 2.4422e-41, a: 2.4422e-41}
   - m_RefCount: 0
     m_Data: {r: 2.4422e-41, g: 2.4422e-41, b: 2.4422e-41, a: 2.4422e-41}
   - m_RefCount: 0
-    m_Data: {r: -1.1467081e-19, g: -1.1467081e-19, b: -1.1467081e-19, a: -1.1467081e-19}
+    m_Data: {r: -6.88833e-40, g: -6.88833e-40, b: -6.88833e-40, a: -6.88833e-40}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -22, y: -12, z: 0}
-  m_Size: {x: 44, y: 24, z: 1}
+  m_Origin: {x: -23, y: -13, z: 0}
+  m_Size: {x: 45, y: 25, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -622,10 +622,10 @@ MonoBehaviour:
   _inOverlayMapSize: 14
   _defaultMapSize: 0
   CoinsText: {fileID: 527067004}
-  MachineGunPrice: 200
-  CannonPrice: 50
+  MachineGunPrice: 0
+  CannonPrice: 0
   PotionPrice: 5
-  Coins: 0
+  Coins: 999
 --- !u!19719996 &320480839
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -19261,7 +19261,7 @@ Transform:
   - {fileID: 320480837}
   - {fileID: 1999753723}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1637396673
 GameObject:
@@ -21889,7 +21889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863567173181672521, guid: 9cadc084834933345889a79478f4783f, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3863567173181672521, guid: 9cadc084834933345889a79478f4783f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -24704,7 +24704,7 @@ RectTransform:
   m_Children:
   - {fileID: 7360471164859293992}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -24736,7 +24736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9100063366643289706, guid: 5d5c11f7ed5926b40b1e886ec910b7ba, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9100063366643289706, guid: 5d5c11f7ed5926b40b1e886ec910b7ba, type: 3}
       propertyPath: m_AnchorMax.x
