@@ -22,6 +22,7 @@ public class WorkshopManager : MonoBehaviour
     {
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
+            Time.timeScale = 0;
             _workshopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
@@ -30,6 +31,7 @@ public class WorkshopManager : MonoBehaviour
     
     public void CloseWS()
     {
+        Time.timeScale = 1;
         _workshopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }

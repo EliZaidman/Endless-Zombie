@@ -49,6 +49,7 @@ public class Shop : MonoBehaviour
     {
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
+            Time.timeScale = 0;
             _shopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
@@ -57,6 +58,7 @@ public class Shop : MonoBehaviour
 
     public void CloseShop()
     {
+        Time.timeScale = 1;
         _shopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
