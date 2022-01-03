@@ -625,7 +625,7 @@ MonoBehaviour:
   MachineGunPrice: 0
   CannonPrice: 0
   PotionPrice: 5
-  Coins: 999
+  Coins: 0
 --- !u!19719996 &320480839
 TilemapCollider2D:
   m_ObjectHideFlags: 0
