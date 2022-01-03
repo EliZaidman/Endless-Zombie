@@ -20,10 +20,8 @@ public class WorkshopManager : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Touching");
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
-            Debug.Log("Inside IF");
             _workshopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
