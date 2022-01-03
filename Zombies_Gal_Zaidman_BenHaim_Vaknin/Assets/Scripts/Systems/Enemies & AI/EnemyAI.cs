@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     //AI
     private NavMeshAgent agent;
     public Transform target;
+    private TilemapCollider2D _trapColider;
     //AI
     public Grid _grid;
     public Tilemap _tilemap;
@@ -25,31 +26,24 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
-    }
 
-    private void FixedUpdate()
-    {
-        FunctionToGetRidOfTile();
+        if (hp <= 0)
+        {
+            Shop.Instance.AddCoins();
+            FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
-        {
             hp -= 25;
-
-            if (hp <= 0)
-            {
-                Shop.Instance.AddCoins();
-                FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
-                Destroy(gameObject);
-            }
-        }
 
         if (collision.gameObject.CompareTag("Trap"))
         {
+            FunctionToGetRidOfTile();
             hp -= 30;
-            Destroy(collision.gameObject);
         }
     }
 

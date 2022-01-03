@@ -18287,7 +18287,7 @@ GameObject:
   - component: {fileID: 977617164}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22276,7 +22276,7 @@ GameObject:
   - component: {fileID: 7468753318829288920}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22470,7 +22470,7 @@ GameObject:
   - component: {fileID: 7468753318841691942}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22490,7 +22490,7 @@ GameObject:
   - component: {fileID: 7468753318874884685}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22597,7 +22597,7 @@ GameObject:
   - component: {fileID: 7468753318920083514}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22704,7 +22704,7 @@ GameObject:
   - component: {fileID: 7468753319155528682}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22898,7 +22898,7 @@ GameObject:
   - component: {fileID: 7468753319367318500}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23005,7 +23005,7 @@ GameObject:
   - component: {fileID: 7468753319971829042}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23112,7 +23112,7 @@ GameObject:
   - component: {fileID: 7468753320165130583}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23132,7 +23132,7 @@ GameObject:
   - component: {fileID: 7468753320345111627}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23326,7 +23326,7 @@ GameObject:
   - component: {fileID: 7468753320399405990}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23346,7 +23346,7 @@ GameObject:
   - component: {fileID: 7468753320605899450}
   m_Layer: 5
   m_Name: DragableObject
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
