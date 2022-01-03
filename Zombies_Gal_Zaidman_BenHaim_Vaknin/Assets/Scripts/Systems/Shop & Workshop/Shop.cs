@@ -47,10 +47,9 @@ public class Shop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Touching");
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
-            Debug.Log("Inside IF");
+            Time.timeScale = 0;
             _shopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
@@ -59,6 +58,7 @@ public class Shop : MonoBehaviour
 
     public void CloseShop()
     {
+        Time.timeScale = 1;
         _shopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
@@ -72,10 +72,8 @@ public class Shop : MonoBehaviour
 
     public void CheckCoins()
     {
-        Debug.Log("C more");
         if (Coins >= PotionPrice)
         {
-            Debug.Log("Butts");
             CoreManager.Instance.CoreHp += 5;
             Coins -= PotionPrice;
             CoinsText.text = $"{Coins}";

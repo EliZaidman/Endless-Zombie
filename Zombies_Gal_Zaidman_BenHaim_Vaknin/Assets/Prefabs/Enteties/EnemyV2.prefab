@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
+  _trapColider: {fileID: 5673116905372047970, guid: 08d3714597f4eab4dad5ca05bd06881a, type: 3}
   _grid: {fileID: 0}
   _tilemap: {fileID: 0}
   hp: 10

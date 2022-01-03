@@ -15,24 +15,18 @@ public class TrapItem : MonoBehaviour
     public GameObject player;
     //public Grid _grid;
     public Tilemap _tilemap;
-    //private void OnTriggerEnter(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.tag == "Enemy")
-    //        Destroy(collision.gameObject);
+    //    {
+    //        collision.gameObject.GetComponent<EnemyAI>().hp -= 30;
+    //        Destroy(gameObject);
+    //    }
     //    else if (collision.gameObject.tag == "Player")
     //        _cM.CoreHp -= _trapDamage;
-
+    //    
     //    Destroy(gameObject);
     //}
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.tag == "Player")
-        //    _cM.CoreHp -= _trapDamage;
-        //else
-        //    Destroy(collision.gameObject);
-        //
-        //Destroy(gameObject);
-    }
 
     private void Update()
     {
