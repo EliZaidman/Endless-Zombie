@@ -7,7 +7,7 @@ using TMPro;
 public class WorkshopManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _inventoryOverlay;
+    private GameObject _workshopOverlay;
 
     [SerializeField]
     private Camera _mainCam;
@@ -24,7 +24,7 @@ public class WorkshopManager : MonoBehaviour
         if (!GameManager.Instance.IsWaveOngoing && collision.collider == _playerCol)
         {
             Debug.Log("Inside IF");
-            _inventoryOverlay.SetActive(true);
+            _workshopOverlay.SetActive(true);
             _defaultMapSize = _mainCam.orthographicSize;
             _mainCam.orthographicSize = _inOverlayMapSize;
         }
@@ -32,7 +32,7 @@ public class WorkshopManager : MonoBehaviour
     
     public void CloseWS()
     {
-        _inventoryOverlay.SetActive(false);
+        _workshopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
 }
