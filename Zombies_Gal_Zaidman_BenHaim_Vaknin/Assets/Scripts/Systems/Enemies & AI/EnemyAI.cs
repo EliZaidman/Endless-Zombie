@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
             Debug.Log("INSIDEeeeeeeeeeeeeeeeeeeee");
             hp -= trapGrid.GetComponent<TrapItem>().trapHP;
             FunctionToGetRidOfTile();
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
 
     }
