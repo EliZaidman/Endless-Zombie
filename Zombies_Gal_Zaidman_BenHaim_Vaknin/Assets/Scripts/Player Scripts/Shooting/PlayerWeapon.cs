@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    #region Serialized Fields
     [SerializeField]
     private List<GameObject> _allWeapons;
 
@@ -20,23 +21,34 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]
     private Image _currentWeaponImage;
 
-    private float _currentFireRate = 0.3f, _defaultGunFireRate = 0.3f, _cannonGunFireRate = 0.5f, _machinegunFireRate = 0.1f;
+    [SerializeField]
+    private float _defaultGunFireRate = 0.3f, _cannonGunFireRate = 0.5f, _machinegunFireRate = 0.1f;
+    #endregion
+
+    #region Fields
+    private float _cooldown, _currentFireRate;
 
     private int _currentBulletForce = 20, _defaultGunBulletForce = 20, _cannonGunBulletForce = 50, _machinegunBulletForce = 10;
     private int _currentCycleIndex = 0;
+    #endregion
 
+    #region Public Fields
     public bool CanShoot;
+    #endregion
 
+    #region Unity Callbacks
     private void Awake()
     {
-        _currentWeaponImage.sprite = _allWeaponsSprites[0];
         _allWeapons[0].SetActive(true);
+        _currentWeaponImage.sprite = _allWeaponsSprites[0];
+        _currentFireRate = _defaultGunFireRate;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Shoot();
     }
+    #endregion
 
     #region WeaponCycle
     public void CycleNextWeapon(int numToAddToCycle)
@@ -113,6 +125,8 @@ public class PlayerWeapon : MonoBehaviour
 
         else
             return;
+        
+        _cooldown = _currentFireRate;
 
         _allWeapons[_currentCycleIndex].SetActive(true);
     }
@@ -160,18 +174,7 @@ public class PlayerWeapon : MonoBehaviour
     }
     #endregion
 
-    //private void Shoot()
-    //{
-    //    _currentFireRate -= Time.deltaTime;
-    //
-    //    if (Input.GetMouseButton(0) && CanShoot && _currentFireRate <= 0)
-    //    {
-    //        GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
-    //        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
-    //        rb.AddForce(_bulletTr.up * _currentBulletForce, ForceMode2D.Impulse);
-    //    }
-    //}
-
+    #region WeaponShoot
     private void InstansiateBullet()
     {
         GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
@@ -181,11 +184,16 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        _currentFireRate -= Time.deltaTime;
+        _isShooting = false;
+        _cooldown -= Time.deltaTime;
+        Debug.Log("Yehou222");
 
-        if (Input.GetMouseButton(0) && CanShoot && _currentFireRate <= 0)
+        if (Input.GetMouseButton(0) && CanShoot && _cooldown <= 0)
         {
+            Debug.Log("Yehou");
             InstansiateBullet();
+            _cooldown = _currentFireRate;
         }
     }
+    #endregion
 }

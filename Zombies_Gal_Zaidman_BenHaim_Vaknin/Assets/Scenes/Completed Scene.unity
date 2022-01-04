@@ -22388,6 +22388,11 @@ MonoBehaviour:
   _bullet: {fileID: 8944805347107972867, guid: 1ddea4f80c3bdff42951e2a79631cf94, type: 3}
   _bulletTr: {fileID: 8992295281396803182}
   _currentWeaponImage: {fileID: 911406385}
+  _currentFireRate: 0.3
+  _defaultGunFireRate: 0.3
+  _cannonGunFireRate: 0.5
+  _machinegunFireRate: 0.1
+  _cooldown: 0
   CanShoot: 0
 --- !u!1 &7468753318829288915
 GameObject:

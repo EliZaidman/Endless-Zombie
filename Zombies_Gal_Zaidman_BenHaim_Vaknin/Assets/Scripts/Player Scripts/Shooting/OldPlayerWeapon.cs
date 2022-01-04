@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class OldPlayerWeapon : MonoBehaviour
 {
-    //[SerializeField]
-    //private List<GameObject> _allWeapons;
-
     [SerializeField]
     private List<SpriteRenderer> _allWeaponSprites;
 
