@@ -184,7 +184,6 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Shoot()
     {
-        _isShooting = false;
         _cooldown -= Time.deltaTime;
         Debug.Log("Yehou222");
 
