@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     public Transform target;
     private TilemapCollider2D _trapColider;
     //AI
-    //public Grid _grid;
+    public GameObject _trapItem;
     public GameObject trapGrid;
     public Tilemap _tilemap;
     public int hp = 10;
@@ -22,39 +22,44 @@ public class EnemyAI : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         _tilemap = FindObjectOfType<Tilemap>();
-        trapGrid = GameObject.Find("Trap");
+        _trapItem = GameObject.Find("Trap");
     }
 
     void Update()
     {
         agent.SetDestination(target.position);
         transform.position = agent.nextPosition;
-
         if (hp <= 0)
         {
             Shop.Instance.AddCoins();
             FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
             Destroy(gameObject);
         }
+
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.tag == "Bullet")
             hp -= 25;
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
         if (collision.gameObject.tag == "Trap")
         {
-            Debug.Log("INSIDEeeeeeeeeeeeeeeeeeeee");
-            FunctionToGetRidOfTile();
-            hp -= trapGrid.GetComponent<TrapItem>().trapHP;
-            //Destroy(collision.gameObject);
+            
+            Vector3 hitPosition = Vector3.zero;
+            foreach (ContactPoint2D hit in collision.contacts)
+            {
+                Debug.Log(hit.point);
+                hitPosition.x = hit.point.x - 0.1f;
+                hitPosition.y = hit.point.y - 0.1f;
+                _tilemap.SetTile(_tilemap.WorldToCell(hitPosition), null);
+            }
+            hp -= _trapItem.GetComponent<TrapItem>().trapHP;
         }
 
     }
+
     void FunctionToGetRidOfTile()
     {
         Vector3Int getGridPos = new Vector3Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.y, (int)gameObject.transform.position.z);
@@ -63,6 +68,4 @@ public class EnemyAI : MonoBehaviour
 
 
     }
-
-    
 }

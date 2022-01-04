@@ -15,15 +15,22 @@ public class TrapItem : MonoBehaviour
 
     public int trapHP;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //if (collision.gameObject.tag == "Enemy")
         //{
-        //    Debug.Log("INSIDEeeeeeeeeeeeeeeeeeeee");
-        //    collision.gameObject.GetComponent<EnemyAI>().hp -= 30;
+        //    Tilemap tilemap = GetComponent<Tilemap>();
+        //    Vector3 hitPosition = Vector3.zero;
+        //    foreach (ContactPoint2D hit in collision.contacts)
+        //    {
+        //        Debug.Log(hit.point);
+        //        hitPosition.x = hit.point.x - 0.1f;
+        //        hitPosition.y = hit.point.y - 0.1f;
+        //        tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
+        //    }
         //    Destroy(collision.gameObject);
         //}
-
     }
 
     private void Start()
@@ -32,7 +39,7 @@ public class TrapItem : MonoBehaviour
     }
     private void Update()
     {
-        FunctionToGetRidOfTile();
+        //FunctionToGetRidOfTile();
     }
 
     void FunctionToGetRidOfTile()
