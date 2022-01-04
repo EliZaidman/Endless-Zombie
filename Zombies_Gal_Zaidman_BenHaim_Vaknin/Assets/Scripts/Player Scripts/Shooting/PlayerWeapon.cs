@@ -1,145 +1,191 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    //[SerializeField]
-    //private List<GameObject> _allWeapons;
+    [SerializeField]
+    private List<GameObject> _allWeapons;
 
     [SerializeField]
-    private List<SpriteRenderer> _allWeaponSprites;
+    private List<Sprite> _allWeaponsSprites;
 
     [SerializeField]
-    private GameObject _defaultWeapon, _machineGun, _canonWeapon, _bullet;
+    private GameObject _bullet;
 
     [SerializeField]
-    private Transform _bulletLocation;
+    private Transform _bulletTr;
 
     [SerializeField]
-    private Image _currentWeaponSprite;
+    private Image _currentWeaponImage;
 
-    private float _fireRate = 0.3f, _bulletForce = 20;
+    private float _currentFireRate = 0.3f, _defaultGunFireRate = 0.3f, _cannonGunFireRate = 0.5f, _machinegunFireRate = 0.1f;
 
-    private bool _holdingDefaultWeapon = true;
-    private bool _holdingMachineGun, _holdingCanon, _isShooting = false;
-    
-    public bool canShoot, IsCannonAquired, IsMachineGunAquired;
-    
-    public bool IsShooting { get => _isShooting; set => _isShooting = value; }
+    private int _currentBulletForce = 20, _defaultGunBulletForce = 20, _cannonGunBulletForce = 50, _machinegunBulletForce = 10;
+    private int _currentCycleIndex = 0;
+
+    public bool CanShoot;
+
+    private void Awake()
+    {
+        _currentWeaponImage.sprite = _allWeaponsSprites[0];
+        _allWeapons[0].SetActive(true);
+    }
 
     private void Update()
     {
-        WeaponsStats();
+        Shoot();
+    }
+
+    #region WeaponCycle
+    public void CycleNextWeapon(int numToAddToCycle)
+    {
+        _currentCycleIndex += numToAddToCycle;
+        _currentCycleIndex = Mathf.Clamp(_currentCycleIndex, 0, _allWeapons.Count - 1);
+        Debug.Log(_currentCycleIndex);
+        NextWeapon();
+        RefreshSprite();
+    }
+
+    public void CyclePreviousWeapon(int numToAddToCycle)
+    {
+        _currentCycleIndex -= numToAddToCycle;
+        _currentCycleIndex = Mathf.Clamp(_currentCycleIndex, 0, _allWeapons.Count - 1);
+        Debug.Log(_currentCycleIndex);
+        PreviousWeapon();
+        RefreshSprite();
+    }
+
+    private void NextWeapon()
+    {
+        Debug.Log("Refresh Weapon");
+        foreach (GameObject weapon in _allWeapons)
+            weapon.SetActive(false);
+
+        if (_currentCycleIndex == 1)
+        {
+            if (Shop.Instance.IsCannonGunAquired)
+            {
+                _currentCycleIndex = 1;
+                _currentFireRate = _cannonGunFireRate;
+                _currentBulletForce = _cannonGunBulletForce;
+            }
+
+            else if (Shop.Instance.IsMachinegunAquired)
+            {
+                _currentCycleIndex = 2;
+                _currentFireRate = _machinegunFireRate;
+                _currentBulletForce = _machinegunBulletForce;
+            }
+
+            else
+            {
+                _currentCycleIndex = 0;
+                _currentFireRate = _defaultGunFireRate;
+                _currentBulletForce = _defaultGunBulletForce;
+            }
+        }
+
+        else if (_currentCycleIndex == 2)
+        {
+            if (Shop.Instance.IsMachinegunAquired)
+            {
+                _currentCycleIndex = 2;
+                _currentFireRate = _machinegunFireRate;
+                _currentBulletForce = _machinegunBulletForce;
+            }
+
+            else if (Shop.Instance.IsCannonGunAquired)
+            {
+                _currentCycleIndex = 1;
+                _currentFireRate = _cannonGunFireRate;
+                _currentBulletForce = _cannonGunBulletForce;
+            }
+
+            else
+            {
+                _currentCycleIndex = 0;
+                _currentFireRate = _defaultGunFireRate;
+                _currentBulletForce = _defaultGunBulletForce;
+            }
+        }
+
+        else
+            return;
+
+        _allWeapons[_currentCycleIndex].SetActive(true);
+    }
+
+    private void PreviousWeapon()
+    {
+        Debug.Log("Refresh Weapon");
+        foreach (GameObject weapon in _allWeapons)
+            weapon.SetActive(false);
+
+        if (_currentCycleIndex == 1)
+        {
+            if (Shop.Instance.IsCannonGunAquired)
+            {
+                _currentCycleIndex = 1;
+                _currentFireRate = _cannonGunFireRate;
+                _currentBulletForce = _cannonGunBulletForce;
+            }
+
+            else
+            {
+                _currentCycleIndex = 0;
+                _currentFireRate = _defaultGunFireRate;
+                _currentBulletForce = _defaultGunBulletForce;
+            }
+        }
+
+        else if (_currentCycleIndex == 0)
+        {
+            _currentCycleIndex = 0;
+            _currentFireRate = _defaultGunFireRate;
+            _currentBulletForce = _defaultGunBulletForce;
+        }
+
+        else
+            return;
+
+        _allWeapons[_currentCycleIndex].SetActive(true);
+    }
+
+    private void RefreshSprite()
+    {
+        Debug.Log("Refresh Sprite");
+        _currentWeaponImage.sprite = _allWeaponsSprites[_currentCycleIndex];
+    }
+    #endregion
+
+    //private void Shoot()
+    //{
+    //    _currentFireRate -= Time.deltaTime;
+    //
+    //    if (Input.GetMouseButton(0) && CanShoot && _currentFireRate <= 0)
+    //    {
+    //        GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
+    //        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+    //        rb.AddForce(_bulletTr.up * _currentBulletForce, ForceMode2D.Impulse);
+    //    }
+    //}
+
+    private void InstansiateBullet()
+    {
+        GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
+        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+        rb.AddForce(_bulletTr.up * _currentBulletForce, ForceMode2D.Impulse);
     }
 
     private void Shoot()
     {
-        GameObject _shotClone = Instantiate(_bullet, _bulletLocation.position, _bulletLocation.rotation);
-        Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
-        rb.AddForce(_bulletLocation.up * _bulletForce, ForceMode2D.Impulse);
-    }
+        _currentFireRate -= Time.deltaTime;
 
-    private void WeaponsStats()
-    {
-        _fireRate -= Time.deltaTime;
-
-        if (Input.GetMouseButton(0) && canShoot && _fireRate <= 0)
+        if (Input.GetMouseButton(0) && CanShoot && _currentFireRate <= 0)
         {
-            Shoot();
-
-            if (_holdingDefaultWeapon)
-            {
-                _fireRate = 0.3f;
-                _bulletForce = 20f;
-            }
-
-            if (_holdingCanon)
-            {
-                _fireRate = 0.5f;
-                _bulletForce = 50f;
-            }
-
-            if (_holdingMachineGun)
-            {
-                _fireRate = 0.1f;
-                _bulletForce = 10f;
-            }            
-        }
-    }
-
-    public void ShootCycle()
-    {
-        // switch to cannon from gun
-        if (_holdingDefaultWeapon && IsCannonAquired)
-        {
-            _defaultWeapon.SetActive(false);
-            _holdingDefaultWeapon = false;
-            _canonWeapon.SetActive(true);
-            _holdingCanon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[2].sprite;
-            Debug.Log("canonGun");
-        }
-        // switch to machinegun from gun
-        if (_holdingDefaultWeapon && !IsCannonAquired && IsMachineGunAquired)
-        {
-            _defaultWeapon.SetActive(false);
-            _holdingDefaultWeapon = false;
-            _machineGun.SetActive(true);
-            _holdingMachineGun = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
-            Debug.Log("canonGun");
-        }
-        // switch to machinegun from cannon
-        else if (_holdingCanon && IsMachineGunAquired)
-        {
-            _canonWeapon.SetActive(false);
-            _holdingCanon = false;
-            _machineGun.SetActive(true);
-            _holdingMachineGun = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[1].sprite;
-            Debug.Log("machineGun");
-        }
-        // switch to gun from cannon
-        else if (_holdingCanon && !IsMachineGunAquired)
-        {
-            _canonWeapon.SetActive(false);
-            _holdingCanon = false;
-            _defaultWeapon.SetActive(true);
-            _holdingDefaultWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
-            Debug.Log("defaultGun");
-        }
-        // switch to gun from machinegun
-        else if (_holdingMachineGun)
-        {
-            _machineGun.SetActive(false);
-            _holdingMachineGun = false;
-            _defaultWeapon.SetActive(true);
-            _holdingDefaultWeapon = true;
-            _currentWeaponSprite.sprite = _allWeaponSprites[0].sprite;
-            Debug.Log("defaultGun");
-        }
-    }
-
-    public void AquireCannon()
-    {
-        if (Shop.Instance.Coins >= Shop.Instance.CannonPrice)
-        {
-            IsCannonAquired = true;
-            Shop.Instance.Coins -= Shop.Instance.CannonPrice;
-            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
-        }
-    }
-
-    public void AquireMachineGun()
-    {
-        if (Shop.Instance.Coins >= Shop.Instance.MachineGunPrice)
-        {
-            IsMachineGunAquired = true;
-            Shop.Instance.Coins -= Shop.Instance.MachineGunPrice;
-            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
+            InstansiateBullet();
         }
     }
 }

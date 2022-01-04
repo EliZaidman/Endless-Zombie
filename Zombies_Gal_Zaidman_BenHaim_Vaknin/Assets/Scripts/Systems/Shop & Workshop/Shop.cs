@@ -34,6 +34,7 @@ public class Shop : MonoBehaviour
     private int _coinsToPlayer;
 
     public TextMeshProUGUI CoinsText;
+    public bool IsCannonGunAquired, IsMachinegunAquired;
     public int MachineGunPrice = 200, CannonPrice = 50, PotionPrice = 5, Coins = 0;
 
     private void Awake()
@@ -76,6 +77,26 @@ public class Shop : MonoBehaviour
         {
             CoreManager.Instance.CoreHp += 5;
             Coins -= PotionPrice;
+            CoinsText.text = $"{Coins}";
+        }
+    }
+
+    public void AquireCannonGun()
+    {
+        if (Coins >= CannonPrice)
+        {
+            IsCannonGunAquired = true;
+            Coins -= CannonPrice;
+            CoinsText.text = $"{Coins}";
+        }
+    }
+
+    public void AquireMachinegun()
+    {
+        if (Coins >= MachineGunPrice)
+        {
+            IsMachinegunAquired = true;
+            Coins -= MachineGunPrice;
             CoinsText.text = $"{Coins}";
         }
     }

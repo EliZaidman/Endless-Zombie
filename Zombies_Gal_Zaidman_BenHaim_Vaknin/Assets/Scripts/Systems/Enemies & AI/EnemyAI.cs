@@ -30,23 +30,18 @@ public class EnemyAI : MonoBehaviour
         agent.SetDestination(target.position);
         transform.position = agent.nextPosition;
 
-       // 
         if (hp <= 0)
         {
             Shop.Instance.AddCoins();
             FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
             Destroy(gameObject);
         }
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
             hp -= 25;
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,8 +49,8 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.tag == "Trap")
         {
             Debug.Log("INSIDEeeeeeeeeeeeeeeeeeeee");
-            hp -= trapGrid.GetComponent<TrapItem>().trapHP;
             FunctionToGetRidOfTile();
+            hp -= trapGrid.GetComponent<TrapItem>().trapHP;
             //Destroy(collision.gameObject);
         }
 
