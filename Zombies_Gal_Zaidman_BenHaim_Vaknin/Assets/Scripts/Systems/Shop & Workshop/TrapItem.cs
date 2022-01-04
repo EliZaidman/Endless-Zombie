@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,7 @@ public class TrapItem : MonoBehaviour
     [SerializeField]
     private Tilemap _tilemap;
 
-    public int _trapDamage = 30;
+    public int TrapId, FireDamage = 30, SpikesDamage = 50, BearTrapDamage = 15, FlameTrapDamage = 30;
 
     void FunctionToGetRidOfTile()
     {

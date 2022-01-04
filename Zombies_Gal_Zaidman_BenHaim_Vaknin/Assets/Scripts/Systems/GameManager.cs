@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.AI;
-using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,38 +21,26 @@ public class GameManager : MonoBehaviour
 
     #region Serialized Fields
     [SerializeField]
-    private TextMeshProUGUI _countDown, _levelText, _targetsLeftText;
-
+    private SpawnerManager _spawnerManager;
+    
     [SerializeField]
-    public int _level, _targetsRemaining;
-
-    [SerializeField]
-    public float _timer;
+    private TextMeshProUGUI _countDown, _levelText;
 
     [SerializeField]
     private bool _isWaveOngoing = false;
+    
     #endregion
 
     #region Properties
-        public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
-        #endregion
+    public bool IsWaveOngoing { get => _isWaveOngoing; set => _isWaveOngoing = value; }
+    #endregion
 
-    [SerializeField] 
-    NavMeshSurface2d _navmesh2D;
+    #region Public Fields
+    public int Level, TargetsRemaining;
+    public float Timer;
+    #endregion
 
-    [SerializeField]
-    private Tilemap _ground;
-    [SerializeField]
-    private Tilemap _walls;
-
-    [SerializeField]
-    private TileBase _wallTiles;
-
-    [SerializeField]
-    private Camera _mainCam;
-
-    [SerializeField]
-    SpawnerManager _spawnerManager;
+    #region Unity Callbacks
     private void Awake()
     {
         if (_instance == null)
@@ -64,32 +50,54 @@ public class GameManager : MonoBehaviour
             Destroy(this);
     }
 
-    //private void Start()
-    //{
-    //    //_navmesh2D.BuildNavMesh();
-    //}
-
     void Update()
     {
-        _levelText.text = _level.ToString("0");
+        _levelText.text = Level.ToString("0");
+        Shop.Instance.CoinsText.text = $"{Shop.Instance.GeneralCoins}";
+        CoreManager.Instance.CoreHpTxt.text = $"{CoreManager.Instance.CoreHp} / {CoreManager.Instance.CoreMaxHp}";
 
         if (!IsWaveOngoing)
         {
-            _timer -= Time.deltaTime;
-            _countDown.text = _timer.ToString("0");
+            Timer -= Time.deltaTime;
+            _countDown.text = Timer.ToString("0");
 
-            if (_timer <= 0)
+            if (Timer <= 0)
                 IsWaveOngoing = true;
         }
-    }
 
+        if (CoreManager.Instance.CoreHp <= 0)
+        {
+            Time.timeScale = 0;
+            CoreManager.Instance.GameOver.SetActive(true);
+        }
+
+        if (Shop.Instance.GeneralCoins >= 999)
+            Shop.Instance.GeneralCoins = 999;
+    }
+    #endregion
+
+    #region Methods
     public void NextLevel()
     {
-        _level++;
-        _timer = 5;
+        Level++;
+        Timer = 5;
         _spawnerManager._timeBetweenSpawns = 0;
-        _spawnerManager._maxSpawns += _level;
+        _spawnerManager._maxSpawns += Level;
         _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
         IsWaveOngoing = false;
     }
+
+    public void ResetGame()
+    {
+        Level = 1;
+        _spawnerManager._timeBetweenSpawns = 0;
+        foreach (GameObject enemy in FindObjectOfType<SpawnerManager>()._ZombiesInScene)
+            Destroy(enemy);
+
+        FindObjectOfType<SpawnerManager>()._ZombiesInScene.Clear();
+        CoreManager.Instance.CoreMaxHp = 20;
+        CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
+        CoreManager.Instance.GameOver.SetActive(false);
+    }
+    #endregion
 }
