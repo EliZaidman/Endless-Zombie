@@ -185,11 +185,9 @@ public class PlayerWeapon : MonoBehaviour
     private void Shoot()
     {
         _cooldown -= Time.deltaTime;
-        Debug.Log("Yehou222");
 
         if (Input.GetMouseButton(0) && CanShoot && _cooldown <= 0)
         {
-            Debug.Log("Yehou");
             InstansiateBullet();
             _cooldown = _currentFireRate;
         }

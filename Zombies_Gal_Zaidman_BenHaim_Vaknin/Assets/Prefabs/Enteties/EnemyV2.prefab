@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 580923134435981035}
   - component: {fileID: 7006143271307958211}
-  - component: {fileID: 9190659091532132584}
   - component: {fileID: 5638262663343869240}
   - component: {fileID: 2480825501598720892}
   - component: {fileID: -6434742982700118530}
+  - component: {fileID: 9190659091532132584}
   m_Layer: 0
   m_Name: EnemyV2
   m_TagString: Enemy
@@ -86,22 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9190659091532132584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8058386519640183032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a35dee7eb584c4e93c93b00cf03da5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
-  trapGrid: {fileID: 0}
-  _tilemap: {fileID: 0}
-  hp: 10
 --- !u!195 &5638262663343869240
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -161,3 +145,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9190659091532132584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058386519640183032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a35dee7eb584c4e93c93b00cf03da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
+  _trapItem: {fileID: 0}
+  hp: 10

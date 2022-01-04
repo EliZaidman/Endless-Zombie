@@ -7,44 +7,16 @@ using UnityEngine.Tilemaps;
 public class TrapItem : MonoBehaviour
 {
     [SerializeField]
-    private CoreManager _cM;
+    private GameObject _player;
 
-    public GameObject player;
-    //public Grid _grid;
-    public Tilemap _tilemap;
+    [SerializeField]
+    private Tilemap _tilemap;
 
-    public int trapHP;
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.tag == "Enemy")
-        //{
-        //    Tilemap tilemap = GetComponent<Tilemap>();
-        //    Vector3 hitPosition = Vector3.zero;
-        //    foreach (ContactPoint2D hit in collision.contacts)
-        //    {
-        //        Debug.Log(hit.point);
-        //        hitPosition.x = hit.point.x - 0.1f;
-        //        hitPosition.y = hit.point.y - 0.1f;
-        //        tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
-        //    }
-        //    Destroy(collision.gameObject);
-        //}
-    }
-
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        //FunctionToGetRidOfTile();
-    }
+    public int _trapDamage = 30;
 
     void FunctionToGetRidOfTile()
     {
-        Vector3Int getGridPos = new Vector3Int((int)player.transform.position.x, (int)player.transform.position.y, (int)player.transform.position.z);
+        Vector3Int getGridPos = new Vector3Int((int)_player.transform.position.x, (int)_player.transform.position.y, (int)_player.transform.position.z);
         _tilemap.SetTile(getGridPos, null);   
     }
     

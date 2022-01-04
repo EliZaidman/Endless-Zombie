@@ -430,10 +430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238eee9f1a65e6940af5e8d2ea90e0d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cM: {fileID: 570528824}
-  player: {fileID: 1432020962}
+  _player: {fileID: 1432020962}
   _tilemap: {fileID: 304156114}
-  trapHP: 30
+  _trapDamage: 30
 --- !u!19719996 &304156111
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -22388,11 +22387,9 @@ MonoBehaviour:
   _bullet: {fileID: 8944805347107972867, guid: 1ddea4f80c3bdff42951e2a79631cf94, type: 3}
   _bulletTr: {fileID: 8992295281396803182}
   _currentWeaponImage: {fileID: 911406385}
-  _currentFireRate: 0.3
   _defaultGunFireRate: 0.3
   _cannonGunFireRate: 0.5
   _machinegunFireRate: 0.1
-  _cooldown: 0
   CanShoot: 0
 --- !u!1 &7468753318829288915
 GameObject:

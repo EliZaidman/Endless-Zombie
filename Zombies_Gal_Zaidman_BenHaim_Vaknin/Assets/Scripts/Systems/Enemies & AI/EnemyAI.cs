@@ -6,14 +6,12 @@ using UnityEngine.Tilemaps;
 
 public class EnemyAI : MonoBehaviour
 {
-    //AI
+    [SerializeField]
+    private Transform _target;
+
     private NavMeshAgent agent;
-    public Transform target;
-    private TilemapCollider2D _trapColider;
-    //AI
-    public GameObject _trapItem;
-    public GameObject trapGrid;
-    public Tilemap _tilemap;
+    private GameObject _trapItem;
+    private Tilemap _tilemap;
     public int hp = 10;
 
     void Start()
@@ -27,7 +25,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(_target.position);
         transform.position = agent.nextPosition;
         if (hp <= 0)
         {
@@ -55,7 +53,7 @@ public class EnemyAI : MonoBehaviour
                 hitPosition.y = hit.point.y - 0.1f;
                 _tilemap.SetTile(_tilemap.WorldToCell(hitPosition), null);
             }
-            hp -= _trapItem.GetComponent<TrapItem>().trapHP;
+            hp -= _trapItem.GetComponent<TrapItem>()._trapDamage;
         }
 
     }
