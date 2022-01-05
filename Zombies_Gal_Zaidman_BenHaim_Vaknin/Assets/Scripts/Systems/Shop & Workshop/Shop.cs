@@ -5,6 +5,7 @@ using TMPro;
 
 public class Shop : MonoBehaviour
 {
+    #region Singleton
     private static Shop _instance;
     public static Shop Instance
     {
@@ -16,27 +17,36 @@ public class Shop : MonoBehaviour
             return _instance;
         }
     }
+    #endregion
 
-    //[SerializeField]
+    #region Serialized Fields
+    [SerializeField]
+    private Camera _mainCam;
 
     [SerializeField]
     private GameObject _shopOverlay;
     
     [SerializeField]
-    private Camera _mainCam;
+    private TextMeshProUGUI ShopCoinsText, WSCoinsText;
 
     [SerializeField]
-    private Collider2D _shopCol, _playerCol;
+    private Collider2D _playerCol;
 
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
+    #endregion
 
-    private int _coinsToPlayer;
+    #region Fields
+    private int _coinsToPlayer, _shopCoins, _wSCoins;
+    #endregion
 
+    #region Public Fields
     public TextMeshProUGUI CoinsText;
     public bool IsCannonGunAquired, IsMachinegunAquired;
-    public int MachineGunPrice = 200, CannonPrice = 50, PotionPrice = 5, Coins = 0;
+    public int MachineGunPrice = 200, CannonPrice = 50, MaxHealthPotionPrice = 100, HealthPotionPrice = 5, GeneralCoins = 0;
+    #endregion
 
+    #region Unity Callbacks
     private void Awake()
     {
         if (_instance == null)
@@ -44,6 +54,12 @@ public class Shop : MonoBehaviour
 
         else
             Destroy(this);
+    }
+
+    private void Update()
+    {
+        _shopCoins = GeneralCoins;
+        _wSCoins = GeneralCoins;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -56,7 +72,9 @@ public class Shop : MonoBehaviour
             _mainCam.orthographicSize = _inOverlayMapSize;
         }
     }
+    #endregion
 
+    #region Events
     public void CloseShop()
     {
         Time.timeScale = 1;
@@ -67,37 +85,64 @@ public class Shop : MonoBehaviour
     public void AddCoins()
     {
         _coinsToPlayer = Random.Range(2, 8);
-        Coins += _coinsToPlayer;
-        CoinsText.text = $"{Coins}";
+        GeneralCoins += _coinsToPlayer;
+        
     }
 
-    public void CheckCoins()
+    public void BuyMaxHealthPotion()
     {
-        if (Coins >= PotionPrice)
+        if (GeneralCoins >= MaxHealthPotionPrice)
         {
-            CoreManager.Instance.CoreHp += 5;
-            Coins -= PotionPrice;
-            CoinsText.text = $"{Coins}";
+            CoreManager.Instance.CoreMaxHp += 5;
+            GeneralCoins -= MaxHealthPotionPrice;
+        }
+    }
+
+    public void BuyHealthPotion()
+    {
+        if (GeneralCoins >= HealthPotionPrice)
+        {
+            if (CoreManager.Instance.CoreHp == CoreManager.Instance.CoreMaxHp)
+                return;
+
+            else
+            {
+                CoreManager.Instance.CoreHp += 5;
+
+                if (CoreManager.Instance.CoreHp >= CoreManager.Instance.CoreMaxHp)
+                    CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
+
+                GeneralCoins -= HealthPotionPrice;
+            }
+        }
+    }
+
+    public void BuyPowerUpPotion()
+    {
+
+    }
+
+    public void BuyBulletSpeedUpPotion()
+    {
+
+    }
+
+    public void AquireMachinegun()
+    {
+        if (GeneralCoins >= MachineGunPrice)
+        {
+            IsMachinegunAquired = true;
+            GeneralCoins -= MachineGunPrice;
         }
     }
 
     public void AquireCannonGun()
     {
-        if (Coins >= CannonPrice)
+        if (GeneralCoins >= CannonPrice)
         {
             IsCannonGunAquired = true;
-            Coins -= CannonPrice;
-            CoinsText.text = $"{Coins}";
+            GeneralCoins -= CannonPrice;
         }
     }
-
-    public void AquireMachinegun()
-    {
-        if (Coins >= MachineGunPrice)
-        {
-            IsMachinegunAquired = true;
-            Coins -= MachineGunPrice;
-            CoinsText.text = $"{Coins}";
-        }
-    }
+    #endregion
 }

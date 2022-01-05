@@ -102,21 +102,21 @@ public class OldPlayerWeapon : MonoBehaviour
 
     public void AquireCannon()
     {
-        if (Shop.Instance.Coins >= Shop.Instance.CannonPrice)
+        if (Shop.Instance.GeneralCoins >= Shop.Instance.CannonPrice)
         {
             IsCannonAquired = true;
-            Shop.Instance.Coins -= Shop.Instance.CannonPrice;
-            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
+            Shop.Instance.GeneralCoins -= Shop.Instance.CannonPrice;
+            Shop.Instance.CoinsText.text = $"{Shop.Instance.GeneralCoins}";
         }
     }
 
     public void AquireMachineGun()
     {
-        if (Shop.Instance.Coins >= Shop.Instance.MachineGunPrice)
+        if (Shop.Instance.GeneralCoins >= Shop.Instance.MachineGunPrice)
         {
             IsMachineGunAquired = true;
-            Shop.Instance.Coins -= Shop.Instance.MachineGunPrice;
-            Shop.Instance.CoinsText.text = $"{Shop.Instance.Coins}";
+            Shop.Instance.GeneralCoins -= Shop.Instance.MachineGunPrice;
+            Shop.Instance.CoinsText.text = $"{Shop.Instance.GeneralCoins}";
         }
     }
 }
