@@ -6,47 +6,71 @@ using UnityEngine.Tilemaps;
 
 public class EnemyAI : MonoBehaviour
 {
-    //AI
-    private NavMeshAgent agent;
-    public Transform target;
-    private TilemapCollider2D _trapColider;
-    //AI
-    public GameObject _trapItem;
-    public GameObject trapGrid;
-    public Tilemap _tilemap;
-    public int hp = 10;
+    #region Serialized Fields
+    [SerializeField]
+    private Transform _target;
+    #endregion
 
-    void Start()
+    #region Fields
+    private NavMeshAgent _agent;
+    private GameObject _trapItem;
+    private Tilemap _tilemap;
+    private int _hp;
+    #endregion
+
+    #region Public Fields
+    public int EnemyId;
+    #endregion
+
+    #region Unity Callbacks
+    void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        _tilemap = FindObjectOfType<Tilemap>();
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.updateRotation = false;
+        _agent.updateUpAxis = false;
         _trapItem = GameObject.Find("Trap");
+        _tilemap = FindObjectOfType<Tilemap>();
+
+        switch (EnemyId)
+        {
+            case 0:
+                _hp = 10;
+                break;
+
+            case 1:
+                _hp = 25;
+                break;
+
+            case 2:
+                _hp = 50;
+                break;
+
+            default:
+                _hp = 20;
+                break;
+        }
     }
 
     void Update()
     {
-        agent.SetDestination(target.position);
-        transform.position = agent.nextPosition;
-        if (hp <= 0)
+        _agent.SetDestination(_target.position);
+        transform.position = _agent.nextPosition;
+
+        if (_hp <= 0)
         {
             Shop.Instance.AddCoins();
             FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
             Destroy(gameObject);
         }
-
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
-            hp -= 25;
+            _hp -= 25;
 
         if (collision.gameObject.tag == "Trap")
         {
-            
             Vector3 hitPosition = Vector3.zero;
             foreach (ContactPoint2D hit in collision.contacts)
             {
@@ -55,17 +79,17 @@ public class EnemyAI : MonoBehaviour
                 hitPosition.y = hit.point.y - 0.1f;
                 _tilemap.SetTile(_tilemap.WorldToCell(hitPosition), null);
             }
-            hp -= _trapItem.GetComponent<TrapItem>().trapHP;
+
+            _hp -= _trapItem.GetComponent<TrapItem>().FireDamage;
         }
-
     }
+    #endregion
 
+    #region Methods
     void FunctionToGetRidOfTile()
     {
         Vector3Int getGridPos = new Vector3Int((int)gameObject.transform.position.x, (int)gameObject.transform.position.y, (int)gameObject.transform.position.z);
-
         _tilemap.SetTile(getGridPos, null);
-
-
     }
+    #endregion
 }

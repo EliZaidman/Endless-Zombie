@@ -21,10 +21,9 @@ public  class CoreManager : MonoBehaviour
     private SpawnerManager _sM;
 
     [SerializeField]
-    TextMeshProUGUI tmpCoreHp;
-    
-    EnemyAI enemyAI;
-    
+    public TextMeshProUGUI CoreHpTxt;
+
+    public GameObject GameOver;
     public int CoreHp = 20;
     public int CoreMaxHp = 20;
 
@@ -35,11 +34,6 @@ public  class CoreManager : MonoBehaviour
 
         else
             Destroy(this);
-    }
-
-    void Update()
-    {
-        tmpCoreHp.text = CoreHp.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
