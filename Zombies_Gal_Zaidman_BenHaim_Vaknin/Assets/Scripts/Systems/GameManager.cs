@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Public Fields
+    public GameObject rest;
     public int Level, TargetsRemaining;
     public float Timer;
     #endregion
@@ -70,7 +72,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             CoreManager.Instance.GameOver.SetActive(true);
         }
-
         if (Shop.Instance.GeneralCoins >= 999)
             Shop.Instance.GeneralCoins = 999;
     }
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
         IsWaveOngoing = false;
     }
 
+    [System.Obsolete]
     public void ResetGame()
     {
         Level = 1;
@@ -98,6 +100,11 @@ public class GameManager : MonoBehaviour
         CoreManager.Instance.CoreMaxHp = 20;
         CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
         CoreManager.Instance.GameOver.SetActive(false);
+        if (CoreManager.Instance.GameOver== true)
+        {
+            Application.LoadLevel(1);
+        }
     }
+    
     #endregion
 }

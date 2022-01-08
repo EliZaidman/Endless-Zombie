@@ -19794,7 +19794,7 @@ MonoBehaviour:
   _countDown: {fileID: 1845318380}
   _levelText: {fileID: 320915623}
   _isWaveOngoing: 1
-  Level: 1
+  Level: 2
   TargetsRemaining: 0
   Timer: 5
 --- !u!4 &1223815200
