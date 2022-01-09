@@ -101,7 +101,7 @@ public class SpawnerManager : MonoBehaviour
                 _rTr = null;
             }
         }
-        if (!(CoreManager.Instance.CoreHp <= 0) && GameManager.Instance.Level > 1 && _ZombiesInScene.Count == 0 && GameManager.Instance.IsWaveOngoing)
+        if (!(CoreManager.Instance.CoreHp <= 0) && GameManager.Instance.Level > 0 && _ZombiesInScene.Count == 0 && GameManager.Instance.IsWaveOngoing)
             _nextLevelButton.gameObject.SetActive(true);
 
         else

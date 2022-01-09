@@ -19233,6 +19233,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 911406383}
   m_CullTransparentMesh: 1
+--- !u!114 &951070163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9170048431303011480, guid: 27d8589086eb1f94fbb1ce2b4797908b, type: 3}
+  m_PrefabInstance: {fileID: 9170048432753720240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &977617159
 GameObject:
   m_ObjectHideFlags: 0
@@ -19793,8 +19804,9 @@ MonoBehaviour:
   _spawnerManager: {fileID: 1822012491}
   _countDown: {fileID: 1845318380}
   _levelText: {fileID: 320915623}
+  _nextLevelTxt: {fileID: 951070163}
   _isWaveOngoing: 1
-  Level: 2
+  Level: 1
   TargetsRemaining: 0
   Timer: 5
 --- !u!4 &1223815200
@@ -26451,6 +26463,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 662999287}
     m_Modifications:
+    - target: {fileID: 9170048431303011480, guid: 27d8589086eb1f94fbb1ce2b4797908b, type: 3}
+      propertyPath: m_text
+      value: Next Level!
+      objectReference: {fileID: 0}
     - target: {fileID: 9170048432199937265, guid: 27d8589086eb1f94fbb1ce2b4797908b, type: 3}
       propertyPath: m_Name
       value: NextLevelButton

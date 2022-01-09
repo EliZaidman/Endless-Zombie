@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private SpawnerManager _spawnerManager;
     
     [SerializeField]
-    private TextMeshProUGUI _countDown, _levelText;
+    private TextMeshProUGUI _countDown, _levelText, _nextLevelTxt;
 
     [SerializeField]
     private bool _isWaveOngoing = false;
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Public Fields
-    public GameObject rest;
+    //public GameObject rest;
     public int Level, TargetsRemaining;
     public float Timer;
     #endregion
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             CoreManager.Instance.GameOver.SetActive(true);
         }
+
         if (Shop.Instance.GeneralCoins >= 999)
             Shop.Instance.GeneralCoins = 999;
     }
@@ -80,12 +81,26 @@ public class GameManager : MonoBehaviour
     #region Methods
     public void NextLevel()
     {
-        Level++;
-        Timer = 5;
-        _spawnerManager._timeBetweenSpawns = 0;
-        _spawnerManager._maxSpawns += Level;
-        _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
-        IsWaveOngoing = false;
+        if (Level < 1)
+        {
+            _nextLevelTxt.text = "Start Game!";
+            Timer = 5;
+            _spawnerManager._timeBetweenSpawns = 0;
+            _spawnerManager._maxSpawns += Level;
+            _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
+            IsWaveOngoing = false;
+        }
+
+        else
+        {
+            _nextLevelTxt.text = "Next Level!";
+            Level++;
+            Timer = 5;
+            _spawnerManager._timeBetweenSpawns = 0;
+            _spawnerManager._maxSpawns += Level;
+            _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
+            IsWaveOngoing = false;
+        }
     }
 
     [System.Obsolete]
@@ -93,15 +108,20 @@ public class GameManager : MonoBehaviour
     {
         Level = 1;
         _spawnerManager._timeBetweenSpawns = 0;
+
         foreach (GameObject enemy in FindObjectOfType<SpawnerManager>()._ZombiesInScene)
             Destroy(enemy);
 
         FindObjectOfType<SpawnerManager>()._ZombiesInScene.Clear();
+
         CoreManager.Instance.CoreMaxHp = 20;
         CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
+
         CoreManager.Instance.GameOver.SetActive(false);
-        if (CoreManager.Instance.GameOver== true)
+
+        if (CoreManager.Instance.GameOver == true)
         {
+            Time.timeScale = 1;
             Application.LoadLevel(1);
         }
     }
