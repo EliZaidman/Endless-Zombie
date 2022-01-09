@@ -34,6 +34,8 @@ public class Shop : MonoBehaviour
 
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
+
+    
     #endregion
 
     #region Fields
@@ -43,7 +45,7 @@ public class Shop : MonoBehaviour
     #region Public Fields
     public TextMeshProUGUI CoinsText;
     public bool IsCannonGunAquired, IsMachinegunAquired;
-    public int MachineGunPrice = 200, CannonPrice = 50, MaxHealthPotionPrice = 100, HealthPotionPrice = 5, GeneralCoins = 0;
+    public int MachineGunPrice = 200, CannonPrice = 50, MaxHealthPotionPrice = 100, HealthPotionPrice = 5, GeneralCoins = 0, FireRatePotion = 10, PowerUpPotion = 10;
     #endregion
 
     #region Unity Callbacks
@@ -58,6 +60,10 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
+        if (GeneralCoins < 0)
+        {
+            GeneralCoins = 0;
+        }
         _shopCoins = GeneralCoins;
         _wSCoins = GeneralCoins;
     }
@@ -119,14 +125,27 @@ public class Shop : MonoBehaviour
 
     public void BuyPowerUpPotion()
     {
-
+        if (GeneralCoins >= PowerUpPotion)
+        {
+            PlayerWeapon.Instance.BulletDmg += 5;
+            GeneralCoins -= PowerUpPotion;
+        }
+       
     }
 
     public void BuyBulletSpeedUpPotion()
     {
+        if (GeneralCoins >= FireRatePotion)
+        {
 
+
+
+            PlayerWeapon.Instance.CurrentFireRate -= 0.02f;
+            GeneralCoins -= FireRatePotion;
+            return;
+        }
     }
-
+    
     public void AquireMachinegun()
     {
         if (GeneralCoins >= MachineGunPrice)

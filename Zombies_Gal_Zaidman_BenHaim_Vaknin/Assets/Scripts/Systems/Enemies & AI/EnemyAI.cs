@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
-            _hp -= 25;
+            _hp -= PlayerWeapon.Instance.BulletDmg;
 
         if (collision.gameObject.tag == "Trap")
         {
