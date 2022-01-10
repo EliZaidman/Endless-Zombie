@@ -91,14 +91,12 @@ public class EnemyAI : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Bullet")
-        {   
-            _hp -= PlayerWeapon.Instance.BulletDmg;
-            
+        {
             Destroy(collision.gameObject);
+            _hp -= PlayerWeapon.Instance.BulletDmg;             
             Instantiate(GameManager.Instance.hitEffect, gameObject.transform);
             AudioManager.Instance.PlayMusic(hitMark);
         }
-
         #endregion
     }
     #region Methods

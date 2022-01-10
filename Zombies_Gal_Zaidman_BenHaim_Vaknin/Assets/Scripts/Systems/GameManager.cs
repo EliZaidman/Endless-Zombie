@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
-using UnityEditor.UI;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -33,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
+    public ParticleSystem warningEffect;
 
     #endregion
 

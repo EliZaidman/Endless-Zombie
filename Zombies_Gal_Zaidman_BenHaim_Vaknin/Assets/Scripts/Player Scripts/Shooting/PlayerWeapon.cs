@@ -213,7 +213,9 @@ public class PlayerWeapon : MonoBehaviour
 
         if (Input.GetMouseButton(0) && CanShoot && _cooldown <= 0)
         {
+
             InstansiateBullet();
+            Physics.IgnoreLayerCollision(11, 11, true);
             _cooldown = CurrentFireRate;
         }
     }
