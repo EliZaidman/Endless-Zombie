@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     #region Methods
     public void NextLevel()
     {
-        if (Level < 1)
+        if (Level <= 1)
         {
             _nextLevelTxt.text = "Start Game!";
             Timer = 5;

@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "53fa8074",
         "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-        "processId": 15783,
+        "processId": 15791,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,30 @@
             "deviceId": "53fa8074",
             "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
             "processId": 15783,
+            "exited": false
+        },
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 15784,
+            "exited": false
+        },
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 15787,
+            "exited": false
+        },
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 15788,
+            "exited": false
+        },
+        {
+            "deviceId": "53fa8074",
+            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
+            "processId": 15791,
             "exited": false
         }
     ],
