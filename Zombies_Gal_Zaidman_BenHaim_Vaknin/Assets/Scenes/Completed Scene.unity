@@ -7576,7 +7576,7 @@ Transform:
   - {fileID: 1588295833}
   - {fileID: 906623829}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519748378
 GameObject:
@@ -20240,7 +20240,7 @@ MonoBehaviour:
   hitEffect: {fileID: 1319470029239790391, guid: 0e04f0d65e2aed143b3657b3f879d933, type: 3}
   deathEffect: {fileID: 4375338170707960016, guid: 80162bf4728f1e34ba13dcdd34bf7410, type: 3}
   warningEffect: {fileID: 4502509754484454448, guid: e861f6550b7bb414ba0f6781bb9cf976, type: 3}
-  Level: 0
+  Level: 1
   TargetsRemaining: 0
   Timer: 5
 --- !u!4 &1223815200
@@ -25903,7 +25903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3863567173181672521, guid: 9cadc084834933345889a79478f4783f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3863567173181672521, guid: 9cadc084834933345889a79478f4783f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -26309,7 +26309,7 @@ MonoBehaviour:
   _machinegunFireRate: 0.1
   CanShoot: 0
   CurrentFireRate: 0
-  BulletDmg: 5
+  BulletDmg: 10
 --- !u!1 &7468753318829288915
 GameObject:
   m_ObjectHideFlags: 0

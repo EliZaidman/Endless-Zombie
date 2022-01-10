@@ -12,10 +12,10 @@ public class EnemyTracker : MonoBehaviour
     }
     void Update()
     {
-        var dir = transform.parent.transform.position - transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.position = TrackerPos.transform.position;
+        //var dir = transform.parent.transform.position - transform.position;
+        //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //transform.position = TrackerPos.transform.position;
     }
 
 

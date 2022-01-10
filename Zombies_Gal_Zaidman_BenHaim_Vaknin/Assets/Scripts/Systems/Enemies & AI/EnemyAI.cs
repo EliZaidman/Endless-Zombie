@@ -65,14 +65,11 @@ public class EnemyAI : MonoBehaviour
             Instantiate(GameManager.Instance.deathEffect, gameObject.transform);
             FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
             Destroy(gameObject);
-
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-
         if (collision.gameObject.tag == "Trap")
         {
             Vector3 hitPosition = Vector3.zero;
@@ -97,8 +94,9 @@ public class EnemyAI : MonoBehaviour
             Instantiate(GameManager.Instance.hitEffect, gameObject.transform);
             AudioManager.Instance.PlayMusic(hitMark);
         }
-        #endregion
     }
+    #endregion
+
     #region Methods
     void FunctionToGetRidOfTile()
     {

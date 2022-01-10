@@ -28,12 +28,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool _isWaveOngoing = false;
-
-
-    public ParticleSystem hitEffect;
-    public ParticleSystem deathEffect;
-    public ParticleSystem warningEffect;
-
     #endregion
 
     #region Properties
@@ -42,8 +36,11 @@ public class GameManager : MonoBehaviour
 
     #region Public Fields
     //public GameObject rest;
+    public ParticleSystem hitEffect;
+    public ParticleSystem deathEffect;
+    public ParticleSystem warningEffect;
     public int Level, TargetsRemaining;
-    public float Timer;
+    public float Timer, TimeSinceLevelStart;
     #endregion
 
     #region Unity Callbacks
@@ -79,6 +76,10 @@ public class GameManager : MonoBehaviour
 
         if (Shop.Instance.GeneralCoins >= 999)
             Shop.Instance.GeneralCoins = 999;
+
+        TimeSinceLevelStart += Time.deltaTime;
+        if (IsWaveOngoing == false)
+            TimeSinceLevelStart = 0;
     }
     #endregion
 

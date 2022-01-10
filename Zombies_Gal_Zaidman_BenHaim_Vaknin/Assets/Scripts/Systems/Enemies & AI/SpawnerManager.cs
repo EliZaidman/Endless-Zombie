@@ -39,10 +39,10 @@ public class SpawnerManager : MonoBehaviour
 
     [SerializeField]
     private Button _nextLevelButton;
-    
+
     [SerializeField]
     public List<GameObject> _ZombiesInScene = new List<GameObject>();
-    
+
     [SerializeField]
     public float _timeBetweenSpawns = 0;
 
@@ -75,7 +75,7 @@ public class SpawnerManager : MonoBehaviour
 
         float rectX = Random.Range(_rTr.rect.xMin, _rTr.rect.xMax);
         float rectY = Random.Range(_rTr.rect.yMin, _rTr.rect.yMax);
-       
+
         Vector2 randomPosInsideSpawner = new Vector2(rectX, rectY);
 
         if (GameManager.Instance.IsWaveOngoing)
@@ -103,8 +103,12 @@ public class SpawnerManager : MonoBehaviour
                 _rTr = null;
             }
         }
+        
         if (!(CoreManager.Instance.CoreHp <= 0) && GameManager.Instance.Level > 0 && _ZombiesInScene.Count == 0 && GameManager.Instance.IsWaveOngoing)
-            _nextLevelButton.gameObject.SetActive(true);
+        {
+            if (GameManager.Instance.TimeSinceLevelStart > 5)
+                _nextLevelButton.gameObject.SetActive(true);
+        }
 
         else
             _nextLevelButton.gameObject.SetActive(false);
