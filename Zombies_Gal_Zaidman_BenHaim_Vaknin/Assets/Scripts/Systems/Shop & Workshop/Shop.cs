@@ -34,6 +34,9 @@ public class Shop : MonoBehaviour
 
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
+
+    public AudioClip buySuond;
+    
     #endregion
 
     #region Fields
@@ -43,7 +46,7 @@ public class Shop : MonoBehaviour
     #region Public Fields
     public TextMeshProUGUI CoinsText;
     public bool IsCannonGunAquired, IsMachinegunAquired;
-    public int MachineGunPrice = 200, CannonPrice = 50, MaxHealthPotionPrice = 100, HealthPotionPrice = 5, GeneralCoins = 0;
+    public int MachineGunPrice = 200, CannonPrice = 50, MaxHealthPotionPrice = 100, HealthPotionPrice = 5, GeneralCoins = 0, FireRatePotion = 10, PowerUpPotion = 10;
     #endregion
 
     #region Unity Callbacks
@@ -58,6 +61,10 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
+        if (GeneralCoins < 0)
+        {
+            GeneralCoins = 0;
+        }
         _shopCoins = GeneralCoins;
         _wSCoins = GeneralCoins;
     }
@@ -95,6 +102,8 @@ public class Shop : MonoBehaviour
         {
             CoreManager.Instance.CoreMaxHp += 5;
             GeneralCoins -= MaxHealthPotionPrice;
+            AudioManager.Instance.PlayMusic(buySuond);
+
         }
     }
 
@@ -113,26 +122,47 @@ public class Shop : MonoBehaviour
                     CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
 
                 GeneralCoins -= HealthPotionPrice;
+                AudioManager.Instance.PlayMusic(buySuond);
+
             }
         }
     }
 
     public void BuyPowerUpPotion()
     {
+        if (GeneralCoins >= PowerUpPotion)
+        {
+            PlayerWeapon.Instance.BulletDmg += 5;
+            GeneralCoins -= PowerUpPotion;
+            AudioManager.Instance.PlayMusic(buySuond);
+
+        }
 
     }
 
     public void BuyBulletSpeedUpPotion()
     {
+        if (GeneralCoins >= FireRatePotion)
+        {
 
+
+
+            PlayerWeapon.Instance.CurrentFireRate -= 0.02f;
+            GeneralCoins -= FireRatePotion;
+            AudioManager.Instance.PlayMusic(buySuond);
+
+            return;
+        }
     }
-
+    
     public void AquireMachinegun()
     {
         if (GeneralCoins >= MachineGunPrice)
         {
             IsMachinegunAquired = true;
             GeneralCoins -= MachineGunPrice;
+            AudioManager.Instance.PlayMusic(buySuond);
+
         }
     }
 
@@ -140,6 +170,7 @@ public class Shop : MonoBehaviour
     {
         if (GeneralCoins >= CannonPrice)
         {
+            AudioManager.Instance.PlayMusic(buySuond);
             IsCannonGunAquired = true;
             GeneralCoins -= CannonPrice;
         }

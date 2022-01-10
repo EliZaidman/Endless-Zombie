@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "53fa8074",
         "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-        "processId": 8473,
+        "processId": 15783,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,49 +11,13 @@
         {
             "deviceId": "53fa8074",
             "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8464,
-            "exited": true
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8465,
-            "exited": true
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8466,
-            "exited": true
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8470,
-            "exited": true
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.unity3d.mobileremote",
-            "processId": 18552,
-            "exited": true
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.unity3d.mobileremote",
-            "processId": 16351,
+            "processId": 15781,
             "exited": false
         },
         {
             "deviceId": "53fa8074",
             "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8478,
-            "exited": false
-        },
-        {
-            "deviceId": "53fa8074",
-            "name": "com.DefaultCompany.Zombies_Gal_Zaidman_BenHaim_Vaknin",
-            "processId": 8473,
+            "processId": 15783,
             "exited": false
         }
     ],

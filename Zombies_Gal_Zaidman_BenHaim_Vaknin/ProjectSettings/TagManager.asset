@@ -8,6 +8,11 @@ TagManager:
   - Enemy
   - Core
   - Trap
+  - FxTemporaire
+  - Left
+  - Right
+  - Top
+  - Bottom
   layers:
   - Default
   - TransparentFX
@@ -20,7 +25,7 @@ TagManager:
   - Covers
   - Spawners
   - Interactables
-  - 
+  - Bullet
   - 
   - 
   - 

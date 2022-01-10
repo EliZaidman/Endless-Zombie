@@ -20,6 +20,9 @@ public class EnemyAI : MonoBehaviour
 
     #region Public Fields
     public int EnemyId;
+    public ParticleSystem hitEffect;
+    public AudioClip hitMark;
+    
     #endregion
 
     #region Unity Callbacks
@@ -59,15 +62,16 @@ public class EnemyAI : MonoBehaviour
         if (_hp <= 0)
         {
             Shop.Instance.AddCoins();
+            Instantiate(GameManager.Instance.deathEffect, gameObject.transform);
             FindObjectOfType<SpawnerManager>()._ZombiesInScene.Remove(gameObject);
             Destroy(gameObject);
+
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
-            _hp -= 25;
+
 
         if (collision.gameObject.tag == "Trap")
         {
@@ -83,8 +87,18 @@ public class EnemyAI : MonoBehaviour
             _hp -= _trapItem.GetComponent<TrapItem>().FireDamage;
         }
     }
-    #endregion
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
+            _hp -= PlayerWeapon.Instance.BulletDmg;             
+            Instantiate(GameManager.Instance.hitEffect, gameObject.transform);
+            AudioManager.Instance.PlayMusic(hitMark);
+        }
+        #endregion
+    }
     #region Methods
     void FunctionToGetRidOfTile()
     {

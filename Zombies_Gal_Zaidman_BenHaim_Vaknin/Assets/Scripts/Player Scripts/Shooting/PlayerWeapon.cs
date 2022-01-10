@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerWeapon : MonoBehaviour
 {
+    private static PlayerWeapon _instance;
+
+    public AudioClip shootSoundDefult;
+    public static PlayerWeapon Instance
+
+        
+    {
+        get
+        {
+            if (_instance == null)
+                Debug.Log("Player Weapon not loaded properly");
+
+            return _instance;
+        }
+    }
     #region Serialized Fields
     [SerializeField]
     private List<GameObject> _allWeapons;
@@ -26,7 +41,7 @@ public class PlayerWeapon : MonoBehaviour
     #endregion
 
     #region Fields
-    private float _cooldown, _currentFireRate;
+    private float _cooldown;
 
     private int _currentBulletForce = 20, _defaultGunBulletForce = 20, _cannonGunBulletForce = 50, _machinegunBulletForce = 10;
     private int _currentCycleIndex = 0;
@@ -34,14 +49,23 @@ public class PlayerWeapon : MonoBehaviour
 
     #region Public Fields
     public bool CanShoot;
+    public float CurrentFireRate;
+    public int BulletDmg =10;
     #endregion
 
     #region Unity Callbacks
     private void Awake()
     {
+       
+            if (_instance == null)
+                _instance = this;
+
+            else
+                Destroy(this);
+       
         _allWeapons[0].SetActive(true);
         _currentWeaponImage.sprite = _allWeaponsSprites[0];
-        _currentFireRate = _defaultGunFireRate;
+        CurrentFireRate = _defaultGunFireRate;
     }
 
     private void FixedUpdate()
@@ -80,21 +104,21 @@ public class PlayerWeapon : MonoBehaviour
             if (Shop.Instance.IsCannonGunAquired)
             {
                 _currentCycleIndex = 1;
-                _currentFireRate = _cannonGunFireRate;
+                CurrentFireRate = _cannonGunFireRate;
                 _currentBulletForce = _cannonGunBulletForce;
             }
 
             else if (Shop.Instance.IsMachinegunAquired)
             {
                 _currentCycleIndex = 2;
-                _currentFireRate = _machinegunFireRate;
+                CurrentFireRate = _machinegunFireRate;
                 _currentBulletForce = _machinegunBulletForce;
             }
 
             else
             {
                 _currentCycleIndex = 0;
-                _currentFireRate = _defaultGunFireRate;
+                CurrentFireRate = _defaultGunFireRate;
                 _currentBulletForce = _defaultGunBulletForce;
             }
         }
@@ -104,21 +128,21 @@ public class PlayerWeapon : MonoBehaviour
             if (Shop.Instance.IsMachinegunAquired)
             {
                 _currentCycleIndex = 2;
-                _currentFireRate = _machinegunFireRate;
+                CurrentFireRate = _machinegunFireRate;
                 _currentBulletForce = _machinegunBulletForce;
             }
 
             else if (Shop.Instance.IsCannonGunAquired)
             {
                 _currentCycleIndex = 1;
-                _currentFireRate = _cannonGunFireRate;
+                CurrentFireRate = _cannonGunFireRate;
                 _currentBulletForce = _cannonGunBulletForce;
             }
 
             else
             {
                 _currentCycleIndex = 0;
-                _currentFireRate = _defaultGunFireRate;
+                CurrentFireRate = _defaultGunFireRate;
                 _currentBulletForce = _defaultGunBulletForce;
             }
         }
@@ -126,7 +150,7 @@ public class PlayerWeapon : MonoBehaviour
         else
             return;
         
-        _cooldown = _currentFireRate;
+        _cooldown = CurrentFireRate;
 
         _allWeapons[_currentCycleIndex].SetActive(true);
     }
@@ -142,14 +166,14 @@ public class PlayerWeapon : MonoBehaviour
             if (Shop.Instance.IsCannonGunAquired)
             {
                 _currentCycleIndex = 1;
-                _currentFireRate = _cannonGunFireRate;
+                CurrentFireRate = _cannonGunFireRate;
                 _currentBulletForce = _cannonGunBulletForce;
             }
 
             else
             {
                 _currentCycleIndex = 0;
-                _currentFireRate = _defaultGunFireRate;
+                CurrentFireRate = _defaultGunFireRate;
                 _currentBulletForce = _defaultGunBulletForce;
             }
         }
@@ -157,7 +181,7 @@ public class PlayerWeapon : MonoBehaviour
         else if (_currentCycleIndex == 0)
         {
             _currentCycleIndex = 0;
-            _currentFireRate = _defaultGunFireRate;
+            CurrentFireRate = _defaultGunFireRate;
             _currentBulletForce = _defaultGunBulletForce;
         }
 
@@ -179,6 +203,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
         Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+        AudioManager.Instance.PlayMusic(shootSoundDefult);
         rb.AddForce(_bulletTr.up * _currentBulletForce, ForceMode2D.Impulse);
     }
 
@@ -188,8 +213,10 @@ public class PlayerWeapon : MonoBehaviour
 
         if (Input.GetMouseButton(0) && CanShoot && _cooldown <= 0)
         {
+
             InstansiateBullet();
-            _cooldown = _currentFireRate;
+            Physics.IgnoreLayerCollision(11, 11, true);
+            _cooldown = CurrentFireRate;
         }
     }
     #endregion
