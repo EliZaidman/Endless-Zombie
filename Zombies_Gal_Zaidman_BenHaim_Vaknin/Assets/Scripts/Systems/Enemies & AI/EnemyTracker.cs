@@ -17,8 +17,4 @@ public class EnemyTracker : MonoBehaviour
         //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //transform.position = TrackerPos.transform.position;
     }
-
-
-
-
 }
