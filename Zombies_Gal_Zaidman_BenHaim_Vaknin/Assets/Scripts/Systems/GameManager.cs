@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
-
+using UnityEditor.UI;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool _isWaveOngoing = false;
-    
+
+
+    public ParticleSystem hitEffect;
+    public ParticleSystem deathEffect;
+
     #endregion
 
     #region Properties
@@ -85,7 +89,7 @@ public class GameManager : MonoBehaviour
         {
             _nextLevelTxt.text = "Start Game!";
             Timer = 5;
-            _spawnerManager._timeBetweenSpawns = 0;
+            _spawnerManager._timeBetweenSpawns = 1;
             _spawnerManager._maxSpawns += Level;
             _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
             IsWaveOngoing = false;
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
             _nextLevelTxt.text = "Next Level!";
             Level++;
             Timer = 5;
-            _spawnerManager._timeBetweenSpawns = 0;
+            _spawnerManager._timeBetweenSpawns = 1;
             _spawnerManager._maxSpawns += Level;
             _spawnerManager._currentTimeBetweenSpawns = _spawnerManager._timeBetweenSpawns;
             IsWaveOngoing = false;

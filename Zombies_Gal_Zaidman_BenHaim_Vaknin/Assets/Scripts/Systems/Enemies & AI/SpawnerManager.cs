@@ -48,6 +48,8 @@ public class SpawnerManager : MonoBehaviour
 
     [SerializeField]
     public int _maxSpawns;
+
+    public AudioClip[] randomSpawnSounds;
     #endregion
 
     #region Public Fields
@@ -89,7 +91,7 @@ public class SpawnerManager : MonoBehaviour
             if (_currentTimeBetweenSpawns <= 0 && _maxSpawns > 0)
             {
                 GameObject newEnemy = Instantiate(_enemy, (Vector2)_spawners[Random.Range(0, 4)].transform.position + randomPosInsideSpawner, Quaternion.identity);
-
+                AudioManager.Instance.RandomSoundEffect(randomSpawnSounds);
                 _ZombiesInScene.Add(newEnemy);
                 _currentTimeBetweenSpawns = _timeBetweenSpawns;
                 _maxSpawns--;

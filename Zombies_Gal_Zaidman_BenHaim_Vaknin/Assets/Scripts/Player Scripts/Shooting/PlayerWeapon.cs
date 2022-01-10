@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class PlayerWeapon : MonoBehaviour
 {
     private static PlayerWeapon _instance;
+
+    public AudioClip shootSoundDefult;
     public static PlayerWeapon Instance
+
+        
     {
         get
         {
@@ -199,6 +203,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         GameObject _shotClone = Instantiate(_bullet, _bulletTr.position, _bulletTr.rotation);
         Rigidbody2D rb = _shotClone.GetComponent<Rigidbody2D>();
+        AudioManager.Instance.PlayMusic(shootSoundDefult);
         rb.AddForce(_bulletTr.up * _currentBulletForce, ForceMode2D.Impulse);
     }
 

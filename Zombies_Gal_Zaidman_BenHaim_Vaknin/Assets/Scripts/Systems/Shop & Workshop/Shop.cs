@@ -35,6 +35,7 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private float _inOverlayMapSize = 14f, _defaultMapSize;
 
+    public AudioClip buySuond;
     
     #endregion
 
@@ -101,6 +102,8 @@ public class Shop : MonoBehaviour
         {
             CoreManager.Instance.CoreMaxHp += 5;
             GeneralCoins -= MaxHealthPotionPrice;
+            AudioManager.Instance.PlayMusic(buySuond);
+
         }
     }
 
@@ -119,6 +122,8 @@ public class Shop : MonoBehaviour
                     CoreManager.Instance.CoreHp = CoreManager.Instance.CoreMaxHp;
 
                 GeneralCoins -= HealthPotionPrice;
+                AudioManager.Instance.PlayMusic(buySuond);
+
             }
         }
     }
@@ -129,8 +134,10 @@ public class Shop : MonoBehaviour
         {
             PlayerWeapon.Instance.BulletDmg += 5;
             GeneralCoins -= PowerUpPotion;
+            AudioManager.Instance.PlayMusic(buySuond);
+
         }
-       
+
     }
 
     public void BuyBulletSpeedUpPotion()
@@ -142,6 +149,8 @@ public class Shop : MonoBehaviour
 
             PlayerWeapon.Instance.CurrentFireRate -= 0.02f;
             GeneralCoins -= FireRatePotion;
+            AudioManager.Instance.PlayMusic(buySuond);
+
             return;
         }
     }
@@ -152,6 +161,8 @@ public class Shop : MonoBehaviour
         {
             IsMachinegunAquired = true;
             GeneralCoins -= MachineGunPrice;
+            AudioManager.Instance.PlayMusic(buySuond);
+
         }
     }
 
@@ -159,6 +170,7 @@ public class Shop : MonoBehaviour
     {
         if (GeneralCoins >= CannonPrice)
         {
+            AudioManager.Instance.PlayMusic(buySuond);
             IsCannonGunAquired = true;
             GeneralCoins -= CannonPrice;
         }
