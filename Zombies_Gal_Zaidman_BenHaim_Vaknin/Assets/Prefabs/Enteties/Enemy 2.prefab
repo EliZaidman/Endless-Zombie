@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4575512704407543621}
   - component: {fileID: 4720177462590617220}
   - component: {fileID: 205979454586092433}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
   coreTarget: {fileID: 0}
+  nearTarget: 0
   EnemyId: 1
   hitEffect: {fileID: 1319470029239790391, guid: 0e04f0d65e2aed143b3657b3f879d933, type: 3}
   hitMark: {fileID: 8300000, guid: e6bda19ccb8d48040a2204adf7dc1dc3, type: 3}
