@@ -11,8 +11,9 @@ public class TrapItem : MonoBehaviour
     [SerializeField]
     private Tilemap _tilemap;
 
-    public int TrapId, FireDamage = 30, SpikesDamage = 50, BearTrapDamage = 15, FlameTrapDamage = 30;
+    public int TrapId, FireDamage = 30, slowAmount = 1, BearTrapDamage = 15, FlameTrapDamage = 30;
 
+    
     void FunctionToGetRidOfTile()
     {
         Vector3Int getGridPos = new Vector3Int((int)_player.transform.position.x, (int)_player.transform.position.y, (int)_player.transform.position.z);

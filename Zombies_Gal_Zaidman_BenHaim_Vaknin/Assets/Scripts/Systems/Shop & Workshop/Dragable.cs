@@ -26,6 +26,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     [SerializeField]
     private TileBase _itemTile;
 
+    public string Type;
     private void Awake()
     {
         _startPos = _tr.anchoredPosition;
@@ -76,4 +77,5 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
         yield return null;
     }
+
 }

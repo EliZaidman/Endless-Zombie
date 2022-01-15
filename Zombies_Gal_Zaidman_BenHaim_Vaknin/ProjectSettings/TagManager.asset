@@ -14,6 +14,8 @@ TagManager:
   - Top
   - Bottom
   - nearTarget
+  - FireTrap
+  - IceTrap
   layers:
   - Default
   - TransparentFX
@@ -29,8 +31,8 @@ TagManager:
   - Bullet
   - Trap
   - Enemy
-  - 
-  - 
+  - FireTrap
+  - IceTrap
   - 
   - 
   - 

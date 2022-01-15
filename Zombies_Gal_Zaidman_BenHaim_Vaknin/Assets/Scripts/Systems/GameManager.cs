@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
     public ParticleSystem warningEffect;
+    public ParticleSystem fireEffect;
+    public ParticleSystem iceEffect;
     public int Level, TargetsRemaining;
     public float Timer, TimeSinceLevelStart;
     #endregion

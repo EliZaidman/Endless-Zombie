@@ -147,6 +147,8 @@ MonoBehaviour:
   EnemyId: 1
   hitEffect: {fileID: 1319470029239790391, guid: 0e04f0d65e2aed143b3657b3f879d933, type: 3}
   hitMark: {fileID: 8300000, guid: e6bda19ccb8d48040a2204adf7dc1dc3, type: 3}
+  fireSFX: {fileID: 8300000, guid: 7215b9a06a82d0a468b34c02af3ec063, type: 3}
+  iceSFX: {fileID: 8300000, guid: cdfbd0323a39b3b48b279e7282f6fcc4, type: 3}
 --- !u!50 &4575512704407543621
 Rigidbody2D:
   serializedVersion: 4
