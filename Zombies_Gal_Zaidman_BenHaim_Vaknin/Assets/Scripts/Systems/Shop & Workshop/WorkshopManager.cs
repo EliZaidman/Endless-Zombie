@@ -35,4 +35,32 @@ public class WorkshopManager : MonoBehaviour
         _workshopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
     }
+
+    public void FireTrap()
+    {
+        if (Shop.Instance.GeneralCoins >= Shop.Instance.FireTrapPrice)
+        {
+            Shop.Instance.GeneralCoins -= Shop.Instance.FireTrapPrice;
+            AudioManager.Instance.PlayMusic(Shop.Instance.buySuond);
+        }
+    }
+
+    public void IceTrap()
+    {
+        if (Shop.Instance.GeneralCoins >= Shop.Instance.IceTrapPrice)
+        {
+            Shop.Instance.GeneralCoins -= Shop.Instance.IceTrapPrice;
+            AudioManager.Instance.PlayMusic(Shop.Instance.buySuond);
+        }
+    }
+
+    public void GelTrap()
+    {
+
+    }
+
+    public void BlackFireTrap()
+    {
+
+    }
 }

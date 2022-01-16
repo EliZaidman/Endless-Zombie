@@ -41,6 +41,7 @@ public class Shop : MonoBehaviour
 
     #region Fields
     private int _coinsToPlayer, _shopCoins, _wSCoins;
+    public int FireTrapPrice = 5, IceTrapPrice = 25, GelTrapPrice = 450, BlackFireTrapPrice = 900;
     #endregion
 
     #region Public Fields
@@ -67,6 +68,9 @@ public class Shop : MonoBehaviour
         }
         _shopCoins = GeneralCoins;
         _wSCoins = GeneralCoins;
+
+        ShopCoinsText.text = _shopCoins.ToString();
+        WSCoinsText.text = _wSCoins.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,7 +107,6 @@ public class Shop : MonoBehaviour
             CoreManager.Instance.CoreMaxHp += 5;
             GeneralCoins -= MaxHealthPotionPrice;
             AudioManager.Instance.PlayMusic(buySuond);
-
         }
     }
 
@@ -137,16 +140,12 @@ public class Shop : MonoBehaviour
             AudioManager.Instance.PlayMusic(buySuond);
 
         }
-
     }
 
     public void BuyBulletSpeedUpPotion()
     {
         if (GeneralCoins >= FireRatePotion)
         {
-
-
-
             PlayerWeapon.Instance.CurrentFireRate -= 0.02f;
             GeneralCoins -= FireRatePotion;
             AudioManager.Instance.PlayMusic(buySuond);
@@ -162,7 +161,6 @@ public class Shop : MonoBehaviour
             IsMachinegunAquired = true;
             GeneralCoins -= MachineGunPrice;
             AudioManager.Instance.PlayMusic(buySuond);
-
         }
     }
 

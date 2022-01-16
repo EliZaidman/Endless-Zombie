@@ -24,6 +24,4 @@ public class TrapItem : MonoBehaviour
     {
         return new Vector3Int((int)gameObject.transform.position.x,(int)gameObject.transform.position.y, (int)gameObject.transform.position.z);
     }
-
-
 }

@@ -58,6 +58,7 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.alpha = 1f;
         StartCoroutine(PlaceGO());
+        Shop.Instance.GeneralCoins -= 25;
     }
 
     IEnumerator ReplaceInShop()
