@@ -53,15 +53,15 @@ public class EnemyAI : MonoBehaviour
         switch (EnemyId)
         {
             case 0:
-                _hp = 10;
-                break;
-
-            case 1:
                 _hp = 25;
                 break;
 
+            case 1:
+                _hp = 30;
+                break;
+
             case 2:
-                _hp = 50;
+                _hp = 35;
                 break;
 
             default:
