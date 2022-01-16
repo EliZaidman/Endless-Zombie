@@ -142,9 +142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 7055765813449581832, guid: 69b6b244918cb3345abc818c4899bca3, type: 3}
+  _tilemap: {fileID: 0}
   coreTarget: {fileID: 0}
   nearTarget: 0
-  EnemyId: 1
+  EnemyId: 0
   hitEffect: {fileID: 1319470029239790391, guid: 0e04f0d65e2aed143b3657b3f879d933, type: 3}
   hitMark: {fileID: 8300000, guid: e6bda19ccb8d48040a2204adf7dc1dc3, type: 3}
   fireSFX: {fileID: 8300000, guid: 7215b9a06a82d0a468b34c02af3ec063, type: 3}
