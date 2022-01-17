@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
             Application.LoadLevel(1);
         }
     }
-    
+
+    public void EndGame() => Application.LoadLevel(0);
     #endregion
 }
