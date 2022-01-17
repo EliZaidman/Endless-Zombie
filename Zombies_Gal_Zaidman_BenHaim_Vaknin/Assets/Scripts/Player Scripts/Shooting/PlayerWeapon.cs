@@ -7,10 +7,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     private static PlayerWeapon _instance;
 
-    public AudioClip shootSoundDefult;
     public static PlayerWeapon Instance
-
-        
     {
         get
         {
@@ -20,6 +17,7 @@ public class PlayerWeapon : MonoBehaviour
             return _instance;
         }
     }
+
     #region Serialized Fields
     [SerializeField]
     private List<GameObject> _allWeapons;
@@ -48,6 +46,8 @@ public class PlayerWeapon : MonoBehaviour
     #endregion
 
     #region Public Fields
+    public AudioClip shootSoundDefult;
+
     public bool CanShoot;
     public float CurrentFireRate;
     public int BulletDmg =10;
