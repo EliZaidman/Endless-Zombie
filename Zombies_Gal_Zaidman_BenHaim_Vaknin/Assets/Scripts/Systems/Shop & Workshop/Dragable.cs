@@ -15,8 +15,6 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     [SerializeField]
     private RectTransform _tr;
 
-    private Vector2 _startPos;
-
     [SerializeField]
     private NavMeshSurface2d _navmesh2D;
 
@@ -25,6 +23,8 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     [SerializeField]
     private TileBase _itemTile;
+
+    private Vector2 _startPos;
 
     public string Type;
     private void Awake()
@@ -49,7 +49,10 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("OnDrag");
-        _tr.position += (Vector3)eventData.delta / _canvas.scaleFactor;
+        if (Shop.Instance.GeneralCoins < 25)
+            return;
+        else
+            _tr.position += (Vector3)eventData.delta / _canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -58,7 +61,6 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.alpha = 1f;
         StartCoroutine(PlaceGO());
-        Shop.Instance.GeneralCoins -= 25;
     }
 
     IEnumerator ReplaceInShop()
@@ -75,6 +77,8 @@ public class Dragable : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         _itemGO.SetTile(_itemGO.WorldToCell(targetPos), _itemTile);
         _tr.anchoredPosition = _startPos;
         _navmesh2D.BuildNavMesh();
+        Shop.Instance.GeneralCoins -= 25;
+        AudioManager.Instance.PlayMusic(Shop.Instance.buySuond);
 
         yield return null;
     }

@@ -85,19 +85,20 @@ public class Shop : MonoBehaviour
     }
     #endregion
 
+    #region Methods
+    public void AddCoins()
+    {
+        _coinsToPlayer = Random.Range(2, 8);
+        GeneralCoins += _coinsToPlayer; 
+    }
+    #endregion
+
     #region Events
     public void CloseShop()
     {
         Time.timeScale = 1;
         _shopOverlay.SetActive(false);
         _mainCam.orthographicSize = _defaultMapSize;
-    }
-
-    public void AddCoins()
-    {
-        _coinsToPlayer = Random.Range(2, 8);
-        GeneralCoins += _coinsToPlayer;
-        
     }
 
     public void BuyMaxHealthPotion()
@@ -126,7 +127,6 @@ public class Shop : MonoBehaviour
 
                 GeneralCoins -= HealthPotionPrice;
                 AudioManager.Instance.PlayMusic(buySuond);
-
             }
         }
     }
@@ -138,7 +138,6 @@ public class Shop : MonoBehaviour
             PlayerWeapon.Instance.BulletDmg += 5;
             GeneralCoins -= PowerUpPotion;
             AudioManager.Instance.PlayMusic(buySuond);
-
         }
     }
 
@@ -168,9 +167,9 @@ public class Shop : MonoBehaviour
     {
         if (GeneralCoins >= CannonPrice)
         {
-            AudioManager.Instance.PlayMusic(buySuond);
             IsCannonGunAquired = true;
             GeneralCoins -= CannonPrice;
+            AudioManager.Instance.PlayMusic(buySuond);
         }
     }
     #endregion
